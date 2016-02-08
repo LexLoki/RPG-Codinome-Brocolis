@@ -1,7 +1,7 @@
 require "Utils/animationManager"
 require "entity"
 require "Direction"
-require "Player/bullet"
+require "Bullet/bullet"
 
 Player = class_extends(Entity)
 
@@ -59,7 +59,7 @@ function Player:keypressed(key)
 end
 
 function Player:attack()
-  table.insert(gameManager.bullets,Bullet.new(self.x+self.width/2,self.y+self.height/2,self))
+  table.insert(bulletManager.list,Bullet.new(self.x+self.width/2,self.y+self.height/2,self))
 end
 
 function Player:updateMovement(dt)
