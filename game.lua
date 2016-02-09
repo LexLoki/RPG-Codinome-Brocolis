@@ -8,7 +8,7 @@ local p
 function game.load()
   menu.load()
   gameManager.load()
-  game.setState(gameManager,3)
+  game.setState(gameManager,2)
 end
 
 function game.update(dt)

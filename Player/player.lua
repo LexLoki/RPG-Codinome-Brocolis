@@ -29,7 +29,7 @@ function Player.load()
     end
   end
   Player.assets = {sheet=img,quads=quads}
-  Player.speed = 140
+  Player.speed = 280
   Player.width = ew-44
   Player.height = eh-22
   Player.maxHP = 4
