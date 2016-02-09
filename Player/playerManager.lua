@@ -34,6 +34,15 @@ function playerManager.draw(of)
   end
 end
 
+function playerManager.killPlayer(player)
+  for i,v in ipairs(playerManager.list) do
+    if v==player then
+      table.remove(playerManager.list,i)
+      break
+    end
+  end
+end
+
 function sortDraw(players)
   draw = {}
   for i,v in ipairs(players) do table.insert(draw,v) end

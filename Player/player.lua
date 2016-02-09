@@ -32,19 +32,28 @@ function Player.load()
   Player.speed = 140
   Player.width = ew-44
   Player.height = eh-22
+  Player.maxHP = 4
 end
 
 --Create an instance of Player
 function Player.new(index)
   local self = Player.newObject(100,100,Player.width,Player.height)
   --Init properties
-  self.index = index
   self.color = Player.data[index].color
   self.dir = Direction.Left
   self.speed = {x=0,y=0}
   self.aComp = animationManager_new(4,0.5,true)
   self.keys = Player.data[index].keys
+  self.hp = Player.maxHP
+  self.bulletClass = Bullet
   return self
+end
+
+function Player:tookHit()
+  self.hp = self.hp - 1
+  if self.hp == 0 then
+    playerManager.killPlayer(self)
+  end
 end
 
 function Player:update(dt)
@@ -58,7 +67,7 @@ function Player:keypressed(key)
 end
 
 function Player:attack()
-  table.insert(bulletManager.list,Bullet.new(self.x+self.width/2,self.y+self.height/2,self))
+  bulletManager.newBullet(self)
 end
 
 function Player:updateMovement(dt)

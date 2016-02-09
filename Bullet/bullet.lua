@@ -1,9 +1,9 @@
 require "entity"
-require "Direction"
+require "contact"
 
 Bullet = class_extends(Entity,"bullet")
-Bullet.width = 50
-Bullet.height = 50
+Bullet.width = 25
+Bullet.height = 25
 Bullet.color = {0,255,0}
 Bullet.speed = 800
 
@@ -11,14 +11,39 @@ function Bullet.load()
   
 end
 
-function Bullet.new(x,y,player)
-  self = Bullet.newObject(x-Bullet.width/2,y-Bullet.height/2)
-  self.speed = Direction.getSpeed(player.dir)
-  self.speed.x = Bullet.speed*self.speed.x
-  self.speed.y = Bullet.speed*self.speed.y
+--[[ Bullet.new
+Creates a new bullet shot by the given player
+-
+Parameters:
+  - x: the x position of the bullet, relative to top position of the arena
+  - y: the y position of the bullet, relative to top position of the arena
+  - player: the Player entity that is shooting the bullet
+]]
+function Bullet.new(x,y,direction)
+  self = Bullet.newObject(x,y)
+  self.speed = {
+    x = Bullet.speed * direction.x,
+    y = Bullet.speed * direction.y
+  }
   return self
 end
 
+--[[ Bullet:update
+Updates the bullet behaviour. This function should be overrided by its subclasses
+-
+Parameters:
+  - dt: the delta time since last frame update
+]]
 function Bullet:update(dt)
   
+end
+
+--[[ Bullet:checkPlayerContact
+Check either or not the bullet is touching a given player
+-
+Parameters:
+  - player: the Player entity to check if the bullet is in contact with
+]]
+function Bullet:checkPlayerContact(player)
+  return contact.isInContact(self,player)
 end
