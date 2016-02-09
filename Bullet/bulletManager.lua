@@ -1,8 +1,23 @@
 require "Bullet/bullet"
+require "Bullet/bulletSenoid"
+require "Bullet/bulletGrow"
 require "Direction"
 
 bulletManager = {}
 bulletManager.list = {}
+bulletManager.bullets = {
+  BulletGrow,
+  BulletSenoid
+}
+
+--[[ bulletManager.randomBullet
+Gets a random subclass of Bullet
+-
+Returns: a random Bullet subclass
+]]
+function bulletManager.randomBullet()
+  return bulletManager.bullets[love.math.random(#bulletManager.bullets)]
+end
 
 function bulletManager.load()
   Bullet.load()

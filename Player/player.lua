@@ -36,7 +36,7 @@ function Player.load()
 end
 
 --Create an instance of Player
-function Player.new(index)
+function Player.new(index,bulletClass)
   local self = Player.newObject(100,100,Player.width,Player.height)
   --Init properties
   self.color = Player.data[index].color
@@ -45,7 +45,7 @@ function Player.new(index)
   self.aComp = animationManager_new(4,0.5,true)
   self.keys = Player.data[index].keys
   self.hp = Player.maxHP
-  self.bulletClass = Bullet
+  self.bulletClass = bulletClass
   return self
 end
 

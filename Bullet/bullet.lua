@@ -5,7 +5,7 @@ Bullet = class_extends(Entity,"bullet")
 Bullet.width = 25
 Bullet.height = 25
 Bullet.color = {0,255,0}
-Bullet.speed = 800
+Bullet.speed = 400--800
 
 function Bullet.load()
   
@@ -19,11 +19,11 @@ Parameters:
   - y: the y position of the bullet, relative to the top-left corner of the arena
   - direction: a table {x = 1 or 0 or -1, y = 1 or 0 or -1}, specifying the direction the bullet should go
 ]]
-function Bullet.new(x,y,direction)
+function Bullet.new(x,y,direction,speed)
   self = Bullet.newObject(x,y)
   self.speed = {
-    x = Bullet.speed * direction.x,
-    y = Bullet.speed * direction.y
+    x = speed * direction.x,
+    y = speed * direction.y
   }
   return self
 end

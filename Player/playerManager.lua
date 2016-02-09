@@ -10,7 +10,7 @@ end
 
 function playerManager.start(nPlayers)
   for i=1,nPlayers do
-    table.insert(playerManager.list,Player.new(i))
+    table.insert(playerManager.list,Player.new(i,bulletManager.randomBullet()))
   end
 end
 
