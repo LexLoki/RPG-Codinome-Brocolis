@@ -1,7 +1,7 @@
 require "Utils/animationManager"
 require "entity"
 require "Direction"
-require "Bullet/bullet"
+require "Bullet/bulletManager"
 
 Player = class_extends(Entity)
 
@@ -10,7 +10,6 @@ local resetFrame
 
 --Load player class resources
 function Player.load()
-  Bullet.load()
   Player.data = {
     {color = {255,255,255}, keys = {left="left",up="up",right="right",down="down",jump="space",attack=",",run="m"}},
     {color = {0,255,0}, keys = {left="a",up="w",right="d",down="s",jump="space",attack="c",run="x"}},

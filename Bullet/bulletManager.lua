@@ -4,6 +4,7 @@ bulletManager = {}
 bulletManager.list = {}
 
 function bulletManager.load()
+  Bullet.load()
 end
 
 function bulletManager.start()
