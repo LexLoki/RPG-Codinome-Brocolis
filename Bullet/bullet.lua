@@ -43,6 +43,10 @@ Check either or not the bullet is touching a given player
 -
 Parameters:
   - player: the Player entity to check if the bullet is in contact with
+
+Returns: 
+  - true: if the player is in contact with the bullet
+  - false: otherwise
 ]]
 function Bullet:checkPlayerContact(player)
   return contact.isInContact(self,player)
