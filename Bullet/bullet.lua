@@ -17,7 +17,7 @@ Creates a new bullet shot by the given player
 Parameters:
   - x: the x position of the bullet, relative to top position of the arena
   - y: the y position of the bullet, relative to top position of the arena
-  - player: the Player entity that is shooting the bullet
+  - direction: the direction the bullet should go
 ]]
 function Bullet.new(x,y,direction)
   self = Bullet.newObject(x,y)
