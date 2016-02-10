@@ -5,9 +5,6 @@ BulletGrow.growSpeed = 50
 BulletGrow.speed = 400
 BulletGrow.color = {0,0,255}
 
-local horizontal = {}
-local vertical = {}
-
 function BulletGrow.new(x,y,dir)
   local self = BulletGrow.newObject(x,y,dir,BulletGrow.speed)
   return self

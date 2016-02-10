@@ -1,7 +1,7 @@
 require "Utils/animationManager"
 require "entity"
 require "Direction"
-require "Bullet/bulletManager"
+require "Weapon/weapon"
 
 Player = class_extends(Entity)
 
@@ -45,7 +45,7 @@ function Player.new(index,bulletClass)
   self.aComp = animationManager_new(4,0.5,true)
   self.keys = Player.data[index].keys
   self.hp = Player.maxHP
-  self.bulletClass = bulletClass
+  self.weapon = Weapon.new(self,bulletClass)
   return self
 end
 
@@ -67,7 +67,7 @@ function Player:keypressed(key)
 end
 
 function Player:attack()
-  bulletManager.newBullet(self)
+  self.weapon:shoot()
 end
 
 function Player:updateMovement(dt)

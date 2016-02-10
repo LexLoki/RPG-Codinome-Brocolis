@@ -65,12 +65,12 @@ Creates a new bullet shot by the given player
 Parameters:
   - player: the Player entity that is shooting the bullet
 ]]
-function bulletManager.newBullet(player)
-  local bClass = player.bulletClass
+function bulletManager.newBullet(player,bClass,...)
+  --local bClass = player.bulletClass
   local dir = Direction.getSpeed(player.dir)
   local pos_x = player.x+(player.width-bClass.width)/2+dir.x*(bClass.width+player.width)/2
   local pos_y = player.y+(player.height-bClass.height)/2+dir.y*(bClass.height+player.height)/2
-  table.insert(bulletManager.list,bClass.new(pos_x,pos_y,dir,player))
+  table.insert(bulletManager.list,bClass.new(pos_x,pos_y,dir,player,...))
 end
 
 --[[ bulletManager.draw
