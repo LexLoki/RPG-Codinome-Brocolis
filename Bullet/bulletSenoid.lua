@@ -15,9 +15,8 @@ function BulletSenoid.new(x,y,dir)
   self.x0 = x
   self.y0 = y
   self.type = dir.x ~= 0 and horizontal or vertical
+  self.sign = (sign == nil and 1 or sign)
   self.type.start(self)
-  --self.sign = Bullet.sign
-  --Bullet.sign = -Bullet.sign
   return self
 end
 
@@ -26,16 +25,21 @@ function BulletSenoid:update(dt)
 end
 
 function horizontal.start(self)
-  self.mult = math.pi*2/(BulletSenoid.time*self.speed.x)--*self.sign
+  self.mult = math.pi*2/(BulletSenoid.time*self.speed.x)*self.sign
 end
 function horizontal.update(dt,self)
   local nextY = BulletSenoid.amp*math.sin((self.x-self.x0)*self.mult) + self.y0
   self.speed.y = (nextY-self.y)/dt
 end
 function vertical.start(self)
-  self.mult = math.pi*2/(BulletSenoid.time*self.speed.y)--*self.sign
+  self.mult = math.pi*2/(BulletSenoid.time*self.speed.y)*self.sign
 end
 function vertical.update(dt, self)
   local nextX = BulletSenoid.amp*math.sin((self.y-self.y0)*self.mult) + self.x0
   self.speed.x = (nextX-self.x)/dt
+end
+
+function BulletSenoid:draw(of)
+  love.graphics.setColor(self.color)
+  love.graphics.circle("fill",self.x+self.width/2+of.x,self.y+self.height/2+of.y,self.width/2)
 end

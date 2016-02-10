@@ -5,7 +5,6 @@ Bullet = class_extends(Entity,"bullet")
 Bullet.width = 25
 Bullet.height = 25
 Bullet.color = {0,255,0}
-Bullet.speed = 400--800
 
 function Bullet.load()
   
