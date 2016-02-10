@@ -1,6 +1,7 @@
 require "class"
 
 Entity = class_new()
+Entity.isCircle = true
 
 function Entity.new(x,y,width,height)
   local self = Entity.newObject()
@@ -18,7 +19,16 @@ end
 
 function Entity:draw(of)
   if of == nil then of = {x=0,y=0} end
-  love.graphics.setColor(self.color)
-  love.graphics.rectangle("fill",self.x+of.x,self.y+of.y,self.width,self.height)
-  love.graphics.setColor(255,255,255)
+  if self.img == nil then
+    love.graphics.setColor(self.color)
+    if self.isCircle then
+      love.graphics.circle("fill",self.x+of.x+self.width/2,self.y+of.y+self.height/2,(self.width+self.height)/4)
+    else
+      love.graphics.rectangle("fill",self.x+of.x,self.y+of.y,self.width,self.height)
+    end
+    love.graphics.setColor(255,255,255)
+  else
+    love.graphics.setColor(255,255,255)
+    love.graphics.draw(self.img,self.x+of.x,self.y+of.y,0,self.width/self.img:getWidth(),self.height/self.img:getHeight())
+  end
 end

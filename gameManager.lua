@@ -7,6 +7,7 @@ gameManager = {}
 function gameManager.load()
   arena.load(12,16)
   Player.load()
+  bulletManager.load()
 end
 
 function gameManager.start(nPlayers)

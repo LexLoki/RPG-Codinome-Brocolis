@@ -2,6 +2,7 @@ require "Bullet/bullet"
 require "Bullet/bulletSenoid"
 require "Bullet/bulletGrow"
 require "Direction"
+require "Utils/animations"
 
 bulletManager = {}
 bulletManager.list = {}
@@ -20,6 +21,7 @@ function bulletManager.randomBullet()
 end
 
 function bulletManager.load()
+  animations.load()
   Bullet.load()
 end
 
@@ -34,12 +36,13 @@ Parameters:
   - dt: the delta time since last frame update
 ]]
 function bulletManager.update(dt)
+  animations.update(dt)
   for i,v in ipairs(bulletManager.list) do
     v:update(dt)
     if not arena.handleHorizontal(dt,v) or not arena.handleVertical(dt,v) then
-      table.remove(bulletManager.list,i)
+      bulletManager.bulletCollided(i)
     else
-      bulletManager.searchPlayerContact(v)
+      bulletManager.searchPlayerContact(i,v)
     end
   end
 end
@@ -50,10 +53,10 @@ Verifies if a bullet is touching one of the players
 Parameters:
   - v: the bullet
 ]]
-function bulletManager.searchPlayerContact(v)
+function bulletManager.searchPlayerContact(i,v)
   for j,p in ipairs(playerManager.list) do
     if v:checkPlayerContact(p) then
-      table.remove(bulletManager.list,i)
+      bulletManager.bulletCollided(i)
       p:tookHit()
     end
   end
@@ -80,7 +83,15 @@ Parameters:
   - offset: a table (x,y) with offset distance from the screen's top left corner
 ]]
 function bulletManager.draw(offset)
+  bulletManager.offset = offset
   for i,v in ipairs(bulletManager.list) do
     v:draw(offset)
   end
+  animations.draw()
+end
+
+function bulletManager.bulletCollided(bulletIndex)
+  local of = bulletManager.offset
+  local bullet = table.remove(bulletManager.list,bulletIndex)
+  animations.createSplash(of.x+bullet.x+bullet.width/2,of.y+bullet.y+bullet.height/2)
 end

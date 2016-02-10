@@ -2,12 +2,12 @@ require "entity"
 require "contact"
 
 Bullet = class_extends(Entity,"bullet")
-Bullet.width = 16
-Bullet.height = 16
+Bullet.width = 25
+Bullet.height = 25
 Bullet.color = {0,255,0}
 
 function Bullet.load()
-  
+  Bullet.img = love.graphics.newImage("bullet.png")
 end
 
 --[[ Bullet.new

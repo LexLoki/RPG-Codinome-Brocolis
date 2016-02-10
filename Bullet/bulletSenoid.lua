@@ -39,7 +39,9 @@ function vertical.update(dt, self)
   self.speed.x = (nextX-self.x)/dt
 end
 
+--[[
 function BulletSenoid:draw(of)
   love.graphics.setColor(self.color)
   love.graphics.circle("fill",self.x+self.width/2+of.x,self.y+self.height/2+of.y,self.width/2)
 end
+]]
