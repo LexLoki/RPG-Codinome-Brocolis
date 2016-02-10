@@ -2,13 +2,15 @@ require "Bullet/bullet"
 require "Bullet/bulletSenoid"
 require "Bullet/bulletGrow"
 require "Bullet/bulletBoomerang"
+require "Bullet/bulletExpo"
 require "Direction"
 require "Utils/animations"
 
 bulletManager = {}
 bulletManager.list = {}
 bulletManager.bullets = {
-  BulletBoomerang
+  BulletExpo
+  --BulletBoomerang
   --BulletGrow,
   --BulletSenoid
 }
