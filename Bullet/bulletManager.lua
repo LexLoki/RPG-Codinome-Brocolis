@@ -1,14 +1,16 @@
 require "Bullet/bullet"
 require "Bullet/bulletSenoid"
 require "Bullet/bulletGrow"
+require "Bullet/bulletBoomerang"
 require "Direction"
 require "Utils/animations"
 
 bulletManager = {}
 bulletManager.list = {}
 bulletManager.bullets = {
-  BulletGrow,
-  BulletSenoid
+  BulletBoomerang
+  --BulletGrow,
+  --BulletSenoid
 }
 
 --[[ bulletManager.randomBullet
@@ -94,4 +96,14 @@ function bulletManager.bulletCollided(bulletIndex)
   local of = bulletManager.offset
   local bullet = table.remove(bulletManager.list,bulletIndex)
   animations.createSplash(of.x+bullet.x+bullet.width/2,of.y+bullet.y+bullet.height/2)
+end
+
+function bulletManager.terminateBullet(bullet)
+  for i,v in ipairs(bulletManager.list) do
+    if v==bullet then
+      bulletManager.bulletCollided(i)
+      --table.remove(bulletManager.list,i)
+      break
+    end
+  end
 end

@@ -1,6 +1,6 @@
 require "class"
 
-Entity = class_new()
+Entity = class_new("entity")
 Entity.isCircle = true
 
 function Entity.new(x,y,width,height)

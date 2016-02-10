@@ -6,8 +6,16 @@ Bullet.width = 25
 Bullet.height = 25
 Bullet.color = {0,255,0}
 
+local psystem
+
 function Bullet.load()
   Bullet.img = love.graphics.newImage("bullet.png")
+  psystem = love.graphics.newParticleSystem(Bullet.img, 32)
+	psystem:setParticleLifetime(2, 5) -- Particles live at least 2s and at most 5s.
+	psystem:setEmissionRate(5)
+	psystem:setSizeVariation(1)
+	psystem:setLinearAcceleration(-20, -20, 20, 20) -- Random movement in all directions.
+	psystem:setColors(255, 255, 255, 255, 255, 255, 255, 0) -- Fade to transparency.
 end
 
 --[[ Bullet.new
@@ -34,7 +42,7 @@ Parameters:
   - dt: the delta time since last frame update
 ]]
 function Bullet:update(dt)
-  
+  psystem:update(dt)
 end
 
 --[[ Bullet:checkPlayerContact
@@ -50,3 +58,11 @@ Returns:
 function Bullet:checkPlayerContact(player)
   return contact.isInContact(self,player)
 end
+
+--[[
+function Bullet:draw(of)
+  --print(self:superClass():superClass():name())
+  --local func = self:superClass():draw(of)
+  --self:superClass():draw(of)
+end
+]]
