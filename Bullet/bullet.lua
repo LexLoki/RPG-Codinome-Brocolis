@@ -2,8 +2,8 @@ require "entity"
 require "contact"
 
 Bullet = class_extends(Entity,"bullet")
-Bullet.width = 25
-Bullet.height = 25
+Bullet.width = 16
+Bullet.height = 16
 Bullet.color = {0,255,0}
 
 function Bullet.load()
