@@ -1,6 +1,6 @@
 require "RPG_Full_Logo/RPG_Logo"
 require "Game/game"
-require "class"
+require "audioManager"
 
 io.stdout:setvbuf("no")
 
@@ -10,6 +10,7 @@ function love.load()
   RPG_Logo.load(1.5,1.5,1.5,love.startGame)
   game.load()
   state = RPG_Logo
+  audioManager.load()
 end
 
 function love.update(dt)
