@@ -27,7 +27,8 @@ Parameters:
   - direction: a table {x = 1 or 0 or -1, y = 1 or 0 or -1}, specifying the direction the bullet should go
 ]]
 function Bullet.new(x,y,direction,speed)
-  self = Bullet.newObject(x,y)
+  self = Bullet.newObject(x,y,Bullet.width,Bullet.height)
+  self.super.img = self.img
   self.speed = {
     x = speed * direction.x,
     y = speed * direction.y
@@ -42,6 +43,7 @@ Parameters:
   - dt: the delta time since last frame update
 ]]
 function Bullet:update(dt)
+  self.super:update(dt)
   psystem:update(dt)
 end
 
@@ -59,10 +61,7 @@ function Bullet:checkPlayerContact(player)
   return contact.isInContact(self,player)
 end
 
---[[
 function Bullet:draw(of)
-  --print(self:superClass():superClass():name())
-  --local func = self:superClass():draw(of)
-  --self:superClass():draw(of)
+  self.super:draw(of)
+  --love.graphics.draw()
 end
-]]

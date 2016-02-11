@@ -6,7 +6,6 @@ BulletBoomerang.distance = 420
 BulletBoomerang.amp = 120
 BulletBoomerang.velA = -math.pi*1.2
 
-
 function BulletBoomerang.new(x,y,dir)
   local self = BulletBoomerang.newObject(x,y,dir,BulletBoomerang.speed)
   self:prepare(dir)

@@ -1,27 +1,16 @@
+local function shallowCopy(t)
+  local x = {}
+  for i,v in pairs(t) do x[i]=v end
+  return x
+end
+
 function class_new(name)
   local new_class = {}
+  new_class.__index = new_class
   function new_class.newObject(...)
     local sup = new_class:superClass()
-    local newinst = {}
-    local meta = {}
-    if sup == nil then
-      meta.__index = new_class
-    else
-      newinst.super = sup.new(...)
-      function meta.__index(table,key)
-        local classGet = rawget(new_class,key)
-        local superGet = rawget(newinst.super,key)
-        return (superGet or classGet or newinst.super[key])
-      end
-      function meta.__newindex(table, key, value)
-        if newinst.super[key] == nil then
-          rawset(table,key,value)
-        else
-          newinst.super[key] = value
-        end
-      end
-    end
-    setmetatable(newinst, meta)
+    local newinst = sup == nil and {} or sup.new(...)
+    setmetatable(newinst, new_class)
     return newinst
   end
   new_class.new = new_class.newObject
@@ -60,10 +49,28 @@ end
 function class_extends(baseClass,name)
   local new_class = class_new(name)
   if baseClass~=nil then 
-    setmetatable(new_class,{__index=baseClass})
+    setmetatable(new_class,baseClass)
     function new_class:superClass()
       return baseClass
     end
+    --[[
+    function new_class:super()
+      local x = {}
+      for i,v in pairs(baseClass) do
+        x[i] = inst:v
+      end
+      setmetatable(x,baseClass)
+      return x
+    end
+    ]]
+    --new_class.superClass = baseClass
+    --new_class.super = {}
+    --[[
+    for i,v in pairs(baseClass) do
+      new_class[]--super[i] = v
+    end
+    setmetatable(new_class.super,getmetatable(baseClass))
+    ]]
   end
   return new_class
 end
