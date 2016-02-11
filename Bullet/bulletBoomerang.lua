@@ -31,6 +31,7 @@ function BulletBoomerang:prepare(dir)
 end
 
 function BulletBoomerang:update(dt)
+  self.super:update(dt)
   self.alpha = self.alpha + self.velA*dt
   if self.alpha < -math.pi*2 then
     bulletManager.terminateBullet(self)

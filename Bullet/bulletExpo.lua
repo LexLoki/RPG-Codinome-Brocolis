@@ -24,7 +24,7 @@ function BulletExpo:prepare(dir)
 end
 
 function BulletExpo:update(dt)
-    
+    self.super:update(dt)
     local x = self.x-self.x0
     
     local NextY = math.exp(x/self.damping) + self.y0

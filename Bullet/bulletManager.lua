@@ -9,10 +9,10 @@ require "Utils/animations"
 bulletManager = {}
 bulletManager.list = {}
 bulletManager.bullets = {
-  BulletExpo
-  --BulletBoomerang
+  --BulletExpo
+  BulletBoomerang,
   --BulletGrow,
-  --BulletSenoid
+  BulletSenoid
 }
 
 --[[ bulletManager.randomBullet

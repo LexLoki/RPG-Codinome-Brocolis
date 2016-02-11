@@ -6,16 +6,19 @@ Bullet.width = 25
 Bullet.height = 25
 Bullet.color = {0,255,0}
 
-local psystem
+
 
 function Bullet.load()
-  Bullet.img = love.graphics.newImage("bullet.png")
-  psystem = love.graphics.newParticleSystem(Bullet.img, 32)
-	psystem:setParticleLifetime(2, 5) -- Particles live at least 2s and at most 5s.
-	psystem:setEmissionRate(5)
-	psystem:setSizeVariation(1)
-	psystem:setLinearAcceleration(-20, -20, 20, 20) -- Random movement in all directions.
-	psystem:setColors(255, 255, 255, 255, 255, 255, 255, 0) -- Fade to transparency.
+  Bullet.img = love.graphics.newImage('bullet.png')
+  --[[
+  local img = love.graphics.newImage("particle.png")
+  Bullet.particleScale = 12/img:getWidth()
+  Bullet.psystem = love.graphics.newParticleSystem(img, 200)
+	Bullet.psystem:setParticleLifetime(2, 5) -- Particles live at least 2s and at most 5s.
+	Bullet.psystem:setEmissionRate(20)
+	Bullet.psystem:setSizeVariation(1)
+  Bullet.psystem:start()
+  ]]
 end
 
 --[[ Bullet.new
@@ -33,6 +36,11 @@ function Bullet.new(x,y,direction,speed)
     x = speed * direction.x,
     y = speed * direction.y
   }
+  --[[
+  self.psystem = Bullet.psystem:clone()
+  self.psystem:setDirection(-direction.x,-direction.y,0)
+  self.psystem:setSpeed(1000,1000)
+  ]]
   return self
 end
 
@@ -44,7 +52,12 @@ Parameters:
 ]]
 function Bullet:update(dt)
   self.super:update(dt)
-  psystem:update(dt)
+  print("venha")
+  --[[
+  self.psystem:update(dt)
+  self.psystem:emit(1)
+  self.psystem:setDirection(-self.speed.x,-self.speed.y,0)
+  ]]
 end
 
 --[[ Bullet:checkPlayerContact
@@ -61,7 +74,10 @@ function Bullet:checkPlayerContact(player)
   return contact.isInContact(self,player)
 end
 
+--[[
 function Bullet:draw(of)
   self.super:draw(of)
-  --love.graphics.draw()
+  local s = Bullet.particleScale
+  love.graphics.draw(self.psystem,self.x+of.x,self.y+of.y,0,s,s)
 end
+]]

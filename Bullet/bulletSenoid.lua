@@ -21,6 +21,7 @@ function BulletSenoid.new(x,y,dir)
 end
 
 function BulletSenoid:update(dt)
+  self.super:update(dt)
   self.type.update(dt,self)
 end
 

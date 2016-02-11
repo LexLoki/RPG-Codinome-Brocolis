@@ -11,6 +11,7 @@ function BulletGrow.new(x,y,dir)
 end
 
 function BulletGrow:update(dt)
+  self.super:update(dt)
   local inc = BulletGrow.growSpeed*dt
   self.width = self.width+inc
   self.height = self.height+inc
