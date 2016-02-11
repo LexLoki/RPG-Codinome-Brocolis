@@ -1,5 +1,5 @@
 require "RPG_Full_Logo/RPG_Logo"
-require "game"
+require "Game/game"
 require "class"
 
 io.stdout:setvbuf("no")

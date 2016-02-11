@@ -1,5 +1,5 @@
 require "Menu/menu"
-require "gameManager"
+require "Game/gameManager"
 
 game = {}
 

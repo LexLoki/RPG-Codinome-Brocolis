@@ -9,9 +9,9 @@ require "Utils/animations"
 bulletManager = {}
 bulletManager.list = {}
 bulletManager.bullets = {
-  --BulletExpo
+  BulletExpo,
   BulletBoomerang,
-  --BulletGrow,
+  BulletGrow,
   BulletSenoid
 }
 
@@ -75,8 +75,10 @@ Parameters:
 function bulletManager.newBullet(player,bClass,...)
   --local bClass = player.bulletClass
   local dir = Direction.getSpeed(player.dir)
-  local pos_x = player.x+(player.width-bClass.width)/2+dir.x*(bClass.width+player.width)/2
-  local pos_y = player.y+(player.height-bClass.height)/2+dir.y*(bClass.height+player.height)/2
+  --local pos_x = player.x+(player.width-bClass.width)/2+dir.x*(bClass.width+player.width)/2
+  --local pos_y = player.y+(player.height-bClass.height)/2+dir.y*(bClass.height+player.height)/2
+  local pos_x = player.x + (dir.x>0 and player.width or dir.x<0 and -bClass.width or player.width/2-bClass.width)
+  local pos_y = player.y + (dir.y>0 and player.height or dir.y<0 and -bClass.height or player.height/2-bClass.height)
   table.insert(bulletManager.list,bClass.new(pos_x,pos_y,dir,player,...))
 end
 

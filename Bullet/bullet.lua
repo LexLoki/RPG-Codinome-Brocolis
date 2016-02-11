@@ -9,9 +9,9 @@ Bullet.color = {0,255,0}
 
 
 function Bullet.load()
-  Bullet.img = love.graphics.newImage('bullet.png')
+  Bullet.img = love.graphics.newImage('Assets/bullet.png')
   --[[
-  local img = love.graphics.newImage("particle.png")
+  local img = love.graphics.newImage("Assets/particle.png")
   Bullet.particleScale = 12/img:getWidth()
   Bullet.psystem = love.graphics.newParticleSystem(img, 200)
 	Bullet.psystem:setParticleLifetime(2, 5) -- Particles live at least 2s and at most 5s.
@@ -52,7 +52,6 @@ Parameters:
 ]]
 function Bullet:update(dt)
   self.super:update(dt)
-  print("venha")
   --[[
   self.psystem:update(dt)
   self.psystem:emit(1)

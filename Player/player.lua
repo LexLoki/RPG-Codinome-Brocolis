@@ -16,7 +16,7 @@ function Player.load()
     {color = {100,100,255}, keys = {left="k",up="o",right=";",down="l",jump="space",attack="]",run="["}},
     {color = {0,0,0}}
   }
-  local img = love.graphics.newImage("walk.png")
+  local img = love.graphics.newImage("Assets/walk.png")
   local aw = img:getWidth()
   local ah = img:getHeight()
   local ew = aw/5

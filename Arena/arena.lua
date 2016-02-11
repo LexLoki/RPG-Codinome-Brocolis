@@ -83,14 +83,23 @@ function arena.handleHorizontal(dt,entity)
   local front = entity.x + entity.width/2 + entity.width/2*s
   local dx = front+entity.speed.x*dt
   local col = math.floor(dx/arena.tileSize.width)
-  local aux = entity.y/arena.tileSize.height
-  local firstRow = math.floor(aux)
-  local lastRow = math.floor(aux+entity.height/arena.tileSize.height)
-  local canMove = true
-  for i=firstRow,lastRow do
-    if not arena.obstacles[i][col]:canMove(entity) then
-      canMove = false
-      break
+  local canMove
+  if col>=arena.nCol then
+    canMove = false
+    col = arena.nCol-1
+  elseif col<0 then
+    canMove = false
+    col = 0
+  else
+    canMove = true
+    local aux = entity.y/arena.tileSize.height
+    local firstRow = math.floor(aux)
+    local lastRow = math.floor(aux+entity.height/arena.tileSize.height)
+    for i=firstRow,lastRow do
+      if not arena.obstacles[i][col]:canMove(entity) then
+        canMove = false
+        break
+      end
     end
   end
   if canMove then
@@ -106,16 +115,23 @@ function arena.handleVertical(dt,entity)
   local front = entity.y + entity.height/2 + entity.height/2*s
   local dy = front+entity.speed.y*dt
   local row = math.floor(dy/arena.tileSize.height)
-  local aux = entity.x/arena.tileSize.width
-  local firstCol = math.floor(aux)
-  local lastCol = math.floor(aux+entity.width/arena.tileSize.width)
-  local canMove = true
-  for j=firstCol,lastCol do
-    local aw = arena.obstacles[row]
-    local ah = aw[j]
-    if not ah:canMove(entity) then
-      canMove = false
-      break
+  local canMove
+  if row>=arena.nRow then
+    canMove = false
+    row = arena.nRow-1
+  elseif row<0 then
+    canMove = false
+    row = 0
+  else
+    canMove = true
+    local aux = entity.x/arena.tileSize.width
+    local firstCol = math.floor(aux)
+    local lastCol = math.floor(aux+entity.width/arena.tileSize.width)
+    for j=firstCol,lastCol do
+      if not arena.obstacles[row][j]:canMove(entity) then
+        canMove = false
+        break
+      end
     end
   end
   if canMove then
