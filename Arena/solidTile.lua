@@ -1,3 +1,8 @@
+--  solidTile.lua
+--  PUC Arena
+--  Created by Pietro Ribeiro Pepe
+--  Copyright © 2016 Rio PUC Games. All rights reserved.
+
 require "Arena/tile"
 
 SolidTile = class_extends(Tile,"solidTile")

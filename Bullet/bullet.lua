@@ -1,3 +1,8 @@
+--  bullet.lua
+--  PUC Arena
+--  Created by Pietro Ribeiro Pepe
+--  Copyright © 2016 Rio PUC Games. All rights reserved.
+
 require "entity"
 require "contact"
 
@@ -28,6 +33,7 @@ Parameters:
   - x: the x position of the bullet, relative to the top-left corner of the arena
   - y: the y position of the bullet, relative to the top-left corner of the arena
   - direction: a table {x = 1 or 0 or -1, y = 1 or 0 or -1}, specifying the direction the bullet should go
+  - speed: the modular (absolute value) speed of the bullet
 ]]
 function Bullet.new(x,y,direction,speed)
   self = Bullet.newObject(x,y,Bullet.width,Bullet.height)

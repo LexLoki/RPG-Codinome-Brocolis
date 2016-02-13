@@ -1,3 +1,8 @@
+--  RPG_Logo.lua
+--  PUC Arena
+--  Created by Pietro Ribeiro Pepe
+--  Copyright © 2016 Rio PUC Games. All rights reserved.
+
 --[[
 RPG Logo animation (based on 1280x720)
 Load with the time for each animation and an optional callback:

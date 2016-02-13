@@ -1,3 +1,8 @@
+--  bulletManager.lua
+--  PUC Arena
+--  Created by Pietro Ribeiro Pepe
+--  Copyright © 2016 Rio PUC Games. All rights reserved.
+
 require "Bullet/bullet"
 require "Bullet/bulletSenoid"
 require "Bullet/bulletGrow"
@@ -96,12 +101,24 @@ function bulletManager.draw(offset)
   animations.draw()
 end
 
+--[[ bulletManager.bulletCollided
+Called when a bullet collides, creates visual effect for it and remove the bullet from the game
+-
+Parameters:
+  - bulletIndex: the index of the bullet in the bulletManager.list
+]]
 function bulletManager.bulletCollided(bulletIndex)
   local of = bulletManager.offset
   local bullet = table.remove(bulletManager.list,bulletIndex)
   animations.createSplash(of.x+bullet.x+bullet.width/2,of.y+bullet.y+bullet.height/2)
 end
 
+--[[ bulletManager.terminateBullet
+Called when a bullet collides, it searchs for the bullet in the list and performs necessary measures
+-
+Parameters:
+  - bullet: the Bullet entity that collided
+]]
 function bulletManager.terminateBullet(bullet)
   for i,v in ipairs(bulletManager.list) do
     if v==bullet then

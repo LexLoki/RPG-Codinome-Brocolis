@@ -1,3 +1,8 @@
+--  bulletBoomerang.lua
+--  PUC Arena
+--  Created by Pietro Ribeiro Pepe
+--  Copyright © 2016 Rio PUC Games. All rights reserved.
+
 require "bullet/bullet"
 
 BulletBoomerang = class_extends(Bullet,"boomerang")
@@ -6,12 +11,26 @@ BulletBoomerang.distance = 420
 BulletBoomerang.amp = 120
 BulletBoomerang.velA = -math.pi*1.2
 
+--[[ BulletBoomerang.new
+Creates a new BulletBoomerang shot
+-
+Parameters:
+  - x: the x position of the bullet, relative to the top-left corner of the arena
+  - y: the y position of the bullet, relative to the top-left corner of the arena
+  - dir: a table {x = 1 or 0 or -1, y = 1 or 0 or -1}, specifying the direction the bullet should go
+]]
 function BulletBoomerang.new(x,y,dir)
   local self = BulletBoomerang.newObject(x,y,dir,BulletBoomerang.speed)
   self:prepare(dir)
   return self
 end
 
+--[[ BulletBoomerang:prepare
+Prepares the bullet variables for boomerang movement. Locally called on initiation.
+-
+Parameters:
+  - dir:  a table {x = 1 or 0 or -1, y = 1 or 0 or -1}, specifying the direction the bullet should go
+]]
 function BulletBoomerang:prepare(dir)
   local pi = math.pi
   self.alpha = 0
@@ -30,6 +49,12 @@ function BulletBoomerang:prepare(dir)
   }
 end
 
+--[[ BulletBoomerang:update
+Updates the bullet behaviour.
+-
+Parameters:
+  - dt: the delta time since last frame update
+]]
 function BulletBoomerang:update(dt)
   self.super:update(dt)
   self.alpha = self.alpha + self.velA*dt

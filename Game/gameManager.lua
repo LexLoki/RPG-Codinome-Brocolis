@@ -1,3 +1,8 @@
+--  gameManager.lua
+--  PUC Arena
+--  Created by Pietro Ribeiro Pepe
+--  Copyright © 2016 Rio PUC Games. All rights reserved.
+
 require "Arena/arena"
 require "Player/playerManager"
 require "Bullet/bulletManager"
