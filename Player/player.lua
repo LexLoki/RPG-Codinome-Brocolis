@@ -1,9 +1,9 @@
 require "Utils/animationManager"
-require "entity"
+require "animatedEntity"
 require "Direction"
 require "Weapon/weapon"
 
-Player = class_extends(Entity)
+Player = class_extends(AnimatedEntity)
 
 local adjustSpeed
 local resetFrame
@@ -16,6 +16,7 @@ function Player.load()
     {color = {100,100,255}, keys = {left="k",up="o",right=";",down="l",jump="space",attack="]",run="["}},
     {color = {0,0,0}}
   }
+  --[[
   local img = love.graphics.newImage("Assets/walk.png")
   local aw = img:getWidth()
   local ah = img:getHeight()
@@ -29,20 +30,31 @@ function Player.load()
     end
   end
   Player.assets = {sheet=img,quads=quads}
-  Player.speed = 280
   Player.width = ew-44
   Player.height = eh-22
+  ]]
+  Player.width = 48
+  Player.height = 96
+  Player.speed = 280
   Player.maxHP = 4
 end
-
 --Create an instance of Player
 function Player.new(index,bulletClass)
-  local self = Player.newObject(100,100,Player.width,Player.height)
+  local pirate = {
+    idle = {sheetFilename="/Assets/Player/Pirate/pirate_idle.png",
+      animationTime = 0.5,
+      nCol = 7,
+      nRow = 4,
+      shouldLoop = true
+      --framesQuant = {}
+    }
+  }
+  local self = Player.newObject(100,100,Player.width,Player.height,pirate)
   --Init properties
   self.color = Player.data[index].color
-  self.dir = Direction.Left
+  --self.dir = Direction.Left
   self.speed = {x=0,y=0}
-  self.aComp = animationManager_new(4,0.5,true)
+  --self.aComp = animationManager_new(4,0.5,true)
   self.keys = Player.data[index].keys
   self.hp = Player.maxHP
   self.weapon = Weapon.new(self,bulletClass)
@@ -57,6 +69,7 @@ function Player:tookHit()
 end
 
 function Player:update(dt)
+  self.super:update(dt)
   self:updateMovement(dt)
 end
   
@@ -80,6 +93,7 @@ function Player:updateMovement(dt)
   ]]
 end
 
+--[[
 function Player:draw(offset)
   if offset==nil then offset={x=0,y=0} end
   love.graphics.setColor(self.color)
@@ -92,6 +106,7 @@ function Player:draw(offset)
   end
   --love.graphics.rectangle("line",self.x,self.y,a.sheet:getWidth()/5-44,a.sheet:getHeight()/4-22)
 end
+]]
 
 function Player:updateHorizontal()
   local k = self.keys
@@ -130,7 +145,7 @@ function Player:updateBoost(dt)
     factor = 1
   end
   if self.speed.x ~= 0 or self.speed.y ~= 0 then
-    animationManager_update(dt*factor,self.aComp)
+    --animationManager_update(dt*factor,self.aComp)
     if self.speed.x ~= 0 and self.speed.y ~= 0 then
       self.speed.x = self.speed.x/math.sqrt(2)
       self.speed.y = self.speed.y/math.sqrt(2)

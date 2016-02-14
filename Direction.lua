@@ -1,7 +1,7 @@
 Direction = {
-  Left = 1,
-  Right = 2,
-  Up = 3,
+  Right = 1,
+  Up = 2,
+  Left = 3,
   Down = 4
 }
 function Direction.getSpeed(dir)

@@ -52,6 +52,28 @@ function loadTiles()
     arena.obstacles[0][j] = SolidTile.new(j*w,0,w,h)
     arena.obstacles[i][j] = SolidTile.new(j*w,i*h,w,h)
   end
+  
+  arena.testObstacles()
+end
+
+function arena.testObstacles()
+  local w = arena.tileSize.width
+  local h = arena.tileSize.height
+  local ind=3
+  local endRow = arena.nRow-ind-2
+  local endCol = arena.nCol-ind-2
+  for i=0, 1 do
+    for j=0, 1 do
+      --table.remove(arena.obstacles[i+ind][j+ind])
+      arena.obstacles[i+ind][j+ind] = SolidTile.new((j+ind)*w,(i+ind)*h,w,h)
+      --table.remove(arena.obstacles[i+ind][endCol+j])
+      arena.obstacles[i+ind][endCol+j] = SolidTile.new((endCol+j)*w,(i+ind)*h,w,h)
+      --table.remove(arena.obstacles[endRow+i][j+ind])
+      arena.obstacles[endRow+i][j+ind] = SolidTile.new((j+ind)*w,(endRow+i)*h,w,h)
+      --table.remove(arena.obstacles[endRow+i][endCol+j])
+      arena.obstacles[endRow+i][endCol+j] = SolidTile.new((endCol+j)*w,(endRow+i)*h,w,h)
+    end
+  end
 end
 
 function arena.start()

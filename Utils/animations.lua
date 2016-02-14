@@ -55,7 +55,10 @@ function animations.draw()
   love.graphics.setColor(color.clear)
 end
 
-function animations.loadQuads(quant,nCol,each_w,each_h,sprite_width,sprite_height)
+function animations.loadQuads(quant,nCol,sprite_width,sprite_height)
+  local nRow = math.ceil(quant/nCol)
+  local each_w = sprite_width/nCol
+  local each_h = sprite_height/nRow
   local quads={}
   for i=0,quant-1 do
     table.insert(quads,love.graphics.newQuad(i%nCol*each_w,math.floor(i/nCol)*each_h,each_w,each_h,sprite_width,sprite_height))
@@ -63,6 +66,18 @@ function animations.loadQuads(quant,nCol,each_w,each_h,sprite_width,sprite_heigh
   return quads
 end
 
+function animations.loadMatrixQuads(nRow,nCol,sprite_width,sprite_height)
+  local each_w = sprite_width/nCol
+  local each_h = sprite_height/nRow
+  local quads = {}
+  for i=0,nRow-1 do
+    table.insert(quads,{})
+    for j=0,nCol-1 do
+      table.insert(quads[i+1],love.graphics.newQuad(j*each_w,i*each_h,each_w,each_h,sprite_width,sprite_height))
+    end
+  end
+  return quads
+end
 
   --[[
   player.sprites[run].quads = {

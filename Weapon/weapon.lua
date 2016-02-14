@@ -7,7 +7,7 @@ require "class"
 
 Weapon = class_new("Weapon")
 
--- Properties for subclasses to override
+-- Properties for subclasses to override or to be customized
 Weapon.cooldown = 0
 
 --[[ Weapon.new

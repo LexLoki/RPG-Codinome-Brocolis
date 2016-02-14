@@ -11,8 +11,6 @@ Bullet.width = 25
 Bullet.height = 25
 Bullet.color = {0,255,0}
 
-
-
 function Bullet.load()
   Bullet.img = love.graphics.newImage('Assets/bullet.png')
   --[[
@@ -27,7 +25,7 @@ function Bullet.load()
 end
 
 --[[ Bullet.new
-Creates a new bullet shot by the given player
+Creates a new bullet shot
 -
 Parameters:
   - x: the x position of the bullet, relative to the top-left corner of the arena

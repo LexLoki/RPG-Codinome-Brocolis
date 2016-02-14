@@ -10,7 +10,7 @@ require "Bullet/bulletManager"
 gameManager = {}
 
 function gameManager.load()
-  arena.load(12,16)
+  arena.load(12,22)
   Player.load()
   bulletManager.load()
 end
