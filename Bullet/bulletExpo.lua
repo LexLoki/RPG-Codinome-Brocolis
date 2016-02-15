@@ -8,6 +8,7 @@ require "bullet/bullet"
 BulletExpo = class_extends(Bullet,"expo")
 BulletExpo.speed = 500
 BulletExpo.damping = 50
+BulletExpo.curveFactor = 4
 
 local horizontal = {}
 local vertical = {}
@@ -68,7 +69,7 @@ Parameters:
 ]]
 function horizontal.update(self,dt)
   local x = math.abs(self.x-self.x0)
-  local NextY = math.exp(x/self.damping)/4*self.sign + self.y0
+  local NextY = math.exp(x/self.damping)/self.curveFactor*self.sign + self.y0
   self.speed.y = (NextY-self.y)/dt
 end
 
