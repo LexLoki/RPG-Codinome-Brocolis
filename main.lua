@@ -7,10 +7,10 @@ io.stdout:setvbuf("no")
 local state
 
 function love.load()
+  audioManager.load()
   RPG_Logo.load(1.5,1.5,1.5,love.startGame)
   game.load()
   state = RPG_Logo
-  audioManager.load()
 end
 
 function love.update(dt)

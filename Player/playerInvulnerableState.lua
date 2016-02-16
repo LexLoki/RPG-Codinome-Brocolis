@@ -1,28 +1,34 @@
-require "Player/playerAliveState"
+PlayerInvulnerableState = class_new("vulnerable")
 
-playerInvulnerableState = class_extends(playerAliveState, "vulnerable")
+PlayerInvulnerableState.invTime = 2
 
 
-
-function playerInvulnerableState.new()
-  local self = playerInvulnerableState.newObject() 
-  self.timer = 2
-  
+function PlayerInvulnerableState.new(aliveState)
+  local self = PlayerInvulnerableState.newObject()
+  self.aliveState = aliveState
   return self   
 end
 
-function playerInvulnerableState.load()
+function PlayerInvulnerableState:start()
+  self.timer = self.invTime
+end
+
+function PlayerInvulnerableState.load()
   
 end
 
-function playerInvulnerableState.update(dt)
+function PlayerInvulnerableState:update(dt)
   self.timer = self.timer - dt
   if self.timer < 0 then
-  PlayerAliveState:setVulnerability(vulnerable)
+    self.aliveState:setVulnerability(self.aliveState.vulnerability.vulnerable)
   end
 end
 
-function playerInvulnerableState.draw()
+function PlayerInvulnerableState:tookHit()
+  
+end
+
+function PlayerInvulnerableState.draw()
   
   
 end

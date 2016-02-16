@@ -18,6 +18,7 @@ end
 
 function gameManager.start(nPlayers)
   playerManager.start(nPlayers)
+  audioManager.play(audioManager.stageMusic)
 end
 
 function gameManager.update(dt)
