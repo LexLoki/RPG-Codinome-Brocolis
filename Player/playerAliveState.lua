@@ -3,12 +3,14 @@ PlayerAliveState = class_new("alive")
 
 --PlayerAliveState.vulnerability = {curr_state = nil, vulnerable = PlayerVulnerableState.new(), invulnerable = PlayerAliveStateUnvulnerableState.new()}
 
-
-
 function PlayerAliveState.new(player)
   local self = PlayerAliveState.newObject()
   self.player = player
   return self   
+end
+
+function PlayerAliveState:setState(tableKey,tableValue)
+  PlayerAliveState[tableKey].curr_state = PlayerAliveState[tableKey][tableValue]
 end
 
 function PlayerAliveState:tookHit()
