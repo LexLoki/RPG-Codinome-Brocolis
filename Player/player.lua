@@ -7,8 +7,6 @@ require "Player/playerDeadState"
 
 Player = class_extends(AnimatedEntity, "alive")
 
-
-
 function Player.load()
   Player.data = {
     {color = {255,255,255}, keys = {left="left",up="up",right="right",down="down",jump="space",attack=",",run="m"}},
@@ -16,13 +14,12 @@ function Player.load()
     {color = {100,100,255}, keys = {left="k",up="o",right=";",down="l",jump="space",attack="]",run="["}},
     {color = {0,0,0}}
   }
-
   Player.width = 48
   Player.height = 96
   Player.speed = 280
   Player.maxHP = 4 
-  
-  
+  Player.deathId = "death"
+  Player.idleId = "idle"
 end
 function Player:tookHit()
  self.curr_state:tookHit()
@@ -36,6 +33,12 @@ function Player.new(index,bulletClass)
       nRow = 4,
       shouldLoop = true
       --framesQuant = {}
+    },
+    death = {sheetFilename="/Assets/Player/Pirate/pirata_morte.png",
+      animationTime = 3,
+      nCol = 14,
+      nRow = 4,
+      shouldLoop = false
     }
   }
   local self = Player.newObject(100,100,Player.width,Player.height,pirate)
@@ -71,6 +74,9 @@ function Player:update(dt)
 end
 function Player:draw(of)
   self.curr_state:draw(of)  
-  
-end  
+end
 
+function Player:setState(state)
+  self.curr_state = state
+  self.curr_state:start()
+end

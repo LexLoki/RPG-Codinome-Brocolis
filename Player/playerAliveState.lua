@@ -16,8 +16,7 @@ function PlayerAliveState:tookHit()
   p.hp = p.hp - 1
 
   if p.hp == 0 then
-    playerManager.killPlayer(p)
-    p.curr_state = p.states.dead
+    p:setState(p.states.dead)
   end
 end
 

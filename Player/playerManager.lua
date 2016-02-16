@@ -49,6 +49,14 @@ function playerManager.killPlayer(player)
   end
 end
 
+function playerManager.getAlivePlayers()
+  local list = {}
+  for i,v in ipairs(playerManager.list) do
+    if not v.curr_state:is_a(PlayerDeadState) then table.insert(list,v) end
+  end
+  return list
+end
+
 function sortDraw(players)
   draw = {}
   for i,v in ipairs(players) do table.insert(draw,v) end

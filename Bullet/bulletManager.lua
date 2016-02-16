@@ -63,7 +63,8 @@ Parameters:
   - v: the bullet
 ]]
 function bulletManager.searchPlayerContact(i,v)
-  for j,p in ipairs(playerManager.list) do
+  local list = playerManager.getAlivePlayers()
+  for j,p in ipairs(list) do
     if v:checkPlayerContact(p) then
       bulletManager.bulletCollided(i)
       p:tookHit()
