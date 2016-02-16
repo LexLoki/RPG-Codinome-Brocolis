@@ -19,6 +19,7 @@ function arena.load(row,col)
   arena.nCol = col
   loadDimensions()
   loadTiles()
+  audioManager.play(audioManager.stageMusic)
 end
 
 function loadDimensions()

@@ -44,6 +44,7 @@ function playerManager.killPlayer(player)
   for i,v in ipairs(playerManager.list) do
     if v==player then
       table.remove(playerManager.list,i)
+      audioManager.playDeathSound()
       break
     end
   end
