@@ -1,10 +1,13 @@
-
 PlayerAliveState = class_new("alive")
 
---PlayerAliveState.vulnerability = {curr_state = nil, vulnerable = PlayerVulnerableState.new(), invulnerable = PlayerAliveStateUnvulnerableState.new()}
+--PlayerAliveState.vulnerability = {curr_state = nil, vulnerable = PlayerVulnerableState.new(), invulnerable = PlayerInvulnerableState.new()}
 
 function PlayerAliveState.new(player)
   local self = PlayerAliveState.newObject()
+  self.vulnerability = { 
+    vulnerable = PlayerVulnerableState.new(),
+    --invulnerable = PlayerInvulnerableState.new(self)
+  }
   self.player = player
   return self   
 end
@@ -15,8 +18,10 @@ end
 
 function PlayerAliveState:tookHit()
   local p = self.player
+  if self.curr_state == self.vulnerability.vulnerable then
   p.hp = p.hp - 1
-
+  end
+   
   if p.hp == 0 then
     p:setState(p.states.dead)
   end
@@ -99,4 +104,8 @@ function PlayerAliveState:draw(of)
  --self.vulnerability.curr_state:draw(of)
  self.player.super:draw(of)
  
+end
+function PlayerAliveState:setVulnerability(vulnerability)
+  self.vulnerability = vulnerability
+  self.vulnerability:start()
 end
