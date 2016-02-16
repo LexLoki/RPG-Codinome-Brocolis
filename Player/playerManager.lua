@@ -35,6 +35,7 @@ end
 function playerManager.draw(of)
   local players = sortDraw(playerManager.list)
   for i,v in ipairs(players) do
+    love.graphics.print(tostring(v.hp), 0 , i*10)
     v:draw(of)
   end
 end
