@@ -1,7 +1,7 @@
 PlayerInvulnerableState = class_new("vulnerable")
 
 PlayerInvulnerableState.invTime = 2
-
+PlayerInvulnerableState.blinkTime = 0.09
 
 function PlayerInvulnerableState.new(aliveState)
   local self = PlayerInvulnerableState.newObject()
@@ -28,8 +28,9 @@ function PlayerInvulnerableState:tookHit()
   
 end
 
-function PlayerInvulnerableState.draw()
-  
-  
+function PlayerInvulnerableState:draw(of)
+  if math.floor((self.invTime-self.timer)/self.blinkTime)%2==1 then
+    self.aliveState.player.super:draw(of)
+  end
 end
 

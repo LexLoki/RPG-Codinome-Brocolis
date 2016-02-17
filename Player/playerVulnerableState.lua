@@ -29,7 +29,6 @@ function PlayerVulnerableState:tookHit()
   end
 end
 
-function PlayerVulnerableState.draw()
-  
-  
+function PlayerVulnerableState:draw(of)
+  self.aliveState.player.super:draw(of)
 end

@@ -11,6 +11,7 @@ end
 
 function PlayerDeadState:start()
   local p = self.player
+  p.speed = {x=0,y=0}
   p:switchAnimation(p.deathId)
   animationManager_restart(p:getCurrentComp())
 end

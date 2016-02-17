@@ -97,10 +97,10 @@ function PlayerAliveState:updateBoost(dt)
   end
 end
 function PlayerAliveState:draw(of)
- --self.vulnerability.curr_state:draw(of)
- self.player.super:draw(of)
- 
+ self.vulnerability.curr_state:draw(of)
+ --self.player.super:draw(of)
 end
+
 function PlayerAliveState:setVulnerability(vulnerability)
   self.vulnerability.curr_state = vulnerability
   vulnerability:start()
