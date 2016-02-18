@@ -8,7 +8,6 @@ require "Player/playerManager"
 require "Bullet/bulletManager"
 
 gameManager = {}
-
 function gameManager.load()
   arena.load(12,22)
   Player.load()

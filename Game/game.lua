@@ -1,14 +1,19 @@
-require "Menu/menu"
+require "Menu/menuManager"
 require "Game/gameManager"
 
 game = {}
 
-local p
+local nPlayers = 0
 
+
+function game.start()
+  game.curr_state = menuManager
+  menuManager.start(nPlayers)
+  gameManager.start(nPlayers)
+end
 function game.load()
-  menu.load()
+  menuManager.load()
   gameManager.load()
-  game.setState(gameManager,2)
 end
 
 function game.update(dt)
@@ -23,13 +28,13 @@ function game.keypressed(key)
   game.curr_state.keypressed(key)
 end
 
-function game.goToMenu()
-  game.setState(menu)
+function game.goToMenuManager()
+  game.setState(menuManager)
 end
-function game.goToGame()
+function game.goToGameManager()
   game.setState(gameManager)
 end
-function game.setState(state,...)
+function game.setState(state)
   game.curr_state = state
-  state.start(...)
+  state.start()
 end
