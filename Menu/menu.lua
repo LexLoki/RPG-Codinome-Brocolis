@@ -21,7 +21,7 @@ end
 function menu.keypressed(key)
   buttons.keypressed(key)
   if key == "return" then
-    game.goToGameManager()
+    game.goToGameManager(2)
     --menuManager.goToInstruct() 
   end
 end

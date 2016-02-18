@@ -3,13 +3,10 @@ require "Game/gameManager"
 
 game = {}
 
-local nPlayers = 0
-
 
 function game.start()
   game.curr_state = menuManager
-  menuManager.start(nPlayers)
-  gameManager.start(nPlayers)
+  menuManager.start()
 end
 function game.load()
   menuManager.load()
@@ -31,10 +28,10 @@ end
 function game.goToMenuManager()
   game.setState(menuManager)
 end
-function game.goToGameManager()
-  game.setState(gameManager)
+function game.goToGameManager(...)
+  game.setState(gameManager,...)
 end
-function game.setState(state)
+function game.setState(state,...)
   game.curr_state = state
-  state.start()
+  state.start(...)
 end

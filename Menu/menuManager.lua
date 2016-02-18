@@ -10,23 +10,20 @@ function menuManager.load()
   playerSelection.load()
 end
 
-function menuManager.start(nPlayers)
-  menu.curr_state = menu
-  menu.start(nPlayers)
-  instruct.start()
-  playerSelection.start(nPlayers)
+function menuManager.start()
+  menuManager.setState(menu)
 end
 
 function menuManager.update(dt)
-  menu.curr_state.update(dt)
+  menuManager.curr_state.update(dt)
 end
 
 function menuManager.draw()
-  menu.curr_state.draw()
+  menuManager.curr_state.draw()
 end
 
 function menuManager.keypressed(key)
-  menu.curr_state.keypressed(key)
+  menuManager.curr_state.keypressed(key)
 end
 
 function menuManager.goToPlayerSelection()

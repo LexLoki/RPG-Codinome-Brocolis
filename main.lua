@@ -11,6 +11,7 @@ function love.load()
   audioManager.load()
   RPG_Logo.load(1.5,1.5,1.5,love.startGame)
   menu.load()
+  game.load()
   state = RPG_Logo
 end
 
