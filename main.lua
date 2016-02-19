@@ -26,7 +26,9 @@ end
 function love.keypressed(key)
   state.keypressed(key)
 end
-
+function menu.mousepressed(x, y, button)
+  game.mousepressed(x, y, button)
+end
 function love.startGame()
   state = game
   state.start()

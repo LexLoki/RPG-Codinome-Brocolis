@@ -8,7 +8,7 @@ function playerSelection.load()
 end
 
 function playerSelection.start()
-  
+  playerSelection.create(2, 2)
 end
 
 function playerSelection.update(dt)
@@ -29,7 +29,7 @@ function playerSelection.create(n_cols, n_rows)
   for i=1, n_rows do
     grid[i] = {}
     for j=1, n_cols do
-      filename = "pers_"..i.."_"..j..".png"
+      filename = "Assets/Menu/pers_"..i.."_"..j..".png"
       if love.filesystem.exists(filename) then
         grid[i][j] = love.graphics.newImage(filename)
       end

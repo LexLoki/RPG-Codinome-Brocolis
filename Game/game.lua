@@ -24,7 +24,9 @@ end
 function game.keypressed(key)
   game.curr_state.keypressed(key)
 end
-
+function game.mousepressed(x, y, button)
+  menuManager.mousepressed(x, y, button)
+end
 function game.goToMenuManager()
   game.setState(menuManager)
 end

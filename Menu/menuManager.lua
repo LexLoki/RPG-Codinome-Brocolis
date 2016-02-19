@@ -26,6 +26,10 @@ function menuManager.keypressed(key)
   menuManager.curr_state.keypressed(key)
 end
 
+function menu.mousepressed(x, y, button)
+  menu.mousepressed(x, y, button)
+end
+
 function menuManager.goToPlayerSelection()
   menuManager.setState(playerSelection)
 end
