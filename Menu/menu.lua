@@ -16,12 +16,17 @@ end
 
 function menu.draw()
   buttons.draw()
+  love.graphics.print("Game Logo", 400, 300)
 end
 
 function menu.keypressed(key)
   buttons.keypressed(key)
   if key == "return" then
-    game.goToGameManager(3)
-    --menuManager.goToInstruct() 
+    --game.goToGameManager(3)
+    menuManager.goToInstruct() 
   end
+end
+
+function menu.mousepressed(button)
+  
 end

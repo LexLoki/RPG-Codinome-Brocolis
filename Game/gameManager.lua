@@ -22,6 +22,7 @@ function gameManager.start(nPlayers)
 end
 
 function gameManager.update(dt)
+  love.graphics.print(math.ceil(dt), 640, 20)
   playerManager.update(dt)
   bulletManager.update(dt)
   timer = timer - math.ceil(dt)
@@ -30,8 +31,8 @@ function gameManager.update(dt)
 end
 
 function gameManager.draw()
+  love.graphics.print(math.ceil(timer)/100, 640, 20)
   arena.draw()
-  love.graphics.print(math.ceil(timer), 640, 20)
   local of = {x=arena.x,y=arena.y}
   playerManager.draw(of)
   bulletManager.draw(of)
