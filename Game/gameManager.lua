@@ -9,13 +9,14 @@ require "Bullet/bulletManager"
 
 gameManager = {}
 function gameManager.load()
-  arena.load(12,22)
+  arena.load(12,15)
   Player.load()
   bulletManager.load()
   timer = 90
 end
 
 function gameManager.start(nPlayers)
+  math.randomseed(os.time())
   playerManager.start(nPlayers)
   audioManager.play(audioManager.stageMusic)
 end
