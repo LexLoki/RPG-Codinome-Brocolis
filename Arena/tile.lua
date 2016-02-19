@@ -33,3 +33,7 @@ function Tile:draw(offset)
   end
   love.graphics.setColor(255,255,255)
 end
+
+function Tile:tookHit()
+  
+end

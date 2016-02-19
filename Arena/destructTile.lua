@@ -5,15 +5,17 @@
 
 require "Arena/solidTile"
 
-destructTile = class_extends(SolidTile,"destructTile")
-destructTile.color = {255,0,0,255}
+DestructTile = class_extends(SolidTile,"destructTile")
+DestructTile.color = {0,0,255,255}
 
-function destructTile.new(x,y,manager)
-  local self = destructTile.newObject(x,y)
+function DestructTile.new(x,y,manager)
+  local self = DestructTile.newObject(x,y)
   self.manager = manager
   return self
 end
 
-function destructTile:tookHit()
-  self.manager.destroy(self)
+function DestructTile:tookHit(entity)
+  if entity:is_a(Bullet) then
+    self.manager.destroy(self)
+  end
 end

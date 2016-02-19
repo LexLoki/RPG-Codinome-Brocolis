@@ -24,6 +24,7 @@ function gameManager.update(dt)
   playerManager.update(dt)
   bulletManager.update(dt)
   timer = timer - math.ceil(dt)
+  arena.update(dt)
   --arena.update(dt,gameManager.players)
 end
 

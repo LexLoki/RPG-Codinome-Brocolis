@@ -5,6 +5,7 @@
 
 require "Arena/solidTile"
 require "Arena/freeTile"
+require "Arena/arenaBrocolis"
 
 arena = {}
 
@@ -19,6 +20,8 @@ function arena.load(row,col)
   arena.nCol = col
   loadDimensions()
   loadTiles()
+  arena.curr = arenaBrocolis
+  arenaBrocolis.start(arena)
 end
 
 function loadDimensions()
@@ -53,7 +56,7 @@ function loadTiles()
     arena.obstacles[i][j] = SolidTile.new(j*w,i*h,w,h)
   end
   
-  arena.testObstacles()
+  --arena.testObstacles()
 end
 
 function arena.testObstacles()
@@ -81,7 +84,8 @@ function arena.start()
 end
 
 function arena.update(dt,players)
-  arena.handleMovements(dt,players)
+  --arena.handleMovements(dt,players)
+  arena.curr.update(dt)
 end
 
 function arena.draw()
@@ -123,7 +127,9 @@ function arena.handleHorizontal(dt,entity)
     local firstRow = math.floor(aux)
     local lastRow = math.floor(aux+entity.height/arena.tileSize.height)
     for i=firstRow,lastRow do
-      if not arena.obstacles[i][col]:canMove(entity) then
+      local ob = arena.obstacles[i][col]
+      ob:tookHit(entity)
+      if not ob:canMove(entity) then
         canMove = false
         break
       end
@@ -155,7 +161,9 @@ function arena.handleVertical(dt,entity)
     local firstCol = math.floor(aux)
     local lastCol = math.floor(aux+entity.width/arena.tileSize.width)
     for j=firstCol,lastCol do
-      if not arena.obstacles[row][j]:canMove(entity) then
+      local ob = arena.obstacles[row][j]
+      ob:tookHit(entity)
+      if not ob:canMove(entity) then
         canMove = false
         break
       end
