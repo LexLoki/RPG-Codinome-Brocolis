@@ -68,6 +68,7 @@ function bulletManager.searchPlayerContact(i,v)
     if v:checkPlayerContact(p) then
       bulletManager.bulletCollided(i)
       p:tookHit()
+      break
     end
   end
 end

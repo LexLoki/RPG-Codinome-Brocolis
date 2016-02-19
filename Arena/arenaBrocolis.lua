@@ -14,7 +14,6 @@ function arenaBrocolis.start(arena)
 end
 
 function arenaBrocolis.update(dt)
-  print(#arenaBrocolis.destroyed)
   for i,v in ipairs(arenaBrocolis.destroyed) do
     v.timer = v.timer - dt
     if v.timer<0 then
@@ -46,7 +45,7 @@ function readTxt()
   for line in file:gmatch('([^\n]+)') do
     local words = {}
     for w in line:gmatch("%S+") do table.insert(words,w) end
-    table.insert(data,{x=tonumber(words[1]),y=tonumber(words[3])})
+    table.insert(data,{x=tonumber(words[3]),y=tonumber(words[1])})
   end
   return data
 end
