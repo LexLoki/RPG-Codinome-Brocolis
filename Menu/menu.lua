@@ -5,7 +5,7 @@ function menu.load()
   buttons.load()
 end
 
-function menu.start(nPlayers)
+function menu.start()
   love.graphics.setColor(255, 255, 255)
   buttons.start()
 end

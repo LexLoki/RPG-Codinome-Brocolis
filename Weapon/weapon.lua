@@ -8,7 +8,7 @@ require "class"
 Weapon = class_new("Weapon")
 
 -- Properties for subclasses to override or to be customized
-Weapon.cooldown = 0
+Weapon.cooldown = 1.5
 
 --[[ Weapon.new
 Creates a new weapon for the given player and Bullet subclass
@@ -21,7 +21,8 @@ function Weapon.new(player, bulletClass)
   local self = Weapon.newObject()
   self.player = player
   self.bulletClass = bulletClass
-  self.timer=0
+  self.timer = 0
+  self.cooldown = 1.5
   return self
 end
 
@@ -32,8 +33,8 @@ Parameters:
   - dt: the delta time since last frame update
 ]]
 function Weapon:update(dt)
-  if self.timer>0 then
-    self.timer = self.timer-dt
+  if self.timer > 0 then
+    self.timer = self.timer - dt
   end
 end
 
@@ -41,7 +42,7 @@ end
 Called when a shoot is requested. Verifies if it is possible to shoot. If yes, it requests the bullet.
 ]]
 function Weapon:shoot()
-  if self.timer<=0 then
+  if self.timer <= 0 then
     self.timer = self.cooldown
     audioManager.playBulletSound()
     bulletManager.newBullet(self.player,self.bulletClass)

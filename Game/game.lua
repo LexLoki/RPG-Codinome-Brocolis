@@ -3,7 +3,6 @@ require "Game/gameManager"
 
 game = {}
 
-
 function game.start()
   game.curr_state = menuManager
   menuManager.start()
@@ -27,13 +26,13 @@ end
 function game.mousepressed(x, y, button)
   menuManager.mousepressed(x, y, button)
 end
-function game.goToMenuManager()
-  game.setState(menuManager)
+function game.goToMenuManager(n_players)
+  game.setState(menuManager, n_players)
 end
-function game.goToGameManager(...)
-  game.setState(gameManager,...)
+function game.goToGameManager(n_players)
+  game.setState(gameManager,n_players)
 end
-function game.setState(state,...)
+function game.setState(state,n_players)
   game.curr_state = state
-  state.start(...)
+  state.start(n_players)
 end

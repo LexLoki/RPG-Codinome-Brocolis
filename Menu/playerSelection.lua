@@ -1,13 +1,13 @@
 playerSelection = {}
 grid = {}
 
-io.stdout:setvbuf("no")
+local n_players = love.joystick.getJoystickCount() + 1
 
 function playerSelection.load()
   
 end
 
-function playerSelection.start()
+function playerSelection.start(n_players)
   playerSelection.create(2, 2)
 end
 
@@ -17,11 +17,18 @@ end
 
 function playerSelection.draw()
   love.graphics.print("Player Selection", 400, 300)
+  for i=1, 2 do
+    for j=1, 2 do
+      if grid[i][j] ~= nil then
+        love.graphics.draw(grid[i][j], 400 +128*(j-1), 400 +128*(i-1))
+      end
+    end
+  end
 end
 
 function playerSelection.keypressed(key)
   if key == "return" then
-    game.goToGameManager(3) 
+    game.goToGameManager(n_players) 
   end
 end
 
