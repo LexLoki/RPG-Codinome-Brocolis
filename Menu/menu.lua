@@ -6,6 +6,7 @@ function menu.load()
 end
 
 function menu.start()
+  audioManager.play(audioManager.menuMusic)
   love.graphics.setColor(255, 255, 255)
   buttons.start()
 end
@@ -16,7 +17,6 @@ end
 
 function menu.draw()
   buttons.draw()
-  love.graphics.print("Game Logo", 400, 300)
 end
 
 function menu.keypressed(key)

@@ -8,18 +8,19 @@ function buttons.load()
   mouse={}
   mouse.x = 0
   mouse.y = 0
+  title = love.graphics.newImage("Assets/Menu/Title.png")
 end
 
 function buttons.start()
   buttons.remove()
-  buttons.create(2, direction.vertical, 500, 350, 200, 50)
+  buttons.create(2, direction.vertical, 670, 600, 200, 50)
   buttons.color = {{255, 255, 255}}
   for i=1, #buttons do
-    --buttons[i].imageNormal = love.graphics.newImage("Menu/button_normal_"..i..".png")
-    --buttons[i].imageSelected = love.graphics.newImage("Menu/button_select_"..i..".png")
-    --buttons[i].imageCurrent = buttons[i].imageNormal 
-    buttons[i].color = {255, 255, 255}
-    buttons[i].colliding = false
+    buttons[i].imageNormal = love.graphics.newImage("Assets/Menu/button_normal_"..i..".png")
+    buttons[i].imageSelected = love.graphics.newImage("Assets/Menu/button_select_"..i..".png")
+    buttons[i].imageCurrent = buttons[i].imageNormal 
+    --buttons[i].color = {255, 255, 255}
+    --buttons[i].colliding = false
   end
   buttons.select(1)
   buttons.collided()
@@ -30,13 +31,13 @@ function buttons.update(dt)
 end
 
 function buttons.draw()
-  love.graphics.print(buttons.pressed, 200, 300)
+  --love.graphics.print(buttons.pressed, 200, 300)
+  love.graphics.draw(title,200, 20)
   for i, but in ipairs(buttons) do
-    love.graphics.setColor(but.color)
-    love.graphics.rectangle("fill", but.x, but.y, but.width, but.height)
-    --love.graphics.draw(but.imageCurrent, but.x, but.y)
+    --love.graphics.setColor(but.color)
+    --love.graphics.rectangle("fill", but.x, but.y, but.width, but.height)
+    love.graphics.draw(but.imageCurrent, but.x, but.y)
   end
-  --love.graphics.draw(buttons.image.selected[buttons.pressed], buttons[buttons.pressed].x, buttons[buttons.pressed].y)
 end
 
 function buttons.keypressed(key)
@@ -70,13 +71,13 @@ end
 function buttons.select(index)
   if buttons.pressed ~= nil then
     local b = buttons[buttons.pressed]
-    --b.imageCurrent = b.imageNormal
-    b.color = {255, 255, 255}
+    b.imageCurrent = b.imageNormal
+    --b.color = {255, 255, 255}
   end
   buttons.pressed = index
   local b = buttons[buttons.pressed]
-  --b.imageCurrent = b.imageSelected
-  b.color = {255, 0, 0}
+  b.imageCurrent = b.imageSelected
+  --b.color = {255, 0, 0}
 end
 
 function buttons.remove()
