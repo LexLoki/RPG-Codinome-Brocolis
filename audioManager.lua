@@ -7,9 +7,9 @@ function audioManager.load()
   audioManager.stageMusic = love.audio.newSource("/Assets/Music/Undertale OST - Bonetrousle .mp3")
   audioManager.menuMusic = love.audio.newSource("/Assets/Music/Uncanny Arena - Título.mp3")
   audioManager.characterSelectMusic = love.audio.newSource("/Assets/Music/Uncanny Arena - Escolha de Personagem.mp3")
-  audioManager.bulletSound:setVolume(0.3)
-  --audioManager.deathSound:setVolume(0.3)
-  audioManager.explodeSound:setVolume(0.3)
+  audioManager.bulletSound:setVolume(0.5)
+  --audioManager.deathSound:setVolume(0.5)
+  audioManager.explodeSound:setVolume(0.5)
   audioManager.musicPlaying = nil
 end
 
