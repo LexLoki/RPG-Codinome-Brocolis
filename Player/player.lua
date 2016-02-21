@@ -18,6 +18,7 @@ function Player.load()
   Player.height = 96
   Player.speed = 280
   Player.maxHP = 4 
+  Player.PirateID = 1
   Player.deathId = "death"
   Player.idleId = "idle"
 end
@@ -50,6 +51,7 @@ function Player.new(index,bulletClass)
   self.keys = Player.data[index].keys
   self.hp = Player.maxHP
   self.weapon = Weapon.new(self,bulletClass)
+  self.charID = self.PirateID
   
   self.states = { 
     alive = PlayerAliveState.new(self),

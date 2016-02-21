@@ -36,8 +36,8 @@ function Weapon:update(dt)
   if self.timer > 0 then
     self.timer = self.timer - dt
   end
+  
 end
-
 --[[ Weapon:shoot
 Called when a shoot is requested. Verifies if it is possible to shoot. If yes, it requests the bullet.
 ]]
