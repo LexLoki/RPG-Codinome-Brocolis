@@ -32,6 +32,9 @@ end
 function game.goToGameManager(n_players)
   game.setState(gameManager,n_players)
 end
+function game.goToWinnerScreen(n_players)
+  game.setState(winnerScreen,n_players)
+end
 function game.setState(state,n_players)
   game.curr_state = state
   state.start(n_players)

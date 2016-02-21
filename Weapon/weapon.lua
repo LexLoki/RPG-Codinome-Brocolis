@@ -8,7 +8,7 @@ require "class"
 Weapon = class_new("Weapon")
 
 -- Properties for subclasses to override or to be customized
-Weapon.cooldown = 1.5
+Weapon.cooldown = 0
 
 --[[ Weapon.new
 Creates a new weapon for the given player and Bullet subclass
@@ -22,7 +22,7 @@ function Weapon.new(player, bulletClass)
   self.player = player
   self.bulletClass = bulletClass
   self.timer = 0
-  self.cooldown = 1.5
+  self.cooldown = 0
   return self
 end
 
