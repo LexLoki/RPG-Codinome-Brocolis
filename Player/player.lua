@@ -30,7 +30,7 @@ end
 
 function Player.new(index,bulletClass)
   local pirate = {
-    idle = {sheetFilename="/Assets/Player/Pirate/pirate_idle.png",
+    idle = {sheetFilename="/Assets/Player/Pirate/pirata_idle_corpo.png",
       animationTime = 0.5,
       nCol = 7,
       nRow = 4,

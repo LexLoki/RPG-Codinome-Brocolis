@@ -10,7 +10,7 @@ playerManager.list = {}
 
 local orderByHeight, sortDraw
 local pirataMaroto = love.graphics.newImage("/Assets/HUD/pirata_placeholder.png")
-local hpMaroto = love.graphics.newImage("/Assets/HUD/redcross.jpg")
+local hpMaroto = love.graphics.newImage("/Assets/HUD/redcross.png")
 
 function playerManager.load()
 end
@@ -83,19 +83,28 @@ function drawHud(playerID,charID,hpArt)
   for i,v in ipairs(playerManager.list) do
     if i == 1 then
       if v.charID == 1 then
-        love.graphics.draw(pirataMaroto,0,100)
+        love.graphics.draw(pirataMaroto,20,100)
       end
-      for i=0,v.hp do
-        love.graphics.draw(hpArt, 50*i, 0, 0, 0.25, 0.25)
+      for i=0,v.hp-1 do
+        love.graphics.draw(hpArt,20 + 50*i, 0, 0, 0.25, 0.25)
       end
     end
     
     if i == 2 then
       if v.charID == 1 then
-        love.graphics.draw(pirataMaroto,1620,100)
+        love.graphics.draw(pirataMaroto,1650,100)
       end
-      for i=0,v.hp do
-        love.graphics.draw(hpArt, 1620+ 50*i, 0, 0, 0.25, 0.25)
+      for i=0,v.hp-1 do
+        love.graphics.draw(hpArt, 1650+ 50*i, 0, 0, 0.25, 0.25)
+      end
+    end
+    
+    if i == 3 then
+      if v.charID == 1 then
+        love.graphics.draw(pirataMaroto,1650,800)
+      end
+      for i=0,v.hp-1 do
+        love.graphics.draw(hpArt, 1650+ 50*i, 750, 0, 0.25, 0.25)
       end
     end
     
