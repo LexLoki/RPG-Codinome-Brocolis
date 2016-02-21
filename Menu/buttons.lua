@@ -41,10 +41,10 @@ function buttons.draw()
 end
 
 function buttons.keypressed(key)
-  if key == "s" then
+  if key == "s" or key  == "down" then
     local index = buttons.pressed%#buttons+1
     buttons.select(index)
-  elseif key == "w" then
+  elseif key == "w" or key == "up" then
     local q = #buttons
     local index = (buttons.pressed-2+q)%q+1
     buttons.select(index)

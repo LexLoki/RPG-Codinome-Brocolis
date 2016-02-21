@@ -1,12 +1,18 @@
 playerSelection = {}
 grid = {}
 
-local n_players = love.joystick.getJoystickCount() + 2
-
 function playerSelection.load()
   grid.name = {"Brócolis", "  AK-49", "   Godo", "Cpt. Rubi"}
 end
-
+function playerSelection.numberOfJoysticks(key)
+  local number = 0
+  --for i, p in ipairs(players) do
+    if(love.joystick.getJoystickCount()) then --and key == p.key 
+      number = number + 1
+    end
+ -- end
+ return number
+end
 function playerSelection.start(n_players)
   audioManager.play(audioManager.characterSelectMusic)
   playerSelection.create(2, 2)
@@ -31,6 +37,7 @@ function playerSelection.draw()
 end
 
 function playerSelection.keypressed(key)
+  n_players = playerSelection.numberOfJoysticks(key) + 1
   if key == "return" then
     game.goToGameManager(n_players) 
   end
