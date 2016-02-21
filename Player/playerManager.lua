@@ -86,16 +86,16 @@ function drawHud(playerID,charID,hpArt)
         love.graphics.draw(pirataMaroto,0,100)
       end
       for i=0,v.hp do
-        love.graphics.draw(hpArt, 10*i, 0, 0, 0.25, 0.25)
+        love.graphics.draw(hpArt, 50*i, 0, 0, 0.25, 0.25)
       end
     end
     
     if i == 2 then
       if v.charID == 1 then
-        love.graphics.draw(pirataMaroto,800,100)
+        love.graphics.draw(pirataMaroto,1620,100)
       end
       for i=0,v.hp do
-        love.graphics.draw(hpArt, 600*i, 0, 0, 0.25, 0.25)
+        love.graphics.draw(hpArt, 1620+ 50*i, 0, 0, 0.25, 0.25)
       end
     end
     
