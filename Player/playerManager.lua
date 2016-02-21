@@ -81,13 +81,23 @@ end
 
 function drawHud(playerID,charID,hpArt)
   for i,v in ipairs(playerManager.list) do
-    if v.charID == 1 and i == 1 then
-      love.graphics.draw(pirataMaroto,0,100)
-    end
-    for i=0,v.hp do
-      love.graphics.draw(hpArt, 10*i, 0, 0, 0.25, 0.25)
+    if i == 1 then
+      if v.charID == 1 then
+        love.graphics.draw(pirataMaroto,0,100)
+      end
+      for i=0,v.hp do
+        love.graphics.draw(hpArt, 10*i, 0, 0, 0.25, 0.25)
+      end
     end
     
+    if i == 2 then
+      if v.charID == 1 then
+        love.graphics.draw(pirataMaroto,800,100)
+      end
+      for i=0,v.hp do
+        love.graphics.draw(hpArt, 600*i, 0, 0, 0.25, 0.25)
+      end
+    end
     
     
     
