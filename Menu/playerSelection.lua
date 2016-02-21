@@ -1,7 +1,7 @@
 playerSelection = {}
 grid = {}
 
-local n_players = love.joystick.getJoystickCount() + 1
+local n_players = love.joystick.getJoystickCount() + 2
 
 function playerSelection.load()
   grid.name = {"Brócolis", "  AK-49", "   Godo", "Cpt. Rubi"}

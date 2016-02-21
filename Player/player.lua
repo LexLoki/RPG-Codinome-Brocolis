@@ -21,6 +21,7 @@ function Player.load()
   Player.PirateID = 1
   Player.deathId = "death"
   Player.idleId = "idle"
+  Player.walkId = "walk"
 end
 function Player:tookHit()
  self.curr_state:tookHit()
@@ -40,6 +41,12 @@ function Player.new(index,bulletClass)
       nCol = 14,
       nRow = 4,
       shouldLoop = false
+    },
+    walk = {sheetFilename="/Assets/Player/Pirate/pirata_andando_corpo.png",
+      animationTime = 3,
+      nCol = 8,
+      nRow = 4,
+      shouldLoop = true
     }
   }
   local self = Player.newObject(100,100,Player.width,Player.height,pirate)
