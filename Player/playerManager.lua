@@ -9,6 +9,8 @@ playerManager = {}
 playerManager.list = {}
 
 local orderByHeight, sortDraw
+local pirataMaroto = love.graphics.newImage("/Assets/HUD/pirata_placeholder.png")
+local hpMaroto = love.graphics.newImage("/Assets/HUD/redcross.jpg")
 
 function playerManager.load()
 end
@@ -36,11 +38,12 @@ function playerManager.draw(of)
   local players = sortDraw(playerManager.list)
   for i,v in ipairs(players) do
     love.graphics.print(tostring(v.hp), 0 , i*10)
-    if i == 1 then
+    --[[if i == 1 then
     if v.charID == 1 then
       love.graphics.print("Minha rola", 30, 10)
-    end
-    end
+    end]]--
+    drawHud(1, 1, hpMaroto)
+    --end
     v:draw(of)
     
   -- 50,0 
@@ -74,4 +77,19 @@ end
 
 function orderByHeight(a,b)
   return a.y<b.y
+end
+
+function drawHud(playerID,charID,hpArt)
+  for i,v in ipairs(playerManager.list) do
+    if v.charID == 1 and i == 1 then
+      love.graphics.draw(pirataMaroto,0,100)
+    end
+    for i=0,v.hp do
+      love.graphics.draw(hpArt, 10*i, 0, 0, 0.25, 0.25)
+    end
+    
+    
+    
+    
+  end
 end
