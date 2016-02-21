@@ -9,9 +9,10 @@ Player = class_extends(AnimatedEntity, "alive")
 
 function Player.load()
   Player.data = {
-    {color = {255,255,255}, keys = {left="left",up="up",right="right",down="down",jump="space",attack=",",run="m"}},
-    {color = {0,255,0}, keys = {left="a",up="w",right="d",down="s",jump="space",attack="c",run="x"}},
-    {color = {100,100,255}, keys = {left="k",up="o",right=";",down="l",jump="space",attack="]",run="["}},
+    {color = {255,255,255}, keys = {left="left",up="up",right="right",down="down",jump="space",attack=",",run="m"}--[[, pos = {x= , y=}]]},
+    {color = {0,255,0}, keys = {left="a",up="w",right="d",down="s",jump="space",attack="c",run="x"}--[[, pos = {x= , y=}]]},
+    {color = {100,100,255}, keys = {left="k",up="o",right=";",down="l",jump="space",attack="]",run="["}--[[, pos = {x= , y=}]]},
+    {color = {100,100,255}, keys = {left="f",up="t",right="h",down="g",jump="space",attack="v",run="["}--[[, pos = {x= , y=}]]},
     {color = {0,0,0}}
   }
   Player.width = 48
@@ -58,6 +59,7 @@ function Player.new(index,bulletClass)
   self.keys = Player.data[index].keys
   self.hp = Player.maxHP
   self.weapon = Weapon.new(self,bulletClass)
+  --ele deve receber algo vindo do playerSelection.lua
   self.charID = self.PirateID
   
   self.states = { 

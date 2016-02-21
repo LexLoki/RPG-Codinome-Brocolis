@@ -33,7 +33,7 @@ function gameManager.update(dt)
     gameManager.round = gameManager.round + 1
     timer = 9000
   end
-  if gameManager.round >= 5 then
+  if gameManager.round > 5 then
     gameManager.round = 1
     --game.goToWinnerScreen(n_players)
   end

@@ -37,7 +37,7 @@ end
 function playerManager.draw(of)
   local players = sortDraw(playerManager.list)
   for i,v in ipairs(players) do
-    love.graphics.print(tostring(v.hp), 0 , i*10)
+    --love.graphics.print(tostring(v.hp), 0 , i*10)
     --[[if i == 1 then
     if v.charID == 1 then
       love.graphics.print("Minha rola", 30, 10)
