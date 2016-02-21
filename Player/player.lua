@@ -43,7 +43,7 @@ function Player.new(index,bulletClass)
       shouldLoop = false
     },
     walk = {sheetFilename="/Assets/Player/Pirate/pirata_andando_corpo.png",
-      animationTime = 3,
+      animationTime = 1,
       nCol = 8,
       nRow = 4,
       shouldLoop = true

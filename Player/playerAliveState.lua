@@ -54,16 +54,19 @@ function PlayerAliveState:updateHorizontal()
     p.speed.x = -p:class().speed
     p.dir = Direction.Left
     p:switchAnimation(p.walkId)
-    animationManager_restart(p:getCurrentComp())
+    
   elseif love.keyboard.isDown(k.right) then
     p.speed.x = p:class().speed
     p.dir = Direction.Right
     p:switchAnimation(p.walkId)
-    animationManager_restart(p:getCurrentComp())
   else
     p.speed.x = 0
+
+  end
+  if p.speed.x == 0 then
     p:switchAnimation(p.idleId)
   end
+  
 end
 
 function PlayerAliveState:updateVertical()
@@ -73,16 +76,19 @@ function PlayerAliveState:updateVertical()
     p.speed.y = p:class().speed
     p.dir = Direction.Down
     p:switchAnimation(p.walkId)
-    animationManager_restart(p:getCurrentComp())
+    
   elseif love.keyboard.isDown(k.up) then
     p.speed.y = -p:class().speed
     p.dir = Direction.Up
     p:switchAnimation(p.walkId)
-  animationManager_restart(p:getCurrentComp())
   else
     p.speed.y = 0
-    p:switchAnimation(p.idleId)
+    --
   end
+  if p.speed.y == 0 then
+    --p:switchAnimation(p.idleId)
+  end
+    
 end
 
 function PlayerAliveState:updateBoost(dt)
