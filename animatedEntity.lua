@@ -52,10 +52,10 @@ function AnimatedEntity:prepareAssets(assetsInfo)
     local all_h = img:getHeight()
     local quads = animations.loadMatrixQuads(value.nRow,value.nCol,all_w,all_h)
     local animComp = animationManager_new(value.nCol, value.animationTime, value.shouldLoop)
-    self.assets[key] = {sheet=img, quads=quads, animComp=animComp, size={width=all_w/value.nCol,height=all_h/value.nRow}}
+    self.assets[key] = {sheet=img, quads=quads, animComp=animComp, size={width=58,height=108}}--{width=all_w/value.nCol,height=all_h/value.nRow}}
   end
 end
-
+--0.46774193548387
 function AnimatedEntity:update(dt)
   self.super:update(dt)
   animationManager_update(dt, self.curr_animation.animComp)
@@ -64,7 +64,7 @@ function AnimatedEntity:update(dt)
   function AnimatedEntity:draw(of)
   --self.super:draw()
   local s = self.curr_animation
-  love.graphics.draw(s.sheet,s.quads[self.dir][s.animComp.curr_frame],of.x+self.x,of.y+self.y,0,self.width/s.size.width,self.height/s.size.height)
+  love.graphics.draw(s.sheet,s.quads[self.dir][s.animComp.curr_frame],of.x+self.x,of.y+self.y,0,self.width/s.size.width,self.height/s.size.height,33,20)
 end
 
 function AnimatedEntity:getCurrentComp()
