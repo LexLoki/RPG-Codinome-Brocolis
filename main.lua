@@ -16,15 +16,12 @@ function love.load()
   game.load()
   state = RPG_Logo
 end
-
 function love.update(dt)
   state.update(dt)
 end
-
 function love.draw()
   state.draw()
 end
-
 function love.keypressed(key)
   state.keypressed(key)
 end

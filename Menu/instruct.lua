@@ -4,7 +4,7 @@ function instruct.load()
   
 end
 
-function instruct.start()
+function instruct.start(n_players)
   
 end
 

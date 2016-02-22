@@ -1,6 +1,6 @@
 require "Menu/menuManager"
 require "Game/gameManager"
-
+require "Menu/winnerScreen"
 game = {}
 
 function game.start()
@@ -10,6 +10,7 @@ end
 function game.load()
   menuManager.load()
   gameManager.load()
+  winnerScreen.load()
 end
 
 function game.update(dt)

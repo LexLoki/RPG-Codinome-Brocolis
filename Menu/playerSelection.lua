@@ -7,7 +7,7 @@ end
 function playerSelection.numberOfJoysticks(key)
   local number = 0
   --for i, p in ipairs(players) do
-    if(love.joystick.getJoystickCount()) then --and key == p.key 
+    if(love.joystick.getJoystickCount()>= 1) then --and key == p.keyAttack 
       number = number + 1
     end
  -- end
@@ -37,7 +37,7 @@ function playerSelection.draw()
 end
 
 function playerSelection.keypressed(key)
-  n_players = playerSelection.numberOfJoysticks(key) + 2
+  n_players = playerSelection.numberOfJoysticks(key) + 1
   if key == "return" then
     game.goToGameManager(n_players) 
   end
