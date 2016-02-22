@@ -39,7 +39,7 @@ end
 function playerSelection.keypressed(key)
   n_players = playerSelection.numberOfJoysticks(key) + 1
   if key == "return" then
-    game.goToGameManager(n_players) 
+    game.goToGameManager(2) 
   end
 end
 

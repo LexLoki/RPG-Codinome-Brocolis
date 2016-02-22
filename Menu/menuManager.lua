@@ -10,7 +10,7 @@ function menuManager.load()
   playerSelection.load()
 end
 
-function menuManager.start(n_players)
+function menuManager.start()
   menuManager.setState(menu)
 end
 

@@ -14,6 +14,7 @@ function PlayerDeadState:start()
   p.speed = {x=0,y=0}
   p:switchAnimation(p.deathId)
   animationManager_restart(p:getCurrentComp())
+  p:disableArm()
 end
 
 function PlayerDeadState:tookHit(dt)
