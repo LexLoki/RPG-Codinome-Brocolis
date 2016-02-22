@@ -13,7 +13,7 @@ function gameManager.load()
   arena.load(12,15)
   Player.load()
   bulletManager.load()
-  timer = 9000
+  timer = 90
 end
 
 function gameManager.start(nPlayers)
@@ -26,12 +26,12 @@ function gameManager.update(dt)
   --love.graphics.print(math.ceil(dt), 640, 20)
   playerManager.update(dt)
   bulletManager.update(dt)
-  timer = timer - 10*math.ceil(dt)
+  timer = timer - dt
   arena.update(dt)
   --arena.update(dt,gameManager.players)
-  if timer <= 0 then
+  if timer <= 0  then
     gameManager.round = gameManager.round + 1
-    timer = 9000
+    timer = 90
   end
   --[[
   if gameManager.round > 5 or #playerManager.getAlivePlayers() <= 1 then
@@ -46,7 +46,7 @@ function gameManager.draw()
   local of = {x=arena.x,y=arena.y}
   playerManager.draw(of)
   bulletManager.draw(of)
-  love.graphics.print("ROUND "..gameManager.round.." - "..math.ceil(timer/100).."", 640, 20)
+  love.graphics.print("ROUND "..gameManager.round.." - "..math.ceil(timer).."", 640, 20)
 end
 
 function gameManager.keypressed(key)
