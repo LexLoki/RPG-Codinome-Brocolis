@@ -4,6 +4,7 @@
 --  Copyright © 2016 Rio PUC Games. All rights reserved.
 
 require "Player/player"
+require "Player/playerAssets"
 
 playerManager = {}
 playerManager.list = {}
@@ -17,7 +18,7 @@ end
 
 function playerManager.start(nPlayers)
   for i=1,nPlayers do
-    table.insert(playerManager.list,Player.new(i,bulletManager.randomBullet()))
+    table.insert(playerManager.list,Player.new(i,bulletManager.randomBullet(),playerAssets[1]))
   end
 end
 

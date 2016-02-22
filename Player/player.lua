@@ -1,11 +1,12 @@
 require "Utils/animationManager"
-require "animatedEntity"
+--require "animatedEntity"
+require "armedAnimatedEntity"
 require "Direction"
 require "Weapon/weapon"
 require "Player/playerAliveState" 
 require "Player/playerDeadState"
 
-Player = class_extends(AnimatedEntity, "alive")
+Player = class_extends(ArmedAnimatedEntity, "alive")
 
 function Player.load()
   Player.data = {
@@ -28,29 +29,8 @@ function Player:tookHit()
  self.curr_state:tookHit()
 end
 
-function Player.new(index,bulletClass)
-  local pirate = {
-    idle = {sheetFilename="/Assets/Player/Pirate/pirata_idle_corpo.png",
-      animationTime = 0.5,
-      nCol = 7,
-      nRow = 4,
-      shouldLoop = true
-      --framesQuant = {}
-    },
-    death = {sheetFilename="/Assets/Player/Pirate/pirata_morte.png",
-      animationTime = 3,
-      nCol = 14,
-      nRow = 4,
-      shouldLoop = false
-    },
-    walk = {sheetFilename="/Assets/Player/Pirate/pirata_andando_corpo.png",
-      animationTime = 1,
-      nCol = 8,
-      nRow = 4,
-      shouldLoop = true
-    }
-  }
-  local self = Player.newObject(100,100,Player.width,Player.height,pirate)
+function Player.new(index,bulletClass,assetInfo)
+  local self = Player.newObject(100,100,Player.width,Player.height,assetInfo)
   --Init properties
   self.color = Player.data[index].color
   --self.dir = Direction.Left
@@ -84,7 +64,10 @@ function Player:update(dt)
   
 end
 function Player:draw(of)
-  self.curr_state:draw(of)  
+  self.curr_state:draw(of)
+  love.graphics.setColor(0,0,0)
+  if config.debugBoundingBoxMode then love.graphics.rectangle("line",self.x+of.x,self.y+of.y,self.width,self.height) end
+  love.graphics.setColor(255,255,255)
 end
 
 function Player:setState(state)

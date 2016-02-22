@@ -47,24 +47,39 @@ end
 function AnimatedEntity:prepareAssets(assetsInfo)
   self.assets = {}
   for key,value in pairs(assetsInfo) do
-    local img = love.graphics.newImage(value.sheetFilename)
+    local imgs = {}
+    if type(value.sheetFilename)=="table" then
+      for i,v in ipairs(value.sheetFilename) do
+        imgs[i] = love.graphics.newImage(v)
+      end
+    else
+      imgs[1] = love.graphics.newImage(value.sheetFilename)
+    end
+    local img = imgs[1]
     local all_w = img:getWidth()
     local all_h = img:getHeight()
     local quads = animations.loadMatrixQuads(value.nRow,value.nCol,all_w,all_h)
     local animComp = animationManager_new(value.nCol, value.animationTime, value.shouldLoop)
-    self.assets[key] = {sheet=img, quads=quads, animComp=animComp, size={width=58,height=108}}--{width=all_w/value.nCol,height=all_h/value.nRow}}
+    self.assets[key] = {sheet=imgs, quads=quads, animComp=animComp, size={width=58,height=108}}--{width=all_w/value.nCol,height=all_h/value.nRow}}
   end
 end
 --0.46774193548387
 function AnimatedEntity:update(dt)
   self.super:update(dt)
   animationManager_update(dt, self.curr_animation.animComp)
-  end
+end
   
-  function AnimatedEntity:draw(of)
+function AnimatedEntity:draw(of)
   --self.super:draw()
-  local s = self.curr_animation
-  love.graphics.draw(s.sheet,s.quads[self.dir][s.animComp.curr_frame],of.x+self.x,of.y+self.y,0,self.width/s.size.width,self.height/s.size.height,33,20)
+  self:drawAsset(of,index,self.curr_animation)
+end
+
+function AnimatedEntity:drawAsset(of,index,asset)
+  if index == nil then index = 1 end
+  local s = asset
+  --for i,v in ipairs(s.sheet) do
+    love.graphics.draw(s.sheet[index],s.quads[self.dir][s.animComp.curr_frame],of.x+self.x,of.y+self.y,0,self.width/s.size.width,self.height/s.size.height,33,20)
+  --end
 end
 
 function AnimatedEntity:getCurrentComp()

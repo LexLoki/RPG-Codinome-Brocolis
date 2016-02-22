@@ -42,6 +42,7 @@ Called when a shoot is requested. Verifies if it is possible to shoot. If yes, i
 ]]
 function Weapon:shoot()
   if self.timer <= 0 then
+    self.player:setShootAnimation()
     self.timer = self.cooldown
     audioManager.playBulletSound()
     bulletManager.newBullet(self.player,self.bulletClass)
