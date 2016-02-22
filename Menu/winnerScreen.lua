@@ -1,3 +1,5 @@
+require "Menu/buttons"
+
 winnerScreen = {}
 
 function winnerScreen.load()

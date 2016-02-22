@@ -14,8 +14,19 @@ function gameManager.load()
   Player.load()
   bulletManager.load()
   timer = 90
+  gameManager.changeRound()
 end
-
+function gameManager.changeRound(round, timer)
+  if timer <= 0  or #playerManager.getAlivePlayers() <= 1 then
+    round = round + 1
+    timer = 90
+    --gameManager.setRespawn()
+  end
+  if round > 5 then
+    round = 1
+    game.goToWinnerScreen(n_players)
+  end
+end
 function gameManager.start(nPlayers)
   math.randomseed(os.time())
   playerManager.start(nPlayers)
@@ -29,16 +40,6 @@ function gameManager.update(dt)
   timer = timer - dt
   arena.update(dt)
   --arena.update(dt,gameManager.players)
-  if timer <= 0  then
-    gameManager.round = gameManager.round + 1
-    timer = 90
-  end
-  --[[
-  if gameManager.round > 5 or #playerManager.getAlivePlayers() <= 1 then
-    gameManager.round = 1
-    game.goToWinnerScreen(n_players)
-  end
-  ]]
 end
 
 function gameManager.draw()
@@ -51,4 +52,16 @@ end
 
 function gameManager.keypressed(key)
   playerManager.keypressed(key)
+end
+
+function gameManager.changeRound(round, timer)
+  if timer <= 0  or #playerManager.getAlivePlayers() <= 1 then
+    round = round + 1
+    timer = 90
+    --gameManager.setRespawn()
+  end
+  if round > 5 then
+    round = 1
+    game.goToWinnerScreen()
+  end
 end
