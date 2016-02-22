@@ -1,4 +1,6 @@
 playerAssets = {
+  --brócolis
+  --
   --pirata
   {
     idle = {
