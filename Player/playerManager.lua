@@ -17,8 +17,9 @@ function playerManager.load()
 end
 
 function playerManager.start(nPlayers)
+  local nPlayers = 2
   for i=1,nPlayers do
-    table.insert(playerManager.list,Player.new(i,bulletManager.randomBullet(),playerAssets[1]))
+    table.insert(playerManager.list,Player.new(i,bulletManager.randomBullet(),playerAssets[i]))
   end
 end
 

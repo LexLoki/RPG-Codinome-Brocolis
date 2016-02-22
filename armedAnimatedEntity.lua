@@ -21,7 +21,7 @@ function ArmedAnimatedEntity:update(dt)
   if self.isShooting then
     local a = self.assets.shoot.animComp
     animationManager_update(dt,a)
-    if a.finish then
+    if a.finished then
       self.isShooting = false
     else
       self.index = self.curr_animation == walk and 2 or 1
