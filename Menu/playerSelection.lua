@@ -43,11 +43,11 @@ function playerSelection.keypressed(key)
   end
 end
 
-function playerSelection.create(n_cols, n_rows)
+function playerSelection.create(n_cols, n_rows, index)
   for i=0, n_rows do
     playerSelection[i] = {}
     for j=0, n_cols do
-      playerSelection[i][j] = 0
+      playerSelection[i][j] = index
     end
   end
 end
