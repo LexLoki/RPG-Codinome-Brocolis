@@ -18,6 +18,7 @@ end
 
 function instruct.keypressed(key)
   if key == "return" then
-    menuManager.goToPlayerSelection() 
+    menuManager.goToPlayerSelection()
+    audioManager.playOptionSelectSound()
   end
 end

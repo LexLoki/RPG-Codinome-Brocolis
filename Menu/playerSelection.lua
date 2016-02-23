@@ -18,7 +18,7 @@ function playerSelection.numberOfJoysticks(key)
  return number
 end
 function playerSelection.start()
-  audioManager.play(audioManager.characterSelectMusic)
+  audioManager.play(audioManager.characterScreenMusic)
   playerSelection.create(2, 2)
 end
 
@@ -39,7 +39,8 @@ end
 function playerSelection.keypressed(key)
   n_players = playerSelection.numberOfJoysticks(key) + 2
   if key == "return" then
-    game.goToGameManager(n_players) 
+    audioManager.playCharacterSelectSound()
+    game.goToGameManager(n_players)
   end
 end
 
