@@ -14,7 +14,6 @@ function gameManager.load()
   Player.load()
   bulletManager.load()
   timer = 90
-  gameManager.changeRound()
 end
 function gameManager.start(nPlayers)
   math.randomseed(os.time())
