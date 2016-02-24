@@ -1,6 +1,6 @@
 PlayerInvulnerableState = class_new("vulnerable")
 
-PlayerInvulnerableState.invTime = 2
+PlayerInvulnerableState.invTime = 1
 PlayerInvulnerableState.blinkTime = 0.09
 
 function PlayerInvulnerableState.new(aliveState)

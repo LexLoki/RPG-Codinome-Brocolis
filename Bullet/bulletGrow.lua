@@ -6,8 +6,8 @@
 require "bullet/bullet"
 
 BulletGrow = class_extends(Bullet,"grow")
-BulletGrow.growSpeed = 50
-BulletGrow.speed = 400
+BulletGrow.growSpeed = 100
+BulletGrow.speed = 600
 BulletGrow.color = {0,0,255}
 
 --[[ BulletGrow.new

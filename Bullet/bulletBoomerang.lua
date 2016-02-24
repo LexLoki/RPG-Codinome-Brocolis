@@ -8,7 +8,7 @@ require "bullet/bullet"
 BulletBoomerang = class_extends(Bullet,"boomerang")
 BulletBoomerang.speed = 400
 BulletBoomerang.distance = 420
-BulletBoomerang.amp = 120
+BulletBoomerang.amp = 240
 BulletBoomerang.velA = -math.pi*1.2
 
 --[[ BulletBoomerang.new

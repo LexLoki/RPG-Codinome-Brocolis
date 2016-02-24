@@ -6,10 +6,10 @@
 require "bullet/bullet"
 
 BulletSenoid = class_extends(Bullet,"senoid")
-BulletSenoid.amp = 50
-BulletSenoid.time = 0.6
+BulletSenoid.amp = 100
+BulletSenoid.time = 0.9
 --Bullet.sign = 1
-BulletSenoid.speed = 400
+BulletSenoid.speed = 700
 BulletSenoid.color = {0,0,255}
 
 local horizontal = {}
