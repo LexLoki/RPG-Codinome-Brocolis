@@ -3,7 +3,7 @@
 --  Created by Pietro Ribeiro Pepe
 --  Copyright © 2016 Rio PUC Games. All rights reserved.
 
-require "bullet/bullet"
+require "Bullet/bullet"
 
 BulletGrow = class_extends(Bullet,"grow")
 BulletGrow.growSpeed = 100

@@ -3,10 +3,10 @@
 --  Created by Pietro Ribeiro Pepe
 --  Copyright © 2016 Rio PUC Games. All rights reserved.
 
-require "Player/player"
-require "Player/playerAssets"
+local player = require "Player/player"
+local playerAssets = require "Player/playerAssets"
 
-playerManager = {}
+local playerManager = {}
 playerManager.list = {}
 
 local orderByHeight, sortDraw
@@ -55,7 +55,8 @@ end
 function playerManager.killPlayer(player)
   for i,v in ipairs(playerManager.list) do
     if v==player then
-      table.remove(playerManager.list,i)
+      v = nil
+      --table.remove(playerManager.list,i)
       --audioManager.playDeathSound()
       break
     end
@@ -122,9 +123,12 @@ function drawHud(hpArt)
   end
 end
 function playerManager.getLastPlayer()
+  local alive_players = {}  
   for i,v in ipairs(playerManager.list) do
     if not v.curr_state:is_a(PlayerDeadState) then
-    return v
+      table.insert(alive_players,v)  
+    end
   end
+  return alive_players
 end
-end
+return playerManager

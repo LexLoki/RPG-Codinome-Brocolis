@@ -1,7 +1,8 @@
-require "Menu/buttons"
-menu = {}
+local buttons = require "Menu/buttons"
+local menu = {}
 
-function menu.load()
+function menu.load(manager)
+  menu.manager = manager
   buttons.load()
 end
 
@@ -22,7 +23,7 @@ end
 function menu.keypressed(key)
   buttons.keypressed(key)
   if key == "return" and buttons.pressed == 1 then
-    menuManager.goToInstruct()
+    menu.manager.goToInstruct()
     audioManager.playOptionSelectSound()
   elseif key == "return" and buttons.pressed == 2 then
     love.event.push("quit")
@@ -34,9 +35,10 @@ function menu.mousepressed(x, y, button)
   mouse.x = x
   mouse.y = y
   if key == 1 and buttons[1].colliding then
-    menuManager.goToInstruct()
+    menu.manager.goToInstruct()
     audioManager.playOptionSelectSound()
   elseif key == 1 and buttons[2].colliding then
     love.event.push("quit")
   end
 end
+return menu

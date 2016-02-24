@@ -3,7 +3,7 @@
 --  Created by Pietro Ribeiro Pepe
 --  Copyright © 2016 Rio PUC Games. All rights reserved.
 
-require "bullet/bullet"
+require "Bullet/bullet"
 
 BulletSenoid = class_extends(Bullet,"senoid")
 BulletSenoid.amp = 100

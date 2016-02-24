@@ -67,3 +67,4 @@ function audioManager.playSfx(sfx)
   end
   love.audio.play(sfx)
 end
+return audioManager
