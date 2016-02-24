@@ -27,8 +27,8 @@ function playerSelection.draw()
   local i = 1
   for j = 1, 4 do
     local p = playerSelection[i][j]
-    love.graphics.draw(grid.data[p].img, 200 + 320*j, 200)
-    love.graphics.print(grid.data[p].name, 270 + 320*j, 600)
+    love.graphics.draw(grid.data[p].img, 200 + 320*(j-1), 200)
+    love.graphics.print(grid.data[p].name, 270 + 320*(j-1), 600)
   end
 end
 
