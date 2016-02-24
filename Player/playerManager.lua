@@ -11,7 +11,11 @@ playerManager.list = {}
 
 local orderByHeight, sortDraw
 local pirataMaroto = love.graphics.newImage("/Assets/HUD/pirata_placeholder.png")
-local hpMaroto = love.graphics.newImage("/Assets/HUD/redcross.png")
+local CptRubi = love.graphics.newImage("/Assets/HUD/Capita_Rubi_HUD.png")
+local Magno = love.graphics.newImage("/Assets/HUD/Magnolio_HUD_2.png")
+local Qsort = love.graphics.newImage("/Assets/HUD/Qsort_HUD.png")
+local Godo = love.graphics.newImage("/Assets/HUD/Godo_HUD.png")
+local HpArt = love.graphics.newImage("/Assets/HUD/Heart_HUD_2.png")
 
 function playerManager.load()
 end
@@ -19,7 +23,7 @@ end
 function playerManager.start(nPlayers)
   local nPlayers = 2
   for i=1,nPlayers do
-    table.insert(playerManager.list,Player.new(i,bulletManager.randomBullet(),playerAssets[i]))
+    table.insert(playerManager.list,Player.new(i,bulletManager.randomBullet(),playerAssets[i],i))
   end
 end
 
@@ -39,13 +43,9 @@ end
 function playerManager.draw(of)
   local players = sortDraw(playerManager.list)
   for i,v in ipairs(players) do
-    --love.graphics.print(tostring(v.hp), 0 , i*10)
-    --[[if i == 1 then
-    if v.charID == 1 then
-      love.graphics.print("Minha rola", 30, 10)
-    end]]--
-    drawHud(1, 1, hpMaroto)
-    --end
+    --love.graphics.print(tostring(v.hp), 0 , i*50)
+    drawHud(HpArt)
+    
     v:draw(of)
     
   -- 50,0 
@@ -81,40 +81,46 @@ function orderByHeight(a,b)
   return a.y<b.y
 end
 
-function drawHud(playerID,charID,hpArt)
+function drawHud(hpArt)
   for i,v in ipairs(playerManager.list) do
+    
+    if v.data[i].playerID == 1 then
+      if v.charID == 1 then
+        love.graphics.draw(Magno,20,100)
+      end
+      if v.charID == 2 then
+        love.graphics.draw(Qsort,20,100)
+      end
+    end    
+    
+    if v.data[i].playerID == 2 then
+     if v.charID == 1 then
+        love.graphics.draw(Magno,1650,100)
+      end
+      if v .charID == 2 then
+        love.graphics.draw(Qsort,1650,100)
+      end      
+    end
+  end
+  
+    for i,v in ipairs(playerManager.list) do
     if i == 1 then
-      if v.charID == 1 then
-        love.graphics.draw(pirataMaroto,20,100)
-      end
       for i=0,v.hp-1 do
-        love.graphics.draw(hpArt,20 + 50*i, 0, 0, 0.25, 0.25)
+        love.graphics.draw(hpArt,20 + 50*i, 0, 0)
       end
-    end
     
+    for i,v in ipairs(playerManager.list) do
     if i == 2 then
-      if v.charID == 1 then
-        love.graphics.draw(pirataMaroto,1650,100)
-      end
       for i=0,v.hp-1 do
-        love.graphics.draw(hpArt, 1650+ 50*i, 0, 0, 0.25, 0.25)
-      end
+        love.graphics.draw(hpArt,1650+50*i, 0, 0)
     end
-    
-    if i == 3 then
-      if v.charID == 1 then
-        love.graphics.draw(pirataMaroto,1650,800)
-      end
-      for i=0,v.hp-1 do
-        love.graphics.draw(hpArt, 1650+ 50*i, 750, 0, 0.25, 0.25)
-      end
     end
     
     
-    
+    end
+   end
   end
 end
-
 function playerManager.getLastPlayer()
   for i,v in ipairs(playerManager.list) do
     if not v.curr_state:is_a(PlayerDeadState) then

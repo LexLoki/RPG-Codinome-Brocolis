@@ -11,17 +11,17 @@ Player = class_extends(ArmedAnimatedEntity, "alive")
 
 function Player.load()
   Player.data = {
-    {color = {255,255,255}, keys = {left="left",up="up",right="right",down="down",jump="space",attack=",",run="m"}, pos = {x=100 , y=100}},
-    {color = {0,255,0}, keys = {left="a",up="w",right="d",down="s",jump="space",attack="c",run="x"}, pos = {x=1190 , y=100}},
+    {color = {255,255,255}, keys = {left="left",up="up",right="right",down="down",jump="space",attack=",",run="m"}, pos = {x=100 , y=100},playerID = 1},
+    {color = {0,255,0}, keys = {left="a",up="w",right="d",down="s",jump="space",attack="c",run="x"}, pos = {x=1190 , y=100},playerID = 2},
     {color = {100,100,255}, keys = {left="k",up="o",right=";",down="l",jump="space",attack="]",run="["}, pos = {x= 100, y=600}},
     {color = {100,100,255}, keys = {left="f",up="t",right="h",down="g",jump="space",attack="v",run="["}, pos = {x=1190 , y= 600}},
     {color = {0,0,0}}
   }
+  --Player.score = 0 
   Player.width = 48
   Player.height = 96
   Player.speed = 280
   Player.maxHP = 4 
-  Player.PirateID = 1
   Player.deathId = "death"
   Player.idleId = "idle"
   Player.walkId = "walk"
@@ -30,7 +30,7 @@ function Player:tookHit()
  self.curr_state:tookHit()
 end
 
-function Player.new(index,bulletClass,assetInfo)
+function Player.new(index,bulletClass,assetInfo,CharID)
   local self = Player.newObject(Player.data[index].pos.x,Player.data[index].pos.y,Player.width,Player.height,assetInfo)
   --Init properties
   self.color = Player.data[index].color
@@ -41,7 +41,18 @@ function Player.new(index,bulletClass,assetInfo)
   self.hp = Player.maxHP
   self.weapon = Weapon.new(self,bulletClass)
   --ele deve receber algo vindo do playerSelection.lua
+  if CharID == 1 then
   self.charID = 1
+else if CharID == 2 then
+  self.charID = 2
+else if CharID == 3 then
+  self.charID = 3
+else if CharID == 4 then
+  self.charID = 4
+end
+end
+end
+end
   
   self.states = { 
     alive = PlayerAliveState.new(self),

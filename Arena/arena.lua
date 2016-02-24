@@ -6,6 +6,7 @@
 require "Arena/solidTile"
 require "Arena/freeTile"
 require "Arena/arenaBrocolis"
+require "Arena/arenaDefault"
 
 arena = {}
 

@@ -58,21 +58,29 @@ function gameManager.keypressed(key)
   if key == "k" then
     game.goToWinnerScreen()
   end
+  if key == "r" then
+    --gameManager.setRespawn()
+  end
 end
 
 function gameManager.changeRound(Gameround, timer)
   local round = Gameround
+  
+  --if checkForWinner() ~= nil then
+   
+  --end
   if timer <= 0  or #playerManager.getAlivePlayers() == 1 then
     round = round + 1
     timer = 90
     gameManager.setRespawn()
   end
   gameManager.round = round
+  
 end
 
 function gameManager.setRespawn()
-  
    local last = playerManager.getLastPlayer()
+   --last.score = last.score + 1
    playerManager.killPlayer(last)
 
   Player.load()
@@ -80,4 +88,14 @@ function gameManager.setRespawn()
   timer = 90 
   playerManager.start(nPlayers)
   
+end
+
+function checkForWinner()
+  local winner
+  for i,v in ipairs(playerManager.list) do
+    if v.score == 5 then
+    winner = v
+    return winner
+    end
   end
+end
