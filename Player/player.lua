@@ -10,8 +10,8 @@ Player = class_extends(ArmedAnimatedEntity, "alive")
 
 function Player.load()
   Player.data = {
-    {color = {255,255,255}, keys = {left="left",up="up",right="right",down="down",jump="space",attack=",",run="m"}--[[, pos = {x= , y=}]]},
-    {color = {0,255,0}, keys = {left="a",up="w",right="d",down="s",jump="space",attack="c",run="x"}--[[, pos = {x= , y=}]]},
+    {color = {255,255,255}, keys = {left="left",up="up",right="right",down="down",jump="space",attack=",",run="m"}, pos = {x=100 , y=100}},
+    {color = {0,255,0}, keys = {left="a",up="w",right="d",down="s",jump="space",attack="c",run="x"}, pos = {x=1190 , y=100}},
     {color = {100,100,255}, keys = {left="k",up="o",right=";",down="l",jump="space",attack="]",run="["}--[[, pos = {x= , y=}]]},
     {color = {100,100,255}, keys = {left="f",up="t",right="h",down="g",jump="space",attack="v",run="["}--[[, pos = {x= , y=}]]},
     {color = {0,0,0}}
@@ -30,7 +30,7 @@ function Player:tookHit()
 end
 
 function Player.new(index,bulletClass,assetInfo)
-  local self = Player.newObject(100,100,Player.width,Player.height,assetInfo)
+  local self = Player.newObject(Player.data[index].pos.x,Player.data[index].pos.y,Player.width,Player.height,assetInfo)
   --Init properties
   self.color = Player.data[index].color
   --self.dir = Direction.Left
