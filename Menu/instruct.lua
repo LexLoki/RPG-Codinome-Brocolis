@@ -1,7 +1,7 @@
-instruct = {}
+local instruct = {}
 
-function instruct.load()
-  
+function instruct.load(menuManager)
+  instruct.menuManager = menuManager
 end
 
 function instruct.start(n_players)
@@ -18,7 +18,8 @@ end
 
 function instruct.keypressed(key)
   if key == "return" then
-    menuManager.goToPlayerSelection()
+    instruct.menuManager.goToPlayerSelection()
     audioManager.playOptionSelectSound()
   end
 end
+return instruct

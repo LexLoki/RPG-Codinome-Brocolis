@@ -1,6 +1,6 @@
 require "Menu/buttonsWinner"
 
-winnerScreen = {}
+local winnerScreen = {}
 
 function winnerScreen.load()
   buttonsWinner.load()
@@ -31,3 +31,4 @@ function winnerScreen.keypressed(key)
     end
   end
 end
+return winnerScreen

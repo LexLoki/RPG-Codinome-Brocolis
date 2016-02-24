@@ -1,15 +1,16 @@
-require "Menu/menuManager"
-require "Game/gameManager"
-require "Menu/winnerScreen"
-require "Menu/playerSelection"
-game = {}
+local menuManager = require "Menu/menuManager"
+local gameManager = require "Game/gameManager"
+local winnerScreen = require "Menu/winnerScreen"
+local playerSelection = require "Menu/playerSelection"
+
+local game = {}
 
 function game.start()
   game.curr_state = menuManager
   menuManager.start()
 end
 function game.load()
-  menuManager.load()
+  menuManager.load(game)
   gameManager.load()
   winnerScreen.load()
 end
@@ -44,3 +45,4 @@ function game.setState(state,n_players)
   game.curr_state = state
   state.start(n_players)
 end
+return game

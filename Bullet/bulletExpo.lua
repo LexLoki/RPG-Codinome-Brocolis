@@ -3,7 +3,7 @@
 --  Created by Pietro Ribeiro Pepe and Nicolas Paes
 --  Copyright © 2016 Rio PUC Games. All rights reserved.
 
-require "bullet/bullet"
+require "Bullet/bullet"
 
 BulletExpo = class_extends(Bullet,"expo")
 BulletExpo.speed = 500

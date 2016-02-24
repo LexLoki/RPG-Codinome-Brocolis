@@ -1,18 +1,19 @@
-require "RPG_Full_Logo/RPG_Logo"
-require "Game/game"
-require "audioManager"
-require "Menu/menu"
+local RPG_local = require "RPG_Full_Logo/RPG_Logo"
+local game = require "Game/game"
+audioManager = require "audioManager"
 
 io.stdout:setvbuf("no")
 
 local state
 
 function love.load()
-  fonte = love.graphics.setNewFont("Assets/game_over.ttf", 100)
+  local fonte = love.graphics.setNewFont("Assets/game_over.ttf", 100)
   love.graphics.setFont(fonte)
   audioManager.load()
-  RPG_Logo.load(1.5,1.5,1.5,love.startGame)
-  menu.load()
+  RPG_Logo.load(1.5,1.5,1.5,function ()
+    state = game
+    state.start()
+  end)
   game.load()
   state = RPG_Logo
 end
@@ -25,10 +26,6 @@ end
 function love.keypressed(key)
   state.keypressed(key)
 end
-function menu.mousepressed(x, y, button)
+function love.mousepressed(x, y, button)
   game.mousepressed(x, y, button)
-end
-function love.startGame()
-  state = game
-  state.start()
 end

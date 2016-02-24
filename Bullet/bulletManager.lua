@@ -3,15 +3,15 @@
 --  Created by Pietro Ribeiro Pepe
 --  Copyright © 2016 Rio PUC Games. All rights reserved.
 
-require "Bullet/bullet"
-require "Bullet/bulletSenoid"
-require "Bullet/bulletGrow"
-require "Bullet/bulletBoomerang"
-require "Bullet/bulletExpo"
-require "Direction"
-require "Utils/animations"
+local bullet = require "Bullet/bullet"
+local bulletSenoid = require "Bullet/bulletSenoid"
+local bulletGlow = require "Bullet/bulletGrow"
+local bulletBoomerang = require "Bullet/bulletBoomerang"
+local bulletExpo = require "Bullet/bulletExpo"
+local Direction = require "Direction"
+local animations = require "Utils/animations"
 
-bulletManager = {}
+local bulletManager = {}
 bulletManager.list = {}
 bulletManager.bullets = {
   BulletExpo,
@@ -127,3 +127,4 @@ function bulletManager.terminateBullet(bullet)
     end
   end
 end
+return bulletManager

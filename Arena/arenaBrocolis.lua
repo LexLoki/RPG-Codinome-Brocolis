@@ -1,6 +1,6 @@
-require "Arena/destructTile"
+local destructTile = require "Arena/destructTile"
 
-arenaBrocolis = {}
+local arenaBrocolis = {}
 
 local preparePositions, round, evaluate, readTxt
 
@@ -66,7 +66,7 @@ function evaluate(input)
   local v = DestructTile.new(col*arenaBrocolis.arena.tileSize.width,row*arenaBrocolis.arena.tileSize.height,arenaBrocolis)
   v.index = #arenaBrocolis.pos
   table.insert(arenaBrocolis.blocks,v)
-  local obs = arena.obstacles
+  local obs = arenaBrocolis.arena.obstacles 
   local pos = arenaBrocolis.pos[v.index]
   arenaBrocolis.arenaReplacement[v.index] = obs[pos.row][pos.col]
   obs[pos.row][pos.col] = v
@@ -76,3 +76,4 @@ function round(n)
   local f = math.floor(n)
   return n-f < 0.5 and f or f+1
 end
+return arenaBrocolis

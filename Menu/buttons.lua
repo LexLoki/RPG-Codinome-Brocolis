@@ -94,3 +94,4 @@ end
 function buttons.checkMouseCollision(but_x, but_y, but_h, but_w, mouse_x, mouse_y)
   return but_x < mouse_x+1 and but_y < mouse_y +1 and mouse_x < but_x+but_w and mouse_y < but_y+but_h
 end
+return buttons

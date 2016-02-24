@@ -1,7 +1,8 @@
-playerSelection = {}
-grid = {}
+local playerSelection = {}
+local grid = {}
 
-function playerSelection.load()
+function playerSelection.load(menuManager)
+  playerSelection.menuManager = menuManager
   grid.data = {}
   playerConnected = {false, false, false, false}
   playerSelection.create(1, 4)
@@ -49,7 +50,7 @@ function playerSelection.keypressed(key)
   elseif key == "return" then
     audioManager.playCharacterSelectSound()
     playerSelection.confirmados = playerSelection.confirmados + 1
-    game.goToGameManager(playerSelection.n_players)  end
+    playerSelection.menuManager.game.goToGameManager(playerSelection.n_players)  end
   if key == "return" and playerSelection.confirmados == playerSelection.n_players then
     --game.goToGameManager(playerSelection.n_players)
   end
@@ -72,3 +73,4 @@ end
 function playerSelection.loadData(string)
   table.insert(grid.data,{name=string,img=love.graphics.newImage("Assets/Menu/"..string..".png")})
 end
+return playerSelection

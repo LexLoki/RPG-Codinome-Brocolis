@@ -3,12 +3,12 @@
 --  Created by Pietro Ribeiro Pepe
 --  Copyright © 2016 Rio PUC Games. All rights reserved.
 
-require "Arena/solidTile"
-require "Arena/freeTile"
-require "Arena/arenaBrocolis"
-require "Arena/arenaDefault"
+local solidTile = require "Arena/solidTile"
+local freeTile = require "Arena/freeTile"
+local arenaBrocolis = require "Arena/arenaBrocolis"
+local arenaDefault = require "Arena/arenaDefault"
 
-arena = {}
+local arena = {}
 
 local loadDimensions, loadTiles
 
@@ -192,3 +192,4 @@ function prepareDrawOrder(players)
   end
   return grid
 end
+return arena

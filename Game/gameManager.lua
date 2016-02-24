@@ -3,9 +3,9 @@
 --  Created by Pietro Ribeiro Pepe
 --  Copyright © 2016 Rio PUC Games. All rights reserved.
 
-require "Arena/arena"
-require "Player/playerManager"
-require "Bullet/bulletManager"
+local arena = require "Arena/arena"
+local playerManager = require "Player/playerManager"
+local bulletManager = require "Bullet/bulletManager"
 
 gameManager = {}
 function gameManager.load()
@@ -79,9 +79,11 @@ function gameManager.changeRound(Gameround, timer)
 end
 
 function gameManager.setRespawn()
-   local last = playerManager.getLastPlayer()
+   local alive_players = playerManager.getLastPlayer()
    --last.score = last.score + 1
-   playerManager.killPlayer(last)
+   for k,v in pairs(alive_players) do
+       playerManager.killPlayer(v)
+   end
 
   Player.load()
   bulletManager.load()
@@ -99,3 +101,4 @@ function checkForWinner()
     end
   end
 end
+return gameManager

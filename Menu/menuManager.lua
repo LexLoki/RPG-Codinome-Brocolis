@@ -1,13 +1,14 @@
-require "Menu/instruct"
-require "Menu/menu"
-require "Menu/playerSelection"
+local instruct = require "Menu/instruct"
+local menu = require "Menu/menu"
+local playerSelection = require "Menu/playerSelection"
 
-menuManager = {}
+local menuManager = {}
 
-function menuManager.load()
-  menu.load()
-  instruct.load()
-  playerSelection.load()
+function menuManager.load(game)
+  menuManager.game = game
+  menu.load(menuManager)
+  instruct.load(menuManager)
+  playerSelection.load(menuManager)
 end
 
 function menuManager.start()
@@ -43,3 +44,4 @@ function menuManager.setState(state)
   menuManager.curr_state = state
   state.start()
 end
+return menuManager
