@@ -114,3 +114,11 @@ function drawHud(playerID,charID,hpArt)
     
   end
 end
+
+function playerManager.getLastPlayer()
+  for i,v in ipairs(playerManager.list) do
+    if not v.curr_state:is_a(PlayerDeadState) then
+    return v
+  end
+end
+end

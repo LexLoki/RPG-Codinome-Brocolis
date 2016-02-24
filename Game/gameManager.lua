@@ -29,7 +29,7 @@ function gameManager.update(dt)
     bulletManager.update(dt)
     timer = timer - dt
     arena.update(dt)
-    --gameManager.changeRound
+    gameManager.changeRound(gameManager.round,timer)
     --arena.update(dt,gameManager.players)
   end
 end
@@ -60,14 +60,24 @@ function gameManager.keypressed(key)
   end
 end
 
-function gameManager.changeRound(round, timer)
-  if timer <= 0  or #playerManager.getAlivePlayers() <= 1 then
+function gameManager.changeRound(Gameround, timer)
+  local round = Gameround
+  if timer <= 0  or #playerManager.getAlivePlayers() == 1 then
     round = round + 1
     timer = 90
-    --gameManager.setRespawn()
+    gameManager.setRespawn()
   end
-  if round > 5 then
-    round = 1
-    game.goToWinnerScreen()
-  end
+  gameManager.round = round
 end
+
+function gameManager.setRespawn()
+  
+   local last = playerManager.getLastPlayer()
+   playerManager.killPlayer(last)
+
+  Player.load()
+  bulletManager.load()
+  timer = 90 
+  playerManager.start(nPlayers)
+  
+  end
