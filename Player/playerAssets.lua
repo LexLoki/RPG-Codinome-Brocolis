@@ -1,4 +1,4 @@
-playerAssets = {
+local playerAssets = {
   --brócolis
   {
     idle = {
@@ -164,3 +164,4 @@ playerAssets = {
     }
   }
 }
+return playerAssets

@@ -6,7 +6,7 @@
 local player = require "Player/player"
 local playerAssets = require "Player/playerAssets"
 
-local playerManager = {}
+playerManager = {}
 playerManager.list = {}
 
 local orderByHeight, sortDraw
@@ -21,7 +21,7 @@ function playerManager.load()
 end
 
 function playerManager.start(nPlayers)
-  local nPlayers = 2
+  nPlayers = 2
   for i=1,nPlayers do
     table.insert(playerManager.list,Player.new(i,bulletManager.randomBullet(),playerAssets[i],i))
   end
@@ -131,4 +131,4 @@ function playerManager.getLastPlayer()
   end
   return alive_players
 end
-return playerManager
+--return playerManager

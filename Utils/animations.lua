@@ -1,6 +1,6 @@
 local animationManager = require "Utils/animationManager"
 
-local animations = {}
+animations = {}
 animations.list = {}
 local qFrame=11
 local time = 0.9
@@ -78,7 +78,6 @@ function animations.loadMatrixQuads(nRow,nCol,sprite_width,sprite_height)
   end
   return quads
 end
-return animations
   --[[
   player.sprites[run].quads = {
     love.graphics.newQuad(0,0,w,h,aw,ah),

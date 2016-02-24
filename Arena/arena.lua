@@ -8,7 +8,7 @@ local freeTile = require "Arena/freeTile"
 local arenaBrocolis = require "Arena/arenaBrocolis"
 local arenaDefault = require "Arena/arenaDefault"
 
-local arena = {}
+arena = {}
 
 local loadDimensions, loadTiles
 
@@ -192,4 +192,3 @@ function prepareDrawOrder(players)
   end
   return grid
 end
-return arena

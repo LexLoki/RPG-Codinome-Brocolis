@@ -9,9 +9,9 @@ local bulletGlow = require "Bullet/bulletGrow"
 local bulletBoomerang = require "Bullet/bulletBoomerang"
 local bulletExpo = require "Bullet/bulletExpo"
 local Direction = require "Direction"
-local animations = require "Utils/animations"
+require "Utils/animations"
 
-local bulletManager = {}
+bulletManager = {}
 bulletManager.list = {}
 bulletManager.bullets = {
   BulletExpo,
@@ -127,4 +127,4 @@ function bulletManager.terminateBullet(bullet)
     end
   end
 end
-return bulletManager
+--return bulletManager

@@ -3,9 +3,9 @@
 --  Created by Pietro Ribeiro Pepe
 --  Copyright © 2016 Rio PUC Games. All rights reserved.
 
-local arena = require "Arena/arena"
-local playerManager = require "Player/playerManager"
-local bulletManager = require "Bullet/bulletManager"
+require "Arena/arena"
+require "Player/playerManager"
+require "Bullet/bulletManager"
 
 gameManager = {}
 function gameManager.load()
