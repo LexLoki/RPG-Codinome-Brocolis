@@ -9,6 +9,7 @@ require "Bullet/bulletManager"
 
 gameManager = {}
 function gameManager.load()
+  gameManager.paused = false
   gameManager.round = 1
   arena.load(12,15)
   Player.load()
@@ -22,13 +23,15 @@ function gameManager.start(nPlayers)
 end
 
 function gameManager.update(dt)
-  --love.graphics.print(math.ceil(dt), 640, 20)
-  playerManager.update(dt)
-  bulletManager.update(dt)
-  timer = timer - dt
-  arena.update(dt)
-  --gameManager.changeRound
-  --arena.update(dt,gameManager.players)
+  if not gameManager.paused then 
+    --love.graphics.print(math.ceil(dt), 640, 20)
+    playerManager.update(dt)
+    bulletManager.update(dt)
+    timer = timer - dt
+    arena.update(dt)
+    --gameManager.changeRound
+    --arena.update(dt,gameManager.players)
+  end
 end
 
 function gameManager.draw()
@@ -37,10 +40,24 @@ function gameManager.draw()
   playerManager.draw(of)
   bulletManager.draw(of)
   love.graphics.print("ROUND "..gameManager.round.." - "..math.ceil(timer).."", 640, 20)
+  if gameManager.paused then
+    love.graphics.setColor(0,0,0,100)
+    love.graphics.rectangle("fill", 0,0, 1920, 1080)
+  end
 end
 
 function gameManager.keypressed(key)
+  if key == "return" then
+    if gameManager.paused then
+      gameManager.paused = false
+    else
+      gameManager.paused = true
+    end
+  end
   playerManager.keypressed(key)
+  if key == "k" then
+    game.goToWinnerScreen()
+  end
 end
 
 function gameManager.changeRound(round, timer)

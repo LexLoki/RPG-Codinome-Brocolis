@@ -1,5 +1,4 @@
 buttons = {}
-
 local direction = {
    horizontal = 0,
    vertical = 1
@@ -31,8 +30,8 @@ function buttons.update(dt)
 end
 
 function buttons.draw()
-  --love.graphics.print(buttons.pressed, 200, 300)
   love.graphics.draw(title,200, 20)
+  --love.graphics.print(buttons.pressed, 200, 300)
   for i, but in ipairs(buttons) do
     --love.graphics.setColor(but.color)
     --love.graphics.rectangle("fill", but.x, but.y, but.width, but.height)

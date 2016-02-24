@@ -1,6 +1,7 @@
 require "Menu/menuManager"
 require "Game/gameManager"
 require "Menu/winnerScreen"
+require "Menu/playerSelection"
 game = {}
 
 function game.start()
@@ -35,6 +36,9 @@ function game.goToGameManager(n_players)
 end
 function game.goToWinnerScreen(n_players)
   game.setState(winnerScreen,n_players)
+end
+function game.goToPlayerSelection()
+  game.setState(playerSelection)
 end
 function game.setState(state,n_players)
   game.curr_state = state
