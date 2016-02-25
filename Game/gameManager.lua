@@ -7,16 +7,20 @@ require "Arena/arena"
 require "Player/playerManager"
 require "Bullet/bulletManager"
 
-gameManager = {}
-function gameManager.load()
+local gameManager = {}
+function gameManager.load(game)
+  local playersinf = {}
+  gameManager.game = game
   gameManager.paused = false
   gameManager.round = 1
+  gameManager.timer = 90
   arena.load(12,15)
   Player.load()
   bulletManager.load()
-  timer = 10
 end
 function gameManager.start(playersInfo)
+  table.remove(playerManager.list)
+  playersInf = playersInfo
   math.randomseed(os.time())
   playerManager.start(playersInfo)
   audioManager.play(audioManager.stageMusic)
@@ -25,11 +29,11 @@ end
 function gameManager.update(dt)
   if not gameManager.paused then 
     --love.graphics.print(math.ceil(dt), 640, 20)
+    gameManager.timer = gameManager.timer - dt
     playerManager.update(dt)
     bulletManager.update(dt)
-    timer = timer - dt
     arena.update(dt)
-    gameManager.changeRound(gameManager.round,timer)
+    gameManager.changeRound()
     --arena.update(dt,gameManager.players)
   end
 end
@@ -39,7 +43,7 @@ function gameManager.draw()
   local of = {x=arena.x,y=arena.y}
   playerManager.draw(of)
   bulletManager.draw(of)
-  love.graphics.print("ROUND "..gameManager.round.." - "..math.ceil(timer).."", 640, 20)
+  love.graphics.print("ROUND "..gameManager.round.." - "..math.ceil(gameManager.timer).."", 640, 20)
   if gameManager.paused then
     love.graphics.setColor(0,0,0,100)
     love.graphics.rectangle("fill", 0,0, 1920, 1080)
@@ -56,29 +60,26 @@ function gameManager.keypressed(key)
   end
   playerManager.keypressed(key)
   if key == "k" then
-    game.goToWinnerScreen()
+    table.remove(playerManager.list)
+    gameManager.game.goToWinnerScreen(playersInf)
   end
-  if key == "r" then
+  --[[if key == "r" then
+    table.remove(playerManager.list)
+    gameManager.game.goToGameManager(playersInf)
+  end]]
+end
+
+function gameManager.changeRound()
+  if gameManager.timer <= 0 or #playerManager.getAlivePlayers() == 1 then
+    gameManager.round = gameManager.round + 1
+    gameManager.timer = 90
+    table.remove(playerManager.list)
+    gameManager.game.goToGameManager(playersInf)
     --gameManager.setRespawn()
   end
 end
 
-function gameManager.changeRound(Gameround, timer)
-  local round = Gameround
-  
-  --if checkForWinner() ~= nil then
-   
-  --end
-  if timer <= 0  or #playerManager.getAlivePlayers() == 1 then
-    round = round + 1
-    timer = 10
-    gameManager.setRespawn()
-  end
-  gameManager.round = round
-  
-end
-
-function gameManager.setRespawn()
+--[[function gameManager.setRespawn()
   local alive_players = playerManager.getLastPlayer()
   --last.score = last.score + 1
   for k,v in pairs(alive_players) do
@@ -90,14 +91,12 @@ function gameManager.setRespawn()
   timer = 10
   --playerManager.start(nPlayers)
   
-end
+end]]
 
 function checkForWinner()
-  local winner
   for i,v in ipairs(playerManager.list) do
     if v.score == 5 then
-    winner = v
-    return winner
+      return v
     end
   end
 end

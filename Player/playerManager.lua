@@ -5,33 +5,29 @@
 
 local player = require "Player/player"
 local playerAssets = require "Player/playerAssets"
-
+local playerIcon = require "Player/playerIcon"
 playerManager = {}
 playerManager.list = {}
 
 local orderByHeight, sortDraw
-local pirataMaroto = love.graphics.newImage("/Assets/HUD/pirata_placeholder.png")
-local CptRubi = love.graphics.newImage("/Assets/HUD/Capita_Rubi_HUD.png")
-local Magno = love.graphics.newImage("/Assets/HUD/Magnolio_HUD_2.png")
-local Qsort = love.graphics.newImage("/Assets/HUD/Qsort_HUD.png")
-local Godo = love.graphics.newImage("/Assets/HUD/Godo_HUD.png")
 local HpArt = love.graphics.newImage("/Assets/HUD/Heart_HUD_2.png")
 
 playerManager.keys = {
   keyboard = {
     {left="left",up="up",right="right",down="down",attack=",",confirm="m"},
-    {left="a",up="w",right="d",down="s",jump="space",attack="c",confirm="x"}
+    {left="a",up="w",right="d",down="s",jump="space",attack="space",confirm="return"}
   },
   joy = {left="dpleft",up="dpup",right="dpright",down="dpdown",jump="dpju",attack="a",confirm="start"}
 }
 
 
 function playerManager.load()
+  
 end
 
 function playerManager.start(players)
   for i,v in ipairs(players) do
-    table.insert(playerManager.list,Player.new(i,bulletManager.randomBullet(),playerAssets[v.id],v.keys,i))
+    table.insert(playerManager.list,Player.new(i,bulletManager.randomBullet(),playerAssets[v.id],v.keys,playerIcon[v.id]))
   end
 end
 
@@ -52,8 +48,11 @@ function playerManager.draw(of)
   local players = sortDraw(playerManager.list)
   for i,v in ipairs(players) do
     --love.graphics.print(tostring(v.hp), 0 , i*50)
-    drawHud(HpArt)
-    
+    --drawHud(HpArt)
+    love.graphics.draw(v.icon, v.data[i].pos.x, v.data[i].pos.y)
+    for j=1, v.hp do
+      love.graphics.draw(HpArt,v.data[i].pos.x + 50*(j-1), v.data[i].pos.y)
+    end
     v:draw(of)
     
   -- 50,0 
@@ -89,8 +88,16 @@ end
 function orderByHeight(a,b)
   return a.y<b.y
 end
-
-function drawHud(hpArt)
+function playerManager.getLastPlayer()
+  local alive_players = {}  
+  for i,v in ipairs(playerManager.list) do
+    if not v.curr_state:is_a(PlayerDeadState) then
+      table.insert(alive_players,v)  
+    end
+  end
+  return alive_players
+end
+--[[function drawHud(hpArt)
   for i,v in ipairs(playerManager.list) do
     
     if v.data[i].playerID == 1 then
@@ -129,7 +136,7 @@ function drawHud(hpArt)
     end
    end
   end
-end
+end]]
 function playerManager.getLastPlayer()
   local alive_players = {}  
   for i,v in ipairs(playerManager.list) do

@@ -4,10 +4,12 @@ local winnerScreen = {}
 
 function winnerScreen.load(game)
   winnerScreen.game = game
+  local playersInfo = {}
   buttonsWinner.load()
 end
 
-function winnerScreen.start()
+function winnerScreen.start(playersInf)
+  playersInfo = playersInf
   buttonsWinner.start()
 end
 
@@ -28,7 +30,7 @@ function winnerScreen.keypressed(key)
     elseif buttonsWinner.pressed == 2 then
       winnerScreen.game.goToMenuManager(n_players)
     else
-      winnerScreen.game.goToGameManager(2)
+      winnerScreen.game.goToGameManager(playersInfo)
     end
   end
 end

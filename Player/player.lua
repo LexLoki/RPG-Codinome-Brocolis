@@ -21,6 +21,7 @@ function Player.load()
   Player.height = 96
   Player.speed = 280
   Player.maxHP = 4 
+  Player.score = 0
   Player.deathId = "death"
   Player.idleId = "idle"
   Player.walkId = "walk"
@@ -29,7 +30,7 @@ function Player:tookHit()
  self.curr_state:tookHit()
 end
 
-function Player.new(index,bulletClass,assetInfo,keys,CharID)
+function Player.new(index,bulletClass,assetInfo,keys,icon)
   local self = Player.newObject(Player.data[index].pos.x,Player.data[index].pos.y,Player.width,Player.height,assetInfo)
   --Init properties
   self.color = Player.data[index].color
@@ -38,21 +39,10 @@ function Player.new(index,bulletClass,assetInfo,keys,CharID)
   --self.aComp = animationManager_new(4,0.5,true)
   self.keys = keys--Player.data[index].keys
   self.hp = Player.maxHP
+  self.score = Player.score
   self.weapon = Weapon.new(self,bulletClass)
   --ele deve receber algo vindo do playerSelection.lua
-  if CharID == 1 then
-  self.charID = 1
-else if CharID == 2 then
-  self.charID = 2
-else if CharID == 3 then
-  self.charID = 3
-else if CharID == 4 then
-  self.charID = 4
-end
-end
-end
-end
-  
+  self.icon = icon
   self.states = { 
     alive = PlayerAliveState.new(self),
     dead = PlayerDeadState.new(self)

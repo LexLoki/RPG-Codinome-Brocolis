@@ -11,8 +11,8 @@ function game.start()
 end
 function game.load()
   menuManager.load(game)
-  gameManager.load()
-  winnerScreen.load()
+  gameManager.load(game)
+  winnerScreen.load(game)
 end
 
 function game.update(dt)
