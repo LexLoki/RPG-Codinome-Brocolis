@@ -30,7 +30,7 @@ function Player:tookHit()
  self.curr_state:tookHit()
 end
 
-function Player.new(index,bulletClass,assetInfo,keys,icon,joy)
+function Player.new(index,bulletClass,assetInfo,keys,icon, iconPosition, joy)  
   local self = Player.newObject(Player.data[index].pos.x,Player.data[index].pos.y,Player.width,Player.height,assetInfo)
   self.joy = joy
   --Init properties
@@ -41,6 +41,7 @@ function Player.new(index,bulletClass,assetInfo,keys,icon,joy)
   self.keys = keys--Player.data[index].keys
   self.hp = Player.maxHP
   self.score = Player.score
+  self.iconPos = iconPosition
   self.weapon = Weapon.new(self,bulletClass)
   --ele deve receber algo vindo do playerSelection.lua
   self.icon = icon

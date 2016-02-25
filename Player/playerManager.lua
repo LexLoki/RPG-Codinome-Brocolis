@@ -11,6 +11,7 @@ playerManager.list = {}
 
 local orderByHeight, sortDraw
 local HpArt = love.graphics.newImage("/Assets/HUD/Heart_HUD_2.png")
+local iconPosition = {{x=20, y=100}, {x=1400, y=100}, {x=20, y=750}, {x=1400, y=750}}
 
 playerManager.keys = {
   keyboard = {
@@ -22,13 +23,11 @@ playerManager.keys = {
 
 
 function playerManager.load()
-  
 end
 
 function playerManager.start(players)
   for i,v in ipairs(players) do
-    table.insert(playerManager.list,Player.new(i,bulletManager.randomBullet(),playerAssets[v.id],v.keys,playerIcon[v.id],v.joy))
-  end
+    table.insert(playerManager.list,Player.new(i,bulletManager.randomBullet(),playerAssets[v.id],v.keys,playerIcon[v.id], iconPosition[i], v.joy))  end
 end
 
 function playerManager.update(dt)
@@ -57,9 +56,9 @@ function playerManager.draw(of)
   for i,v in ipairs(players) do
     --love.graphics.print(tostring(v.hp), 0 , i*50)
     --drawHud(HpArt)
-    love.graphics.draw(v.icon, v.data[i].pos.x, v.data[i].pos.y)
+    love.graphics.draw(v.icon, v.iconPos.x, v.iconPos.y, 0, 0.5, 0.5)
     for j=1, v.hp do
-      love.graphics.draw(HpArt,v.data[i].pos.x + 50*(j-1), v.data[i].pos.y)
+      love.graphics.draw(HpArt,v.iconPos.x + 25*(j-1), v.iconPos.y+100, 0, 0.5, 0.5)
     end
     v:draw(of)
     
