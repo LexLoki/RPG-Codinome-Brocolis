@@ -2,7 +2,8 @@ require "Menu/buttonsWinner"
 
 local winnerScreen = {}
 
-function winnerScreen.load()
+function winnerScreen.load(game)
+  winnerScreen.game = game
   buttonsWinner.load()
 end
 
@@ -23,11 +24,11 @@ function winnerScreen.keypressed(key)
   buttonsWinner.keypressed(key)
   if key == "return" then
     if buttonsWinner.pressed == 1 then
-      game.goToPlayerSelection()
+      winnerScreen.game.goToPlayerSelection()
     elseif buttonsWinner.pressed == 2 then
-      game.goToMenuManager(n_players)
+      winnerScreen.game.goToMenuManager(n_players)
     else
-      game.goToGameManager(2)
+      winnerScreen.game.goToGameManager(2)
     end
   end
 end
