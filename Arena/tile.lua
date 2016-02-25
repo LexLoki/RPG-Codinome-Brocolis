@@ -16,15 +16,19 @@ function Tile.setTileSize(size)
   Tile.height = size.height
 end
 
-function Tile.new(x,y)
+function Tile.new(x,y,image,quad)
   local self = Tile.newObject()
   self.x = x
   self.y = y
+  self.img = image
+  self.quad = quad
   return self
 end
 
 function Tile:draw(offset)
   if offset == nil then offset = {x=0,y=0} end
+  love.graphics.draw(self.img,self.quad,offset.x+self.x,offset.y+self.y)
+  --[[
   love.graphics.setColor(self.color)
   love.graphics.rectangle("fill",offset.x+self.x,offset.y+self.y,self.width,self.height)
   if config.debugMode then
@@ -32,6 +36,7 @@ function Tile:draw(offset)
     love.graphics.rectangle("line",offset.x+self.x,offset.y+self.y,self.width,self.height)
   end
   love.graphics.setColor(255,255,255)
+  ]]
 end
 
 function Tile:tookHit()

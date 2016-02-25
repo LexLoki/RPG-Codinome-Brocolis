@@ -1,5 +1,5 @@
 require "Arena/destructTile"
-arenaComum = {}
+arenaComum = {index=1}
 
 local preparePositions, round, evaluate, readTxt
 

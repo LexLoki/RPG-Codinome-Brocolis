@@ -8,8 +8,8 @@ require "Arena/tile"
 FreeTile = class_extends(Tile,"freeTile")
 FreeTile.color = {255,255,255}
 
-function FreeTile.new(x,y)
-  local self = FreeTile.newObject(x,y)
+function FreeTile.new(x,y,image,quad)
+  local self = FreeTile.newObject(x,y,image,quad)
   return self
 end
 

@@ -7,6 +7,8 @@ local solidTile = require "Arena/solidTile"
 local freeTile = require "Arena/freeTile"
 local arenaBrocolis = require "Arena/arenaBrocolis"
 local arenaDefault = require "Arena/arenaDefault"
+local arenaAssets = require "Arena/arenaAssets"
+
 
 arena = {}
 
@@ -17,11 +19,14 @@ tiles[0] = FreeTile
 tiles[1] = SolidTile
 
 function arena.load(row,col)
+  arenaAssets.load()
   arena.nRow = row
   arena.nCol = col
+  arena.curr = arenaBrocolis
+  arena.mapInfo = arenaAssets.maps[arena.curr.index]
+  arena.sheet = arenaAssets.sheet
   loadDimensions()
   loadTiles()
-  arena.curr = arenaBrocolis
   arenaBrocolis.start(arena)
 end
 
@@ -40,21 +45,24 @@ function loadTiles()
   arena.obstacles = {}
   local w = arena.tileSize.width
   local h = arena.tileSize.height
+  local wa = arena.mapInfo.defaultWall
+  local fa = arena.mapInfo.defaultFloor
+  local img = arena.sheet
   for i=1,arena.nRow-2 do
     arena.obstacles[i] = {}
-    arena.obstacles[i][0] = SolidTile.new(0,i*h,w,h)
+    arena.obstacles[i][0] = SolidTile.new(0,i*h,img,wa)
     for j=1,arena.nCol-2 do
-      arena.obstacles[i][j] = FreeTile.new(j*w,i*h,w,h)
+      arena.obstacles[i][j] = FreeTile.new(j*w,i*h,img,fa)
     end
     local j = arena.nCol-1
-    arena.obstacles[i][arena.nCol-1] = SolidTile.new(j*w,i*h,w,h)
+    arena.obstacles[i][arena.nCol-1] = SolidTile.new(j*w,i*h,img,wa)
   end
   local i = arena.nRow-1
   arena.obstacles[0]={}
   arena.obstacles[i]={}
   for j=0,arena.nCol-1 do
-    arena.obstacles[0][j] = SolidTile.new(j*w,0,w,h)
-    arena.obstacles[i][j] = SolidTile.new(j*w,i*h,w,h)
+    arena.obstacles[0][j] = SolidTile.new(j*w,0,img,wa)
+    arena.obstacles[i][j] = SolidTile.new(j*w,i*h,img,fa)
   end
   
   --arena.testObstacles()

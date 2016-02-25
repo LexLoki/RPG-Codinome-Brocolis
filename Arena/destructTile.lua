@@ -8,8 +8,8 @@ require "Arena/solidTile"
 DestructTile = class_extends(SolidTile,"destructTile")
 DestructTile.color = {0,0,255,255}
 
-function DestructTile.new(x,y,manager)
-  local self = DestructTile.newObject(x,y)
+function DestructTile.new(x,y,image,quad,manager)
+  local self = DestructTile.newObject(x,y,image,quad)
   self.manager = manager
   return self
 end

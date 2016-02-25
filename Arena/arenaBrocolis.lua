@@ -1,6 +1,6 @@
 local destructTile = require "Arena/destructTile"
 
-local arenaBrocolis = {}
+local arenaBrocolis = {index = 1}
 
 local preparePositions, round, evaluate, readTxt
 
@@ -61,9 +61,10 @@ function preparePositions(inputs)
 end
 
 function evaluate(input)
+  local a = arenaBrocolis.arena
   local col,row = round(input.x*arenaBrocolis.arena.nCol), round(input.y*arenaBrocolis.arena.nRow)
   table.insert(arenaBrocolis.pos,{col=col,row=row})
-  local v = DestructTile.new(col*arenaBrocolis.arena.tileSize.width,row*arenaBrocolis.arena.tileSize.height,arenaBrocolis)
+  local v = DestructTile.new(col*arenaBrocolis.arena.tileSize.width,row*arenaBrocolis.arena.tileSize.height,a.sheet,a.mapInfo.destruct,arenaBrocolis)
   v.index = #arenaBrocolis.pos
   table.insert(arenaBrocolis.blocks,v)
   local obs = arenaBrocolis.arena.obstacles 
