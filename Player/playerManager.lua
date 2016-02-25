@@ -17,13 +17,21 @@ local Qsort = love.graphics.newImage("/Assets/HUD/Qsort_HUD.png")
 local Godo = love.graphics.newImage("/Assets/HUD/Godo_HUD.png")
 local HpArt = love.graphics.newImage("/Assets/HUD/Heart_HUD_2.png")
 
+playerManager.keys = {
+  keyboard = {
+    {left="left",up="up",right="right",down="down",attack=",",confirm="m"},
+    {left="a",up="w",right="d",down="s",jump="space",attack="c",confirm="x"}
+  },
+  joy = {left="dpleft",up="dpup",right="dpright",down="dpdown",jump="dpju",attack="a",confirm="start"}
+}
+
+
 function playerManager.load()
 end
 
-function playerManager.start(nPlayers)
-  nPlayers = 2
-  for i=1,nPlayers do
-    table.insert(playerManager.list,Player.new(i,bulletManager.randomBullet(),playerAssets[i],i))
+function playerManager.start(players)
+  for i,v in ipairs(players) do
+    table.insert(playerManager.list,Player.new(i,bulletManager.randomBullet(),playerAssets[v.id],v.keys,i))
   end
 end
 

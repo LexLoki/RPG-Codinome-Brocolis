@@ -30,7 +30,7 @@ end
 function PlayerAliveState:updateMovement(dt)
   self:updateHorizontal()
   self:updateVertical()
-  self:updateBoost(dt)
+  --self:updateBoost(dt)
   --[[
   p.x = p.x + p.speed.x*dt
   p.y = p.y + p.speed.y*dt

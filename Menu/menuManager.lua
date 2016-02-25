@@ -26,6 +26,11 @@ end
 function menuManager.keypressed(key)
   menuManager.curr_state.keypressed(key)
 end
+function menuManager.gamepadpressed(joystick,button)
+  if menuManager.curr_state.gamepadpressed ~= nil then
+    menuManager.curr_state.gamepadpressed(joystick,button)
+  end
+end
 
 function menu.mousepressed(x, y, button)
   menu.mousepressed(x, y, button)

@@ -26,6 +26,9 @@ end
 function love.keypressed(key)
   state.keypressed(key)
 end
+function love.gamepadpressed(joystick,button)
+  state.gamepadpressed(joystick,button)
+end
 --[[function love.mousepressed(x, y, button)
   game.mousepressed(x, y, button)
 end]]

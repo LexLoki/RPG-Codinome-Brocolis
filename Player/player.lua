@@ -5,7 +5,6 @@ require "Direction"
 require "Weapon/weapon"
 require "Player/playerAliveState" 
 require "Player/playerDeadState"
-require "Menu/playerSelection"
 
 Player = class_extends(ArmedAnimatedEntity, "alive")
 
@@ -30,14 +29,14 @@ function Player:tookHit()
  self.curr_state:tookHit()
 end
 
-function Player.new(index,bulletClass,assetInfo,CharID)
+function Player.new(index,bulletClass,assetInfo,keys,CharID)
   local self = Player.newObject(Player.data[index].pos.x,Player.data[index].pos.y,Player.width,Player.height,assetInfo)
   --Init properties
   self.color = Player.data[index].color
   --self.dir = Direction.Left
   self.speed = {x=0,y=0}
   --self.aComp = animationManager_new(4,0.5,true)
-  self.keys = Player.data[index].keys
+  self.keys = keys--Player.data[index].keys
   self.hp = Player.maxHP
   self.weapon = Weapon.new(self,bulletClass)
   --ele deve receber algo vindo do playerSelection.lua

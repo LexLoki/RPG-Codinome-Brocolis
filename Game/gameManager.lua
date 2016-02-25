@@ -16,9 +16,9 @@ function gameManager.load()
   bulletManager.load()
   timer = 10
 end
-function gameManager.start(nPlayers)
+function gameManager.start(playersInfo)
   math.randomseed(os.time())
-  playerManager.start(nPlayers)
+  playerManager.start(playersInfo)
   audioManager.play(audioManager.stageMusic)
 end
 
@@ -88,7 +88,7 @@ function gameManager.setRespawn()
   Player.load()
   bulletManager.load()
   timer = 10
-  playerManager.start(nPlayers)
+  --playerManager.start(nPlayers)
   
 end
 

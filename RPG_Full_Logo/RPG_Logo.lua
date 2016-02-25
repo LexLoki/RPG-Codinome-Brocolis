@@ -151,6 +151,9 @@ function RPG_Logo.keypressed(key)
   end
 end
 
+function RPG_Logo.gamepadpressed(joystick,button)
+end
+
 function endLogo()
   RPG_Logo.finish = true
   if RPG_Logo.callback ~= nil then

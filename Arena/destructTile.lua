@@ -19,3 +19,8 @@ function DestructTile:tookHit(entity)
     self.manager.destroy(self)
   end
 end
+
+function DestructTile:draw(of)
+  self.floor:draw(of)
+  self.super:draw(of)
+end

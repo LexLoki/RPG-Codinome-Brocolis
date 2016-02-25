@@ -1,5 +1,5 @@
 config = {
-  debugBoundingBoxMode = true
+  debugBoundingBoxMode = false
 }
 
 function love.conf(t)

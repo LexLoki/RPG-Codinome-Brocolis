@@ -21,7 +21,9 @@ function arenaBrocolis.update(dt)
       table.insert(arenaBrocolis.blocks,table.remove(arenaBrocolis.destroyed,i))
       local obs = arena.obstacles
       local pos = arenaBrocolis.pos[v.index]
-      arenaBrocolis.arenaReplacement[v.index] = obs[pos.row][pos.col]
+      local floor = obs[pos.row][pos.col]
+      v.floor = floor
+      arenaBrocolis.arenaReplacement[v.index] = floor
       obs[pos.row][pos.col] = v
     end
   end
@@ -69,7 +71,9 @@ function evaluate(input)
   table.insert(arenaBrocolis.blocks,v)
   local obs = arenaBrocolis.arena.obstacles 
   local pos = arenaBrocolis.pos[v.index]
-  arenaBrocolis.arenaReplacement[v.index] = obs[pos.row][pos.col]
+  local floor = obs[pos.row][pos.col]
+  v.floor = floor
+  arenaBrocolis.arenaReplacement[v.index] = floor
   obs[pos.row][pos.col] = v
 end
 

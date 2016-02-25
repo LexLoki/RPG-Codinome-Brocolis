@@ -32,8 +32,8 @@ end]]
 function game.goToMenuManager(n_players)
   game.setState(menuManager, n_players)
 end
-function game.goToGameManager(n_players)
-  game.setState(gameManager,n_players)
+function game.goToGameManager(playersInfo)
+  game.setState(gameManager,playersInfo)
 end
 function game.goToWinnerScreen(n_players)
   game.setState(winnerScreen,n_players)
@@ -41,8 +41,11 @@ end
 function game.goToPlayerSelection()
   game.setState(playerSelection)
 end
-function game.setState(state,n_players)
+function game.setState(state,...)
   game.curr_state = state
-  state.start(n_players)
+  state.start(...)
+end
+function game.gamepadpressed(joystick,button)
+  game.curr_state.gamepadpressed(joystick,button)
 end
 return game
