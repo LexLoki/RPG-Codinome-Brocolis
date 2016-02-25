@@ -30,8 +30,9 @@ function Player:tookHit()
  self.curr_state:tookHit()
 end
 
-function Player.new(index,bulletClass,assetInfo,keys,icon)
+function Player.new(index,bulletClass,assetInfo,keys,icon,joy)
   local self = Player.newObject(Player.data[index].pos.x,Player.data[index].pos.y,Player.width,Player.height,assetInfo)
+  self.joy = joy
   --Init properties
   self.color = Player.data[index].color
   --self.dir = Direction.Left

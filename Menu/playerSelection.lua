@@ -75,8 +75,8 @@ function playerSelection.gamepadpressed(joystick, button)
   for i, row in ipairs(playerSelection) do
     for j, p in ipairs(row) do
       if p.joy~=nil then
-        playerSelection.selection(p, button)
         if p.joy==joystick then
+          playerSelection.selection(p, button)
           foundPlayer = true
           break
         end

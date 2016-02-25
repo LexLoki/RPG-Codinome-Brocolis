@@ -69,6 +69,10 @@ function gameManager.keypressed(key)
   end]]
 end
 
+function gameManager.gamepadpressed(joystick,button)
+  playerManager.gamepadpressed(joystick,button)
+end
+
 function gameManager.changeRound()
   if gameManager.timer <= 0 or #playerManager.getAlivePlayers() == 1 then
     gameManager.round = gameManager.round + 1

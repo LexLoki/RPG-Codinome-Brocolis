@@ -62,7 +62,7 @@ function loadTiles()
   arena.obstacles[i]={}
   for j=0,arena.nCol-1 do
     arena.obstacles[0][j] = SolidTile.new(j*w,0,img,wa)
-    arena.obstacles[i][j] = SolidTile.new(j*w,i*h,img,fa)
+    arena.obstacles[i][j] = SolidTile.new(j*w,i*h,img,wa)
   end
   
   --arena.testObstacles()

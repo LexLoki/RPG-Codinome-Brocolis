@@ -27,7 +27,7 @@ end
 
 function playerManager.start(players)
   for i,v in ipairs(players) do
-    table.insert(playerManager.list,Player.new(i,bulletManager.randomBullet(),playerAssets[v.id],v.keys,playerIcon[v.id]))
+    table.insert(playerManager.list,Player.new(i,bulletManager.randomBullet(),playerAssets[v.id],v.keys,playerIcon[v.id],v.joy))
   end
 end
 
@@ -40,7 +40,15 @@ end
 
 function playerManager.keypressed(key)
   for i,v in ipairs(playerManager.list) do
-    v:keypressed(key)
+    if v.joy == nil then v:keypressed(key) end
+  end
+end
+
+function playerManager.gamepadpressed(joystick,button)
+  for i,v in ipairs(playerManager.list) do
+    if v.joy == joystick then
+      v:keypressed(button)
+    end
   end
 end
 
@@ -97,46 +105,7 @@ function playerManager.getLastPlayer()
   end
   return alive_players
 end
---[[function drawHud(hpArt)
-  for i,v in ipairs(playerManager.list) do
-    
-    if v.data[i].playerID == 1 then
-      if v.charID == 1 then
-        love.graphics.draw(Magno,20,100)
-      end
-      if v.charID == 2 then
-        love.graphics.draw(Qsort,20,100)
-      end
-    end    
-    
-    if v.data[i].playerID == 2 then
-     if v.charID == 1 then
-        love.graphics.draw(Magno,1650,100)
-      end
-      if v .charID == 2 then
-        love.graphics.draw(Qsort,1650,100)
-      end      
-    end
-  end
-  
-    for i,v in ipairs(playerManager.list) do
-    if i == 1 then
-      for i=0,v.hp-1 do
-        love.graphics.draw(hpArt,20 + 50*i, 0, 0)
-      end
-    
-    for i,v in ipairs(playerManager.list) do
-    if i == 2 then
-      for i=0,v.hp-1 do
-        love.graphics.draw(hpArt,1650+50*i, 0, 0)
-      end
-    end
-    
-    
-    end
-   end
-  end
-end]]
+
 function playerManager.getLastPlayer()
   local alive_players = {}  
   for i,v in ipairs(playerManager.list) do
