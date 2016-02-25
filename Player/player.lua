@@ -11,10 +11,10 @@ Player = class_extends(ArmedAnimatedEntity, "alive")
 
 function Player.load()
   Player.data = {
-    {color = {255,255,255}, keys = {left="left",up="up",right="right",down="down",jump="space",attack=",",run="m"}, pos = {x=100 , y=100},playerID = 1},
-    {color = {0,255,0}, keys = {left="a",up="w",right="d",down="s",jump="space",attack="c",run="x"}, pos = {x=1190 , y=100},playerID = 2},
-    {color = {100,100,255}, keys = {left="k",up="o",right=";",down="l",jump="space",attack="]",run="["}, pos = {x= 100, y=600}},
-    {color = {100,100,255}, keys = {left="f",up="t",right="h",down="g",jump="space",attack="v",run="["}, pos = {x=1190 , y= 600}},
+    {color = {255,255,255}, keys = {left="left",up="up",right="right",down="down",jump="space",attack=",",confirm="m"}, pos = {x=100 , y=100},playerID = 1},
+    {color = {0,255,0}, keys = {left="a",up="w",right="d",down="s",jump="space",attack="c",confirm="x"}, pos = {x=1190 , y=100},playerID = 2},
+    {color = {100,100,255}, keys = {left="k",up="o",right=";",down="l",jump="space",attack="]",confirm="["}, pos = {x= 100, y=600}},
+    {color = {100,100,255}, keys = {left="f",up="t",right="h",down="g",jump="space",attack="v",confirm="["}, pos = {x=1190 , y= 600}},
     {color = {0,0,0}}
   }
   --Player.score = 0 

@@ -26,6 +26,6 @@ end
 function love.keypressed(key)
   state.keypressed(key)
 end
-function love.mousepressed(x, y, button)
+--[[function love.mousepressed(x, y, button)
   game.mousepressed(x, y, button)
-end
+end]]

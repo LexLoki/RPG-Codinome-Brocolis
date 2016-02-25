@@ -4,7 +4,6 @@ local grid = {}
 function playerSelection.load(menuManager)
   playerSelection.menuManager = menuManager
   grid.data = {}
-  playerConnected = {false, false, false, false}
   playerSelection.create(1, 4)
   playerSelection.confirmados = 0
   playerSelection.n_players = 0
@@ -34,25 +33,13 @@ function playerSelection.draw()
 end
 
 function playerSelection.keypressed(key)
-  if key == "w" and playerConnected[1] then
-    playerSelection[1][1] = playerSelection[1][1] + 1
-    if playerSelection[1][1] >= 5 then
-      playerSelection[1][1] = 1
+  for i, row in ipairs(playerSelection) do
+    for j, p in ipairs(row) do
+      playerSelection.selection(p, key)
+      if key == p.keys[1].confirm and playerSelection.confirmados == playerSelection.n_players then
+        --game.goToGameManager(playerSelection.n_players)
+      end
     end
-  elseif key == "s" and playerConnected[1] then
-    playerSelection[1][1] = playerSelection[1][1] - 1
-    if playerSelection[1][1] <= 0 then
-      playerSelection[1][1] = 4
-    end
-  elseif key == "space" then
-    playerConnected[1]  = true
-    playerSelection.n_players = playerSelection.n_players + 1
-  elseif key == "return" then
-    audioManager.playCharacterSelectSound()
-    playerSelection.confirmados = playerSelection.confirmados + 1
-    playerSelection.menuManager.game.goToGameManager(playerSelection.n_players)  end
-  if key == "return" and playerSelection.confirmados == playerSelection.n_players then
-    --game.goToGameManager(playerSelection.n_players)
   end
 end
 
@@ -60,17 +47,32 @@ function playerSelection.create(n_rows, n_cols)
   for i=1, n_rows do
     playerSelection[i] = {}
     for j=1, n_cols do
-      playerConnected[j] = false
-      playerSelection[i][j] = 1
+      playerSelection[i][j] = {connected = false, id = 0, key = {}}
     end
-  end
-end
-function playerSelection.joystickpressed(joystick, button)
-  if button == 3 then
-    love.graphics.print("PIROCOPTERO", 400, 500)
   end
 end
 function playerSelection.loadData(string)
   table.insert(grid.data,{name=string,img=love.graphics.newImage("Assets/Menu/"..string..".png")})
+end
+function playerSelection.selection(player, key)
+  local pk = player.keys
+  if key == pk.up and player.connected then
+    player.id = player.id + 1
+    if player.id >= #grid.data + 1 then
+      player.id = 1
+    end
+  elseif key == pk.down and player.connected then
+    player.id = player.id - 1
+    if player.id <= 0 then
+      player.id = #grid.data
+    end
+  elseif key == pk.attack then
+    player.connected = true
+    playerSelection.n_players = playerSelection.n_players + 1
+  elseif key == pk.confirm then
+    audioManager.playCharacterSelectSound()
+    playerSelection.confirmados = playerSelection.confirmados + 1
+    playerSelection.menuManager.game.goToGameManager(playerSelection.n_players)  
+  end
 end
 return playerSelection

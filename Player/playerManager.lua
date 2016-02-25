@@ -114,7 +114,7 @@ function drawHud(hpArt)
     if i == 2 then
       for i=0,v.hp-1 do
         love.graphics.draw(hpArt,1650+50*i, 0, 0)
-    end
+      end
     end
     
     

@@ -14,7 +14,7 @@ function gameManager.load()
   arena.load(12,15)
   Player.load()
   bulletManager.load()
-  timer = 90
+  timer = 10
 end
 function gameManager.start(nPlayers)
   math.randomseed(os.time())
@@ -71,7 +71,7 @@ function gameManager.changeRound(Gameround, timer)
   --end
   if timer <= 0  or #playerManager.getAlivePlayers() == 1 then
     round = round + 1
-    timer = 90
+    timer = 10
     gameManager.setRespawn()
   end
   gameManager.round = round
@@ -79,15 +79,15 @@ function gameManager.changeRound(Gameround, timer)
 end
 
 function gameManager.setRespawn()
-   local alive_players = playerManager.getLastPlayer()
-   --last.score = last.score + 1
-   for k,v in pairs(alive_players) do
-       playerManager.killPlayer(v)
-   end
+  local alive_players = playerManager.getLastPlayer()
+  --last.score = last.score + 1
+  for k,v in pairs(alive_players) do
+    playerManager.killPlayer(v)
+  end
 
   Player.load()
   bulletManager.load()
-  timer = 90 
+  timer = 10
   playerManager.start(nPlayers)
   
 end
