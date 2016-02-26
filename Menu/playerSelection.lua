@@ -23,6 +23,7 @@ end
 function playerSelection.start()
   playerSelection.keys = playerManager.keys
   audioManager.play(audioManager.characterScreenMusic)
+  playerSelection.nPlayers = 0
 end
 
 function playerSelection.update(dt)
@@ -96,6 +97,7 @@ function playerSelection.gamepadpressed(joystick, button)
 end
 
 function playerSelection.newPlayer(keys, joy)
+  playerSelection.nPlayers = playerSelection.nPlayers + 1
   for i,v in ipairs(playerSelection) do
     local last = #v
     if last<playerSelection.n_cols then
@@ -132,15 +134,12 @@ function playerSelection.selection(player, key)
       player.id = #grid.data
     end
     do return true end
-    --[[
-  elseif key == pk.attack then
-    player.connected = true
-    playerSelection.n_players = playerSelection.n_players + 1
-    --]]
   elseif key == pk.confirm then
-    audioManager.playCharacterSelectSound()
-    --playerSelection.confirmados = playerSelection.confirmados + 1
-    playerSelection.startGame()
+    if playerSelection.nPlayers>1 then
+      audioManager.playCharacterSelectSound()
+      --playerSelection.confirmados = playerSelection.confirmados + 1
+      playerSelection.startGame()
+    end
     do return true end
   end
   return false
