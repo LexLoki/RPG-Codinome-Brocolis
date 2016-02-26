@@ -27,7 +27,7 @@ end
 
 function playerManager.start(players)
   for i,v in ipairs(players) do
-    table.insert(playerManager.list,Player.new(i,bulletManager.randomBullet(),playerAssets[v.id],v.keys,playerIcon[v.id], iconPosition[i], v.joy, score))  end
+    table.insert(playerManager.list,Player.new(i,bulletManager.randomBullet(),playerAssets[v.id],v.keys,playerIcon[v.id], iconPosition[i], v.joy, v.score))  end
 end
 
 function playerManager.update(dt)

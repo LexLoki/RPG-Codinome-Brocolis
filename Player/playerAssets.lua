@@ -14,7 +14,7 @@ local playerAssets = {
     },
     death = {
       sheetFilename = "/Assets/Player/Brocolis/brocolis_morte.png",
-      animationTime = 3,
+      animationTime = 2,
       nCol = 14,
       nRow = 4,
       shouldLoop = false
@@ -55,7 +55,7 @@ local playerAssets = {
     },
     death = {
       sheetFilename = "/Assets/Player/Robo/robo_morte.png",
-      animationTime = 3,
+      animationTime = 2,
       nCol = 14,
       nRow = 4,
       shouldLoop = false
@@ -96,7 +96,7 @@ local playerAssets = {
     },
     death = {
       sheetFilename = "/Assets/Player/Alien/alien_morte.png",
-      animationTime = 3,
+      animationTime = 2,
       nCol = 14,
       nRow = 4,
       shouldLoop = false
@@ -137,7 +137,7 @@ local playerAssets = {
     },
     death = {
       sheetFilename = "/Assets/Player/Pirate/pirata_morte.png",
-      animationTime = 3,
+      animationTime = 2,
       nCol = 14,
       nRow = 4,
       shouldLoop = false

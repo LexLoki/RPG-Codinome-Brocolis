@@ -57,7 +57,7 @@ function audioManager.play(music)
   end
   audioManager.musicPlaying = music
 	music:setLooping(true)
-  music:setVolume(0.0)
+  music:setVolume(0.5)
 	love.audio.play(music)
 end
 

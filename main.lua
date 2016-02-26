@@ -7,8 +7,8 @@ io.stdout:setvbuf("no")
 local state
 
 function love.load()
-  local fonte = love.graphics.setNewFont("Assets/game_over.ttf", 100)
-  love.graphics.setFont(fonte)
+  local font = love.graphics.setNewFont("Assets/game_over.ttf", 100)
+  love.graphics.setFont(font)
   audioManager.load()
   RPG_Logo.load(1.5,1.5,1.5,function ()
     state = game
