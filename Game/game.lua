@@ -35,7 +35,7 @@ end
 function game.goToGameManager(playersInfo)
   game.setState(gameManager,playersInfo)
 end
-function game.goToWinnerScreen(n_players)
+function game.goToWinnerScreen(playersInfo, winner)
   game.setState(winnerScreen,n_players)
 end
 function game.goToPlayerSelection()

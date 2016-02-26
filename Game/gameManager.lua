@@ -14,6 +14,8 @@ function gameManager.load(game)
   gameManager.paused = false
   gameManager.round = 1
   gameManager.timer = 90
+  gameManager.score = {0, 0, 0, 0}
+  death_timer = 1
   arena.load(12,15)
   Player.load()
   bulletManager.load()
@@ -35,6 +37,13 @@ function gameManager.update(dt)
     arena.update(dt)
     gameManager.changeRound()
     --arena.update(dt,gameManager.players)
+    if #playerManager.getAlivePlayers() == 1 and #animations.list == 0 then
+      death_timer = death_timer - dt
+      for i,v in ipairs(playerManager.getAlivePlayers()) do
+        v.score = v.score + 1
+        gameManager.score[v.index] = gameManager.score[v.index]+ v.score
+      end
+    end
   end
 end
 
@@ -44,6 +53,10 @@ function gameManager.draw()
   playerManager.draw(of)
   bulletManager.draw(of)
   love.graphics.print("ROUND "..gameManager.round.." - "..math.ceil(gameManager.timer).."", 640, 20)
+  love.graphics.print(#animations.list, 20, 20)
+  for i, v in ipairs(playerManager.getAlivePlayers()) do
+    love.graphics.print(tostring(v.score) + gameManager.score[i], 1400, 300+50*i)
+  end
   if gameManager.paused then
     love.graphics.setColor(0,0,0,100)
     love.graphics.rectangle("fill", 0,0, 1920, 1080)
@@ -59,9 +72,10 @@ function gameManager.keypressed(key)
     end
   end
   playerManager.keypressed(key)
-  if key == "k" then
-    table.remove(playerManager.list)
-    gameManager.game.goToWinnerScreen(playersInf)
+  for i,v in ipairs(playerManager.getAlivePlayers()) do
+    if key == "k" or v.score >= 3 then
+      gameManager.game.goToWinnerScreen(playersInf, checkForWinner())
+    end
   end
   --[[if key == "r" then
     table.remove(playerManager.list)
@@ -74,12 +88,13 @@ function gameManager.gamepadpressed(joystick,button)
 end
 
 function gameManager.changeRound()
-  if gameManager.timer <= 0 or #playerManager.getAlivePlayers() == 1 then
+  if (gameManager.timer <= 0 or death_timer <= 0) then
     gameManager.round = gameManager.round + 1
     gameManager.timer = 90
     table.remove(playerManager.list)
     gameManager.game.goToGameManager(playersInf)
     --gameManager.setRespawn()
+    death_timer = 1
   end
 end
 
@@ -99,7 +114,7 @@ end]]
 
 function checkForWinner()
   for i,v in ipairs(playerManager.list) do
-    if v.score == 5 then
+    if v.score == 3 then
       return v
     end
   end

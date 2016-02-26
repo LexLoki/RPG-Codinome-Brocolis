@@ -7,10 +7,16 @@ function playerSelection.load(menuManager)
   playerSelection.menuManager = menuManager
   grid.data = {}
   playerSelection.create(1, 4)
-  playerSelection.confirmados = 0
+  --playerSelection.confirmados = 0
   playerSelection.n_players = 0
+  background_img = love.graphics.newImage("Assets/Menu/background_character_select.png")
+  unselected_img = love.graphics.newImage("Assets/Menu/box_unselected.png")
+  box_color = {}
+  for i=1, 4 do
+    box_color[i] = love.graphics.newImage("Assets/Menu/box_"..i..".png")
+  end
   playerSelection.loadData("Magnolio")
-  playerSelection.loadData("VR-470")
+  playerSelection.loadData("VR-704")
   playerSelection.loadData("Godo")
   playerSelection.loadData("Cpt. Rubi")
 end
@@ -24,17 +30,15 @@ function playerSelection.update(dt)
 end
 
 function playerSelection.draw()
-  love.graphics.print("Character Selection", 450, 50, 0, 2, 2)
-  --love.graphics.print(tostring(playerConnected[1]), 450, 700, 0, 2, 2)
-  --love.graphics.print(playerSelection[1][1], 450, 800, 0, 2, 2)
-  --[[
-  local i = 1
-  for j = 1, 4 do
-  ]]
+  love.graphics.draw(background_img, 800, 450, 0, 1.3, 1.25, background_img:getWidth()/2, background_img:getHeight()/2)
+  for i=1, #grid.data do
+    love.graphics.draw(unselected_img, 200 + 320*(i-1), 100)
+  end
   for i,v in ipairs(playerSelection) do
     for j,p in ipairs(v) do
-      love.graphics.draw(grid.data[p.id].img, 200 + 320*(j-1), 200)
-      love.graphics.print(grid.data[p.id].name, 270 + 320*(j-1), 600)
+      love.graphics.draw(box_color[j], 200 + 320*(j-1), 100)
+      love.graphics.draw(grid.data[p.id].img, 250 + 320*(j-1), 200)
+      love.graphics.print(grid.data[p.id].name, 300 + 320*(j-1), 670, 0, 1.2, 1.2, (#grid.data[p.id].name)*3, 2)
     end
   end
 end
@@ -112,7 +116,7 @@ function playerSelection.create(n_rows, n_cols)
   end
 end
 function playerSelection.loadData(string)
-  table.insert(grid.data,{name=string,img=love.graphics.newImage("Assets/Menu/"..string..".png")})
+  table.insert(grid.data,{name=string,img=love.graphics.newImage("Assets/Menu/"..string.."_selec.png")})
 end
 function playerSelection.selection(player, key)
   local pk = player.keys
