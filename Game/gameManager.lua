@@ -25,7 +25,7 @@ function gameManager.start(playersInfo)
   playersInf = playersInfo
   math.randomseed(os.time())
   playerManager.start(playersInfo)
-  audioManager.play(audioManager.stageMusic)
+  audioManager.play(audioManager.brocolisMusic)
 end
 
 function gameManager.update(dt)

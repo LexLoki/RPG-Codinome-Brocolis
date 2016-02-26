@@ -13,6 +13,7 @@ function winnerScreen.start(playersInf, winner)
   playerWin = winner
   playersInfo = playersInf
   buttonsWinner.start()
+  audioManager.play(audioManager.endMatchMusic)
 end
 
 function winnerScreen.update(dt)
