@@ -51,8 +51,21 @@ function PlayerAliveState:updateHorizontal()
   local p = self.player
   local k = p.keys
   local isLeft, isRight
-  if p.joy == nil then isLeft = love.keyboard.isDown(k.left) else isLeft = p.joy:isGamepadDown(k.left) end
-  if p.joy == nil then isRight = love.keyboard.isDown(k.right) else isRight = p.joy:isGamepadDown(k.right) end
+  if p.joy == nil then
+    isLeft = love.keyboard.isDown(k.left)
+    isRight = love.keyboard.isDown(k.right)
+  else
+    local ax = p.joy:getAxis(1)
+    if ax < -0.4 then
+      isLeft = true
+    elseif ax > 0.4 then
+      isLeft = false
+      isRight = true
+    else
+      isLeft = p.joy:isGamepadDown(k.left)
+      isRight = p.joy:isGamepadDown(k.right)
+    end
+  end
   if isLeft then
     p.speed.x = -p:class().speed
     p.dir = Direction.Left
@@ -73,8 +86,21 @@ function PlayerAliveState:updateVertical()
   local p = self.player
   local k = p.keys
   local isDown, isUp
-  if p.joy == nil then isDown = love.keyboard.isDown(k.down) else isDown = p.joy:isGamepadDown(k.down) end
-  if p.joy == nil then isUp = love.keyboard.isDown(k.up) else isUp = p.joy:isGamepadDown(k.up) end
+  if p.joy == nil then
+    isDown = love.keyboard.isDown(k.down)
+    isUp = love.keyboard.isDown(k.up)
+  else
+    local ax = p.joy:getAxis(2)
+    if ax > 0.4 then
+      isDown = true
+    elseif ax < -0.4 then
+      isDown = false
+      isUp = true
+    else
+      isDown = p.joy:isGamepadDown(k.down)
+      isUp = p.joy:isGamepadDown(k.up)
+    end
+  end
   if isDown then
     p.speed.y = p:class().speed
     p.dir = Direction.Down
