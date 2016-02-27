@@ -56,12 +56,18 @@ function playerManager.draw(of)
   for i,v in ipairs(players) do
     --love.graphics.print(tostring(v.hp), 0 , i*50)
     --drawHud(HpArt)
-    love.graphics.draw(v.icon, v.iconPos.x, v.iconPos.y, 0, 0.5, 0.5)
+    
     for j=1, v.hp do
       love.graphics.draw(HpArt,v.iconPos.x + 25*(j-1), v.iconPos.y+100, 0, 0.5, 0.5)
     end
     v:draw(of)
-    
+  for i,v in ipairs(playerManager.list) do
+  if i%2 == 0 then
+    love.graphics.draw(v.icon, v.iconPos.x+100, v.iconPos.y, 0, -0.5, 0.5)
+    else
+    love.graphics.draw(v.icon, v.iconPos.x, v.iconPos.y, 0, 0.5, 0.5)
+  end
+  end
   -- 50,0 
   end
 end

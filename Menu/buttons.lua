@@ -1,4 +1,10 @@
 buttons = {}
+
+local tw = love.graphics.getWidth()
+local th = love.graphics.getHeight()
+local title = {}
+
+
 local direction = {
    horizontal = 0,
    vertical = 1
@@ -7,12 +13,25 @@ function buttons.load()
   mouse={}
   mouse.x = 0
   mouse.y = 0
-  title = love.graphics.newImage("Assets/Menu/Title.png")
+  titleImg = love.graphics.newImage("Assets/Menu/Title.png")
+  
+  title.width=titleImg:getWidth()
+  title.height=titleImg:getHeight()
+  
+  title.pos={
+    x=(tw-title.width)/2,
+    y=(th-title.height)/2
+  }
+  menuvideo = love.graphics.newVideo("/Assets/Videos/Menu6.ogv",false)
+  menuvideo:play()
+  
+  
+  
 end
 
 function buttons.start()
   buttons.remove()
-  buttons.create(2, direction.vertical, 670, 600, 200, 50)
+  buttons.create(2, direction.vertical, tw/2-150, 500, 200, 50)
   buttons.color = {{255, 255, 255}}
   for i=1, #buttons do
     buttons[i].imageNormal = love.graphics.newImage("Assets/Menu/button_normal_"..i..".png")
@@ -23,14 +42,22 @@ function buttons.start()
   end
   buttons.select(1)
   buttons.collided()
+  
 end
 
 function buttons.update(dt)
+  seconds = menuvideo:tell( )
+  if seconds > 25.01 then 
+    menuvideo:rewind()
+  end
   
 end
 
 function buttons.draw()
-  love.graphics.draw(title,200, 20)
+  love.graphics.draw(menuvideo, 0, 0)
+  
+  love.graphics.draw(titleImg,title.pos.x,title.pos.y,0,1,1)
+  --love.graphics.draw(title,200, 20)
   --love.graphics.print(buttons.pressed, 200, 300)
   for i, but in ipairs(buttons) do
     --love.graphics.setColor(but.color)

@@ -1,6 +1,9 @@
 local buttons = require "Menu/buttons"
 local menu = {}
 
+local tw = love.graphics.getWidth()
+local th = love.graphics.getHeight()
+
 function menu.load(manager)
   menu.manager = manager
   buttons.load()
