@@ -103,15 +103,17 @@ function checkForWinner()
 end
 function gameManager.resetPlayers()
   for i, v in ipairs(playerManager.list) do
+    v:setState(v.states.alive)
+    --[[
+    v.hp = 4
     if not v.curr_state:is_a(PlayerDeadState) then
-      v.curr_state = v.states.dead
-      v.hp = 4
       v.score = v.score + 1
-      v.curr_state = v.states.alive
     else
       v.curr_state = v.states.alive
+      v:enableArm()
       v.hp = 4
     end
+    ]]
   end
 end
 

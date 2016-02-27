@@ -38,6 +38,10 @@ function ArmedAnimatedEntity:disableArm()
   self.enabled = false
 end
 
+function ArmedAnimatedEntity:enableArm()
+  self.enabled = true
+end
+
 function ArmedAnimatedEntity:draw(of)
   self.super:draw(of)
   if self.enabled then

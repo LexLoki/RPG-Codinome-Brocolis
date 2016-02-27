@@ -14,6 +14,13 @@ function PlayerAliveState.new(player)
   return self   
 end
 
+function PlayerAliveState:start()
+  local p = self.player
+  p:switchAnimation(p.idleId)
+  p.hp = p.maxHP
+  p:enableArm()
+end
+
 function PlayerAliveState:setState(tableKey,tableValue)
   PlayerAliveState[tableKey].curr_state = PlayerAliveState[tableKey][tableValue]
 end

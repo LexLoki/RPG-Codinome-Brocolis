@@ -57,59 +57,48 @@ function playerManager.draw(of)
   for i,v in ipairs(playerManager.list) do
     --love.graphics.print(tostring(v.hp), 0 , i*50)    
     for j=1, v.hp do
-    if i%2 == 0 then
-      love.graphics.draw(HpArt,(v.iconPos.x+45) - 30*(j-1), v.iconPos.y-40, 0, 0.75, 0.75)
-    else
-      love.graphics.draw(HpArt,(v.iconPos.x+12) + 30*(j-1), v.iconPos.y-40, 0, 0.75, 0.75)
+      if i%2 == 0 then
+        love.graphics.draw(HpArt,(v.iconPos.x+45) - 30*(j-1), v.iconPos.y-40, 0, 0.75, 0.75)
+      else
+        love.graphics.draw(HpArt,(v.iconPos.x+12) + 30*(j-1), v.iconPos.y-40, 0, 0.75, 0.75)
+      end
     end
-  end
     v:draw(of)
-  for i,v in ipairs(playerManager.list) do
-  if i%2 == 0 then
-    love.graphics.draw(v.icon, v.iconPos.x+100, v.iconPos.y, 0, -0.75, 0.75)
-    else
-    love.graphics.draw(v.icon, v.iconPos.x, v.iconPos.y, 0, 0.75, 0.75)
-  end
+    for i,v in ipairs(playerManager.list) do
+      if i%2 == 0 then
+        love.graphics.draw(v.icon, v.iconPos.x+100, v.iconPos.y, 0, -0.75, 0.75)
+      else
+        love.graphics.draw(v.icon, v.iconPos.x, v.iconPos.y, 0, 0.75, 0.75)
+      end
+    end
   end
   
   for i,v in ipairs(playerManager.list) do
     if v.weapon.bulletClass:is_a(BulletBoomerang) then
       if i%2 == 0 then
-      love.graphics.draw(BulletIcon[1],v.iconPos.x+100,v.iconPos.y+160,0,-0.75,0.50)
+        love.graphics.draw(BulletIcon[1],v.iconPos.x+100,v.iconPos.y+160,0,-0.75,0.50)
       else 
-      love.graphics.draw(BulletIcon[1],v.iconPos.x,v.iconPos.y+160,0,0.75,0.50)
+        love.graphics.draw(BulletIcon[1],v.iconPos.x,v.iconPos.y+160,0,0.75,0.50)
       end
-    else if v.weapon.bulletClass:is_a(BulletExpo) then
+    elseif v.weapon.bulletClass:is_a(BulletExpo) then
       if i%2 == 0 then
-      love.graphics.draw(BulletIcon[2],v.iconPos.x+100,v.iconPos.y+160,0,-0.75,0.50)
+        love.graphics.draw(BulletIcon[2],v.iconPos.x+100,v.iconPos.y+160,0,-0.75,0.50)
       else 
-      love.graphics.draw(BulletIcon[2],v.iconPos.x,v.iconPos.y+160,0,0.75,0.50)
-    end
-    else if v.weapon.bulletClass:is_a(BulletGrow) then
+        love.graphics.draw(BulletIcon[2],v.iconPos.x,v.iconPos.y+160,0,0.75,0.50)
+      end
+    elseif v.weapon.bulletClass:is_a(BulletGrow) then
       if i%2 == 0 then
-      love.graphics.draw(BulletIcon[3],v.iconPos.x+100,v.iconPos.y+160,0,-0.75,0.50)
+        love.graphics.draw(BulletIcon[3],v.iconPos.x+100,v.iconPos.y+160,0,-0.75,0.50)
       else 
-      love.graphics.draw(BulletIcon[3],v.iconPos.x,v.iconPos.y+160,0,0.75,0.50)
-    end
-    else if v.weapon.bulletClass:is_a(BulletSenoid) then
+        love.graphics.draw(BulletIcon[3],v.iconPos.x,v.iconPos.y+160,0,0.75,0.50)
+      end
+    elseif v.weapon.bulletClass:is_a(BulletSenoid) then
       if i%2 == 0 then
-      love.graphics.draw(BulletIcon[4],v.iconPos.x+100,v.iconPos.y+160,0,-0.75,0.50)
+        love.graphics.draw(BulletIcon[4],v.iconPos.x+100,v.iconPos.y+160,0,-0.75,0.50)
       else 
-      love.graphics.draw(BulletIcon[4],v.iconPos.x,v.iconPos.y+160,0,0.75,0.50)
+        love.graphics.draw(BulletIcon[4],v.iconPos.x,v.iconPos.y+160,0,0.75,0.50)
+      end
     end
-  end
-end
-end
-end
-    
-  end
-  
- 
-  
-  
-  
-  
-  
   end
 end
 
