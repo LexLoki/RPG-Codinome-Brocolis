@@ -3,13 +3,13 @@ require "Menu/buttonsWinner"
 local winnerScreen = {}
 
 function winnerScreen.load(game)
+  local playerWin = {}
   winnerScreen.game = game
   local playersInfo = {}
   buttonsWinner.load()
 end
 
 function winnerScreen.start(playersInf, winner)
-  playerWin = {}
   playerWin = winner
   playersInfo = playersInf
   buttonsWinner.start()
@@ -31,14 +31,12 @@ end
 function winnerScreen.keypressed(key)
   buttonsWinner.keypressed(key)
   if key == "return" then
+    table.remove(playerManager.list)
     if buttonsWinner.pressed == 1 then
-      table.remove(playerManager.list)
       winnerScreen.game.goToPlayerSelection()
     elseif buttonsWinner.pressed == 2 then
-      table.remove(playerManager.list)
       winnerScreen.game.goToMenuManager(n_players)
     else
-      table.remove(playerManager.list)
       winnerScreen.game.goToGameManager(playersInfo)
     end
   end

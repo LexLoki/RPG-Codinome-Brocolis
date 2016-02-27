@@ -31,15 +31,18 @@ function playerSelection.update(dt)
 end
 
 function playerSelection.draw()
-  love.graphics.draw(background_img, 800, 450, 0, 1.3, 1.25, background_img:getWidth()/2, background_img:getHeight()/2)
+  love.graphics.setColor(255,255,255)
+  love.graphics.draw(background_img, love.graphics.getWidth()/2, love.graphics.getHeight()/2, 0, 1, 1, background_img:getWidth()/2, background_img:getHeight()/2)
   for i=1, #grid.data do
-    love.graphics.draw(unselected_img, 200 + 320*(i-1), 100)
+    love.graphics.draw(unselected_img, 10 + 320*(i-1), 100, 0, 0.8, 0.8)
   end
   for i,v in ipairs(playerSelection) do
     for j,p in ipairs(v) do
-      love.graphics.draw(box_color[j], 200 + 320*(j-1), 100)
-      love.graphics.draw(grid.data[p.id].img, 250 + 320*(j-1), 200)
-      love.graphics.print(grid.data[p.id].name, 300 + 320*(j-1), 670, 0, 1.2, 1.2, (#grid.data[p.id].name)*3, 2)
+      love.graphics.setColor(255,255,255)
+      love.graphics.draw(box_color[j], 10 + 320*(j-1), 100, 0, 0.8, 0.8)
+      love.graphics.draw(grid.data[p.id].img, 45 + 320*(j-1), 180, 0, 0.8, 0.8)
+      love.graphics.setColor(0,0,0)
+      love.graphics.print(grid.data[p.id].name, 90 + 320*(j-1), 550, 0, 1.2, 1.2, (#grid.data[p.id].name)*3)
     end
   end
 end

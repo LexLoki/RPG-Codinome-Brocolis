@@ -11,7 +11,7 @@ playerManager.list = {}
 
 local orderByHeight, sortDraw
 local HpArt = love.graphics.newImage("/Assets/HUD/Heart_HUD_2.png")
-local iconPosition = {{x=20, y=100}, {x=1400, y=100}, {x=20, y=750}, {x=1400, y=750}}
+local iconPosition = {{x=20, y=100}, {x=1150, y=100}, {x=20, y=600}, {x=1150, y=600}}
 
 playerManager.keys = {
   keyboard = {
@@ -27,7 +27,7 @@ end
 
 function playerManager.start(players)
   for i,v in ipairs(players) do
-    table.insert(playerManager.list,Player.new(i,bulletManager.randomBullet(),playerAssets[v.id],v.keys,playerIcon[v.id], iconPosition[i], v.joy, v.score))  end
+    table.insert(playerManager.list,Player.new(i,bulletManager.randomBullet(),playerAssets[v.id],v.keys,playerIcon[v.id], iconPosition[i], v.joy))  end
 end
 
 function playerManager.update(dt)
@@ -75,8 +75,8 @@ end
 function playerManager.killPlayer(player)
   for i,v in ipairs(playerManager.list) do
     if v==player then
-      v = nil
-      --table.remove(playerManager.list,i)
+      --v = nil
+      table.remove(playerManager.list,i)
       --audioManager.playDeathSound()
       break
     end

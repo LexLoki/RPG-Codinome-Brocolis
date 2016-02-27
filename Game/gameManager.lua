@@ -10,21 +10,22 @@ require "Bullet/bulletManager"
 local gameManager = {}
 function gameManager.load(game)
   local playersinf = {}
+  local n_players = 0
+  gameManager.n_dead = 0
   gameManager.game = game
   gameManager.paused = false
   gameManager.round = 1
   gameManager.timer = 90
   gameManager.score = {0, 0, 0, 0}
-  death_timer = 1
   arena.load(12,15)
   Player.load()
   bulletManager.load()
 end
 function gameManager.start(playersInfo)
-  table.remove(playerManager.list)
   playersInf = playersInfo
   math.randomseed(os.time())
   playerManager.start(playersInfo)
+  n_players = #(playerManager.list)
   audioManager.play(audioManager.brocolisMusic)
 end
 
@@ -35,14 +36,10 @@ function gameManager.update(dt)
     playerManager.update(dt)
     bulletManager.update(dt)
     arena.update(dt)
-    gameManager.changeRound()
+    gameManager.n_dead = gameManager.numberOfDeadPlayers()
     --arena.update(dt,gameManager.players)
-    if #playerManager.getAlivePlayers() == 1 and #animations.list == 0 then
-      death_timer = death_timer - dt
-      for i,v in ipairs(playerManager.getAlivePlayers()) do
-        v.score = v.score + 1
-        gameManager.score[v.index] = gameManager.score[v.index]+ v.score
-      end
+    if gameManager.n_dead >= (n_players - 1) or gameManager.timer <= 0 then
+      gameManager.changeRound()
     end
   end
 end
@@ -52,15 +49,19 @@ function gameManager.draw()
   local of = {x=arena.x,y=arena.y}
   playerManager.draw(of)
   bulletManager.draw(of)
-  love.graphics.print("ROUND "..gameManager.round.." - "..math.ceil(gameManager.timer).."", 640, 20)
-  love.graphics.print(#animations.list, 20, 20)
-  for i, v in ipairs(playerManager.getAlivePlayers()) do
-    love.graphics.print(tostring(v.score) + gameManager.score[i], 1400, 300+50*i)
+  love.graphics.print("ROUND "..gameManager.round.." - "..math.ceil(gameManager.timer).."", love.graphics.getWidth()/2, 0.005*love.graphics.getHeight(), 0, 1, 1, (#"ROUND 1 - 00")*10)
+  love.graphics.print(n_players, 10, 10)
+  love.graphics.print(gameManager.numberOfDeadPlayers(), 10, 50)
+  for i, v in ipairs(playerManager.list) do
+    love.graphics.print(tostring(v.score), 1400, 300+50*i)
   end
   if gameManager.paused then
     love.graphics.setColor(0,0,0,100)
     love.graphics.rectangle("fill", 0,0, 1920, 1080)
+    love.graphics.setColor(255,255,255)
+    love.graphics.print("PAUSED", love.graphics.getWidth()/2, 0.3*love.graphics.getHeight()/2, 0, 3, 3, (#"PAUSE")*20)
   end
+  love.graphics.setColor(255,255,255)
 end
 
 function gameManager.keypressed(key)
@@ -72,8 +73,8 @@ function gameManager.keypressed(key)
     end
   end
   playerManager.keypressed(key)
-  for i,v in ipairs(playerManager.getAlivePlayers()) do
-    if key == "k" or v.score >= 3 then
+  for i,v in ipairs(playerManager.list) do
+    if v.score >= 3 then
       gameManager.game.goToWinnerScreen(playersInf, checkForWinner())
     end
   end
@@ -88,35 +89,40 @@ function gameManager.gamepadpressed(joystick,button)
 end
 
 function gameManager.changeRound()
-  if (gameManager.timer <= 0 or death_timer <= 0) then
-    gameManager.round = gameManager.round + 1
-    gameManager.timer = 90
-    table.remove(playerManager.list)
-    gameManager.game.goToGameManager(playersInf)
-    --gameManager.setRespawn()
-    death_timer = 1
-  end
+  gameManager.round = gameManager.round + 1
+  gameManager.timer = 90
+  death_timer = 1
+  gameManager.resetPlayers()
 end
-
---[[function gameManager.setRespawn()
-  local alive_players = playerManager.getLastPlayer()
-  --last.score = last.score + 1
-  for k,v in pairs(alive_players) do
-    playerManager.killPlayer(v)
-  end
-
-  Player.load()
-  bulletManager.load()
-  timer = 10
-  --playerManager.start(nPlayers)
-  
-end]]
-
 function checkForWinner()
   for i,v in ipairs(playerManager.list) do
-    if v.score == 3 then
+    if v.score >= 3 then
       return v
     end
   end
+end
+function gameManager.resetPlayers()
+  for i, v in ipairs(playerManager.list) do
+    if not v.curr_state:is_a(PlayerDeadState) then
+      v.curr_state = v.states.dead
+      v.hp = 4
+      v.score = v.score + 1
+      v.curr_state = v.states.alive
+      --reestabelecer posição
+    else
+      v.curr_state = v.states.alive
+      v.hp = 4
+    end
+  end
+end
+
+function gameManager.numberOfDeadPlayers()
+  local n_dead = 0
+  for i, v in ipairs (playerManager.list) do
+    if v.curr_state:is_a(PlayerDeadState) and v.curr_animation.animComp.finished then
+      n_dead = n_dead + 1
+    end
+  end
+  return n_dead
 end
 return gameManager

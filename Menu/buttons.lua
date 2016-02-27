@@ -56,7 +56,7 @@ end
 function buttons.draw()
   love.graphics.draw(menuvideo, 0, 0)
   
-  love.graphics.draw(titleImg,title.pos.x,title.pos.y,0,1,1)
+  love.graphics.draw(titleImg,title.pos.x,title.pos.y - 100,0,1,1)
   --love.graphics.draw(title,200, 20)
   --love.graphics.print(buttons.pressed, 200, 300)
   for i, but in ipairs(buttons) do
