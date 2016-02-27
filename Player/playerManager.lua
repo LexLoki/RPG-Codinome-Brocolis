@@ -6,12 +6,13 @@
 local player = require "Player/player"
 local playerAssets = require "Player/playerAssets"
 local playerIcon = require "Player/playerIcon"
+local BulletIcon = require "Player/playerBulletIcon"
 playerManager = {}
 playerManager.list = {}
 
 local orderByHeight, sortDraw
 local HpArt = love.graphics.newImage("/Assets/HUD/Heart_HUD_2.png")
-local iconPosition = {{x=20, y=100}, {x=1150, y=100}, {x=20, y=600}, {x=1150, y=600}}
+local iconPosition = {{x=20, y=60}, {x=1150, y=60}, {x=20, y=600}, {x=1150, y=600}}
 
 playerManager.keys = {
   keyboard = {
@@ -53,22 +54,62 @@ end
 
 function playerManager.draw(of)
   local players = sortDraw(playerManager.list)
-  for i,v in ipairs(players) do
-    --love.graphics.print(tostring(v.hp), 0 , i*50)
-    --drawHud(HpArt)
-    
+  for i,v in ipairs(playerManager.list) do
+    --love.graphics.print(tostring(v.hp), 0 , i*50)    
     for j=1, v.hp do
-      love.graphics.draw(HpArt,v.iconPos.x + 25*(j-1), v.iconPos.y+100, 0, 0.5, 0.5)
+    if i%2 == 0 then
+      love.graphics.draw(HpArt,(v.iconPos.x+45) - 30*(j-1), v.iconPos.y-40, 0, 0.75, 0.75)
+    else
+      love.graphics.draw(HpArt,(v.iconPos.x+12) + 30*(j-1), v.iconPos.y-40, 0, 0.75, 0.75)
     end
+  end
     v:draw(of)
   for i,v in ipairs(playerManager.list) do
   if i%2 == 0 then
-    love.graphics.draw(v.icon, v.iconPos.x+100, v.iconPos.y, 0, -0.5, 0.5)
+    love.graphics.draw(v.icon, v.iconPos.x+100, v.iconPos.y, 0, -0.75, 0.75)
     else
-    love.graphics.draw(v.icon, v.iconPos.x, v.iconPos.y, 0, 0.5, 0.5)
+    love.graphics.draw(v.icon, v.iconPos.x, v.iconPos.y, 0, 0.75, 0.75)
   end
   end
-  -- 50,0 
+  
+  for i,v in ipairs(playerManager.list) do
+    if v.weapon.bulletClass:is_a(BulletBoomerang) then
+      if i%2 == 0 then
+      love.graphics.draw(BulletIcon[1],v.iconPos.x+100,v.iconPos.y+160,0,-0.75,0.50)
+      else 
+      love.graphics.draw(BulletIcon[1],v.iconPos.x,v.iconPos.y+160,0,0.75,0.50)
+      end
+    else if v.weapon.bulletClass:is_a(BulletExpo) then
+      if i%2 == 0 then
+      love.graphics.draw(BulletIcon[2],v.iconPos.x+100,v.iconPos.y+160,0,-0.75,0.50)
+      else 
+      love.graphics.draw(BulletIcon[2],v.iconPos.x,v.iconPos.y+160,0,0.75,0.50)
+    end
+    else if v.weapon.bulletClass:is_a(BulletGrow) then
+      if i%2 == 0 then
+      love.graphics.draw(BulletIcon[3],v.iconPos.x+100,v.iconPos.y+160,0,-0.75,0.50)
+      else 
+      love.graphics.draw(BulletIcon[3],v.iconPos.x,v.iconPos.y+160,0,0.75,0.50)
+    end
+    else if v.weapon.bulletClass:is_a(BulletSenoid) then
+      if i%2 == 0 then
+      love.graphics.draw(BulletIcon[4],v.iconPos.x+100,v.iconPos.y+160,0,-0.75,0.50)
+      else 
+      love.graphics.draw(BulletIcon[4],v.iconPos.x,v.iconPos.y+160,0,0.75,0.50)
+    end
+  end
+end
+end
+end
+    
+  end
+  
+ 
+  
+  
+  
+  
+  
   end
 end
 
@@ -76,7 +117,7 @@ function playerManager.killPlayer(player)
   for i,v in ipairs(playerManager.list) do
     if v==player then
       --v = nil
-      table.remove(playerManager.list,i)
+      --table.remove(playerManager.list,i)
       --audioManager.playDeathSound()
       break
     end
@@ -101,16 +142,6 @@ end
 function orderByHeight(a,b)
   return a.y<b.y
 end
-function playerManager.getLastPlayer()
-  local alive_players = {}  
-  for i,v in ipairs(playerManager.list) do
-    if not v.curr_state:is_a(PlayerDeadState) then
-      table.insert(alive_players,v)  
-    end
-  end
-  return alive_players
-end
-
 function playerManager.getLastPlayer()
   local alive_players = {}  
   for i,v in ipairs(playerManager.list) do

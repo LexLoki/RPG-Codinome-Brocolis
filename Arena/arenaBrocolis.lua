@@ -4,7 +4,7 @@ local arenaBrocolis = {index = 1}
 
 local preparePositions, round, evaluate, readTxt
 
-arenaBrocolis.spawnTime = 5
+arenaBrocolis.spawnTime = 6
 
 function arenaBrocolis.start(arena)
   --Read txt with inputs

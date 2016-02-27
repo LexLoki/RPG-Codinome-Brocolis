@@ -50,10 +50,10 @@ function gameManager.draw()
   playerManager.draw(of)
   bulletManager.draw(of)
   love.graphics.print("ROUND "..gameManager.round.." - "..math.ceil(gameManager.timer).."", love.graphics.getWidth()/2, 0.005*love.graphics.getHeight(), 0, 1, 1, (#"ROUND 1 - 00")*10)
-  love.graphics.print(n_players, 10, 10)
-  love.graphics.print(gameManager.numberOfDeadPlayers(), 10, 50)
+  love.graphics.print(n_players, 10, 400)
+  love.graphics.print(gameManager.numberOfDeadPlayers(), 10, 450)
   for i, v in ipairs(playerManager.list) do
-    love.graphics.print(tostring(v.score), 1400, 300+50*i)
+    love.graphics.print(tostring(v.score), 1100, 300+50*i)
   end
   if gameManager.paused then
     love.graphics.setColor(0,0,0,100)
@@ -108,7 +108,6 @@ function gameManager.resetPlayers()
       v.hp = 4
       v.score = v.score + 1
       v.curr_state = v.states.alive
-      --reestabelecer posição
     else
       v.curr_state = v.states.alive
       v.hp = 4
