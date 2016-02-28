@@ -1,11 +1,11 @@
 require "Menu/buttonsWinner"
 
 local winnerScreen = {}
+local winner_index = 0 
+local playersInfo = {}
 
 function winnerScreen.load(game)
-  local winner_index = 0 
   winnerScreen.game = game
-  local playersInfo = {}
   buttonsWinner.load()
 end
 
@@ -27,6 +27,7 @@ function winnerScreen.draw()
       love.graphics.draw(playerIcon[v.id], 100, 300, 0, 2, 2)
     end
   end
+  love.graphics.print(tostring(winner_index), 20, 20, 0, 2, 2)
   buttonsWinner.draw()
 end
 

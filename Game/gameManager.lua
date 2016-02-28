@@ -8,8 +8,9 @@ require "Player/playerManager"
 require "Bullet/bulletManager"
 
 local gameManager = {}
+local arenaPos
+local playersinf = {}
 function gameManager.load(game)
-  local playersinf = {}
   local n_players = 0
   gameManager.n_dead = 0
   gameManager.game = game
@@ -26,6 +27,14 @@ function gameManager.start(playersInfo)
   playerManager.start(playersInfo)
   n_players = #(playerManager.list)
   audioManager.play(audioManager.brocolisMusic)
+  local ax,ay = arena.tileSize.width+10, arena.tileSize.height+10
+  local aw,ah = arena.width, arena.height
+  arenaPos = {
+    {x=ax,y=ay},
+    {x=aw-ax-Player.width,y=ay},
+    {x=ax,y=ah-ay-Player.height},
+    {x=aw-ax-Player.width,y=ah-ay-Player.height}
+  }
 end
 
 function gameManager.update(dt)
@@ -110,24 +119,27 @@ function gameManager.resetPlayers()
   for i, v in ipairs(playerManager.list) do
     if not v.curr_state:is_a(PlayerDeadState) then
       --v.curr_state = v.states.dead
-      v.hp = 4
       v.score = v.score + 1
     else
-      v.curr_state = v.states.alive
-      v.hp = 4
+      v:setState(v.states.alive)
     end
+    local p = arenaPos[i]
+    v.hp = 4
+    v.x = p.x
+    v.y = p.y
   end
 end
 
 function gameManager.resetPlayersNoScore()
   for i, v in ipairs(playerManager.list) do
-    if not v.curr_state:is_a(PlayerDeadState) then
+    v:setState(v.states.alive)
+    --[[if not v.curr_state:is_a(PlayerDeadState) then
       --v.curr_state = v.states.dead
       v.hp = 4
     else
       v.curr_state = v.states.alive
       v.hp = 4
-    end
+    end]]
   end
 end
 
