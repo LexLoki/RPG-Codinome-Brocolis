@@ -3,14 +3,14 @@ require "Menu/buttonsWinner"
 local winnerScreen = {}
 
 function winnerScreen.load(game)
-  local playerWin = {}
+  local winner_index = 0 
   winnerScreen.game = game
   local playersInfo = {}
   buttonsWinner.load()
 end
 
 function winnerScreen.start(playersInf, winner)
-  table.insert(playerWin,winner)
+  winner_index = winner
   playersInfo = playersInf
   buttonsWinner.start()
   audioManager.play(audioManager.endMatchMusic)
@@ -22,8 +22,10 @@ end
 
 function winnerScreen.draw()
   love.graphics.print("And the winner is ...", 20, 20, 0, 2, 2)
-  for i, v in ipairs(playerWin) do
-    love.graphics.draw(playerIcon[v.id], 100, 300, 0, 2, 2)
+  for i, v in ipairs(playerManager.list) do
+    if i == winner_index then
+      love.graphics.draw(playerIcon[v.id], 100, 300, 0, 2, 2)
+    end
   end
   buttonsWinner.draw()
 end
@@ -31,10 +33,10 @@ end
 function winnerScreen.keypressed(key)
   buttonsWinner.keypressed(key)
   if key == "return" then
-    table.remove(playerManager.list)
     if buttonsWinner.pressed == 1 then
       winnerScreen.game.goToPlayerSelection()
     elseif buttonsWinner.pressed == 2 then
+      table.remove(playerManager.list)
       winnerScreen.game.goToMenuManager(n_players)
     else
       winnerScreen.game.goToGameManager(playersInfo)

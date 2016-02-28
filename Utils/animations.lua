@@ -50,7 +50,7 @@ end
 function animations.draw()
   for i,v in ipairs(animations.list) do
     love.graphics.setColor(v.color)
-    love.graphics.draw(animations.image,animations.quads[v.aComp.curr_frame],v.x,v.y,0,0.8,0.8,animations.width/2,animations.height/2)
+    love.graphics.draw(animations.image,animations.quads[v.aComp.curr_frame],v.x - 20,v.y + 10,0,0.8,0.8,animations.width/2,animations.height/2)
   end
   love.graphics.setColor(color.clear)
 end

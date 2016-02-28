@@ -11,9 +11,9 @@ function arenaAssets.load()
   arenaAssets.maps = {
     --brocolis, robo, alien, pirata
     {
-      defaultFloor = quads[3][2],
-      defaultWall = quads[3][1],
-      destruct = quads[2][1]
+      defaultFloor = quads[1][3],
+      defaultWall = quads[1][2],
+      destruct = quads[1][1]
     }
   }
 end
