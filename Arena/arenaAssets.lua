@@ -9,11 +9,35 @@ function arenaAssets.load()
   local quads = animations.loadMatrixQuads(s:getHeight()/64,s:getWidth()/64,s:getWidth(),s:getHeight())
   arenaAssets.sheet = s
   arenaAssets.maps = {
-    --brocolis, robo, alien, pirata
+    --default
     {
       defaultFloor = quads[1][3],
       defaultWall = quads[1][2],
       destruct = quads[1][1]
+    },
+    --brocolis
+    {
+      defaultFloor = quads[3][2],
+      defaultWall = quads[3][1],
+      destruct = quads[2][1]
+    },
+    --robo
+    {
+      defaultFloor = quads[6][1],
+      defaultWall = quads[7][3],
+      destruct = quads[5][7]
+    },
+    --alien
+    {
+      defaultFloor = quads[2][4],
+      defaultWall = quads[2][3],
+      destruct = quads[2][2]
+    },
+    --pirata
+    {
+      defaultFloor = quads[5][6],
+      defaultWall = quads[5][5],
+      destruct = quads[6][4]
     }
   }
 end

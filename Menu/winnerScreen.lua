@@ -4,8 +4,9 @@ local winnerScreen = {}
 local winner_index = 0 
 local playersInfo = {}
 
-function winnerScreen.load(game)
+function winnerScreen.load(game, menuManager)
   winnerScreen.game = game
+  winnerScreen.menuManager = menuManager
   buttonsWinner.load()
 end
 
@@ -35,10 +36,9 @@ function winnerScreen.keypressed(key)
   buttonsWinner.keypressed(key)
   if key == "return" then
     if buttonsWinner.pressed == 1 then
-      winnerScreen.game.goToPlayerSelection()
+      winnerScreen.menuManager.goToPlayerSelection()
     elseif buttonsWinner.pressed == 2 then
-      table.remove(playerManager.list)
-      winnerScreen.game.goToMenuManager(n_players)
+      winnerScreen.menuManager.goToMenu()
     else
       winnerScreen.game.goToGameManager(playersInfo)
     end

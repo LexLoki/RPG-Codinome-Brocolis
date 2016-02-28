@@ -118,13 +118,11 @@ end
 function gameManager.resetPlayers()
   for i, v in ipairs(playerManager.list) do
     if not v.curr_state:is_a(PlayerDeadState) then
-      --v.curr_state = v.states.dead
       v.score = v.score + 1
     else
       v:setState(v.states.alive)
     end
     local p = arenaPos[i]
-    v.hp = 4
     v.x = p.x
     v.y = p.y
   end
@@ -132,14 +130,9 @@ end
 
 function gameManager.resetPlayersNoScore()
   for i, v in ipairs(playerManager.list) do
-    v:setState(v.states.alive)
-    --[[if not v.curr_state:is_a(PlayerDeadState) then
-      --v.curr_state = v.states.dead
-      v.hp = 4
-    else
-      v.curr_state = v.states.alive
-      v.hp = 4
-    end]]
+    if v.curr_state:is_a(PlayerDeadState) then
+      v:setState(v.states.alive)
+    end
   end
 end
 
