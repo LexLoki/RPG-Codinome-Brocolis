@@ -9,13 +9,6 @@ require "Player/playerDeadState"
 Player = class_extends(ArmedAnimatedEntity, "alive")
 
 function Player.load()
-  Player.data = {
-    {color = {255,255,255}, keys = {left="left",up="up",right="right",down="down",jump="space",attack=",",confirm="m"}, pos = {x=100 , y=100},playerID = 1},
-    {color = {0,255,0}, keys = {left="a",up="w",right="d",down="s",jump="space",attack="c",confirm="x"}, pos = {x=1190 , y=100},playerID = 2},
-    {color = {100,100,255}, keys = {left="k",up="o",right=";",down="l",jump="space",attack="]",confirm="["}, pos = {x= 100, y=600}},
-    {color = {100,100,255}, keys = {left="f",up="t",right="h",down="g",jump="space",attack="v",confirm="["}, pos = {x=1190 , y= 600}},
-    {color = {0,0,0}}
-  }
   --Player.score = 0 
   Player.width = 48
   Player.height = 96
@@ -31,10 +24,9 @@ function Player:tookHit()
 end
 
 function Player.new(index,bulletClass,assetInfo,keys,icon, iconPosition, joy, score)  
-  local self = Player.newObject(Player.data[index].pos.x,Player.data[index].pos.y,Player.width,Player.height,assetInfo)
+  local self = Player.newObject(0,0,Player.width,Player.height,assetInfo)
   self.joy = joy
   --Init properties
-  self.color = Player.data[index].color
   --self.dir = Direction.Left
   self.speed = {x=0,y=0}
   --self.aComp = animationManager_new(4,0.5,true)
