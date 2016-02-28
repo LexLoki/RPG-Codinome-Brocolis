@@ -91,29 +91,14 @@ end
 function gameManager.changeRound()
   gameManager.round = gameManager.round + 1
   gameManager.timer = 90
-  death_timer = 1
-  gameManager.resetPlayers()
+  --death_timer = 1
+  playerManager.resetPlayers()
 end
 function checkForWinner()
   for i,v in ipairs(playerManager.list) do
     if v.score >= 3 then
       return v
     end
-  end
-end
-function gameManager.resetPlayers()
-  for i, v in ipairs(playerManager.list) do
-    v:setState(v.states.alive)
-    --[[
-    v.hp = 4
-    if not v.curr_state:is_a(PlayerDeadState) then
-      v.score = v.score + 1
-    else
-      v.curr_state = v.states.alive
-      v:enableArm()
-      v.hp = 4
-    end
-    ]]
   end
 end
 

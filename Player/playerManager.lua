@@ -22,13 +22,23 @@ playerManager.keys = {
   joy = {left="dpleft",up="dpup",right="dpright",down="dpdown",jump="dpju",attack="a",confirm="start"}
 }
 
+local arenaPos
 
 function playerManager.load()
 end
 
 function playerManager.start(players)
+  local ax,ay = arena.tileSize.width+10, arena.tileSize.height+10
+  local aw,ah = arena.width, arena.height
+  arenaPos = {
+    {x=ax,y=ay},
+    {x=aw-ax-Player.width,y=ay},
+    {x=ax,y=ah-ay-Player.height},
+    {x=aw-ax-Player.width,y=ah-ay-Player.height}
+  }
   for i,v in ipairs(players) do
     table.insert(playerManager.list,Player.new(i,bulletManager.randomBullet(),playerAssets[v.id],v.keys,playerIcon[v.id], iconPosition[i], v.joy))  end
+  playerManager.resetPlayers()
 end
 
 function playerManager.update(dt)
@@ -110,6 +120,15 @@ function playerManager.killPlayer(player)
       --audioManager.playDeathSound()
       break
     end
+  end
+end
+
+function playerManager.resetPlayers()
+  for i, v in ipairs(playerManager.list) do
+    v:setState(v.states.alive)
+    local p = arenaPos[i]
+    v.x = p.x
+    v.y = p.y
   end
 end
 
