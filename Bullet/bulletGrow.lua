@@ -9,6 +9,7 @@ BulletGrow = class_extends(Bullet,"grow")
 BulletGrow.growSpeed = 100
 BulletGrow.speed = 600
 BulletGrow.color = {0,0,255}
+BulletGrow.img = love.graphics.newImage("Assets/Bullet/tiro_boomerang.png")
 
 --[[ BulletGrow.new
 Creates a new BulletGrow shot

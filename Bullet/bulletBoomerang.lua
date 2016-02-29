@@ -10,6 +10,7 @@ BulletBoomerang.speed = 400
 BulletBoomerang.distance = 420
 BulletBoomerang.amp = 240
 BulletBoomerang.velA = -math.pi*1.2
+BulletBoomerang.img = love.graphics.newImage("Assets/Bullet/tiro_boomerang.png")
 
 --[[ BulletBoomerang.new
 Creates a new BulletBoomerang shot

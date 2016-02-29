@@ -9,6 +9,7 @@ BulletExpo = class_extends(Bullet,"expo")
 BulletExpo.speed = 500
 BulletExpo.damping = 50
 BulletExpo.curveFactor = 4
+BulletExpo.img = love.graphics.newImage("Assets/Bullet/tiro_boomerang.png")
 
 local horizontal = {}
 local vertical = {}
