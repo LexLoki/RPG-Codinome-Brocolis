@@ -6,12 +6,16 @@ local grid = {}
 function playerSelection.load(menuManager)
   playerSelection.menuManager = menuManager
   grid.data = {}
-  playerSelection.create(1, 4)
-  --playerSelection.confirmados = 0
   playerSelection.n_players = 0
+  box_color = {}
+end
+function playerSelection.start()
+  playerSelection.keys = playerManager.keys
+  audioManager.play(audioManager.characterScreenMusic)
+  playerSelection.nPlayers = 0
+  playerSelection.create(1, 4)
   background_img = love.graphics.newImage("Assets/Menu/background_character_select.png")
   unselected_img = love.graphics.newImage("Assets/Menu/box_unselected.png")
-  box_color = {}
   for i=1, 4 do
     box_color[i] = love.graphics.newImage("Assets/Menu/box_"..i..".png")
   end
@@ -19,11 +23,6 @@ function playerSelection.load(menuManager)
   playerSelection.loadData("VR-704")
   playerSelection.loadData("Godo")
   playerSelection.loadData("Cpt. Rubi")
-end
-function playerSelection.start()
-  playerSelection.keys = playerManager.keys
-  audioManager.play(audioManager.characterScreenMusic)
-  playerSelection.nPlayers = 0
 end
 
 function playerSelection.update(dt)
