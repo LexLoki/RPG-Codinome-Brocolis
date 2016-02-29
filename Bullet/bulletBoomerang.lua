@@ -3,7 +3,7 @@
 --  Created by Pietro Ribeiro Pepe
 --  Copyright © 2016 Rio PUC Games. All rights reserved.
 
-require "Bullet/bullet"
+require "Bullet/bullet
 
 BulletBoomerang = class_extends(Bullet,"boomerang")
 BulletBoomerang.speed = 1200--700
