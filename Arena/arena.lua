@@ -10,6 +10,7 @@ local arenaDefault = require "Arena/arenaDefault"
 local arenaAssets = require "Arena/arenaAssets"
 local arenaAlien = require "Arena/arenaAlien"
 local arenaPirata = require "Arena/arenaPirata"
+local arenaRobo = require "Arena/arenaRobo"
 arena = {}
 
 local loadDimensions, loadTiles

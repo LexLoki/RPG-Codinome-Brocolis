@@ -26,6 +26,7 @@ function Tile.new(x,y,image,quad)
 end
 
 function Tile:draw(offset)
+  if self.floor ~= nil then self.floor:draw(offset) end
   if offset == nil then offset = {x=0,y=0} end
   local x,y,w,h = self.quad:getViewport()
   love.graphics.draw(self.img,self.quad,offset.x+self.x,offset.y+self.y,0,self.width/w,self.height/h)

@@ -19,7 +19,7 @@ function arenaAssets.load()
     {
       defaultFloor = quads[6][1],
       defaultWall = quads[7][3],
-      destruct = quads[5][7]
+      destruct = quads[6][3]
     },
     --alien
     {
