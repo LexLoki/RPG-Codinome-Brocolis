@@ -6,10 +6,10 @@
 require "Bullet/bullet"
 
 BulletSenoid = class_extends(Bullet,"senoid")
-BulletSenoid.amp = 100
-BulletSenoid.time = 0.9
+BulletSenoid.amp = 66 --100
+BulletSenoid.time = 0.7 --0.9
 --Bullet.sign = 1
-BulletSenoid.speed = 700
+BulletSenoid.speed = 600 --700
 BulletSenoid.color = {0,0,255}
 BulletSenoid.img = love.graphics.newImage("Assets/Bullet/tiro_seno.png")
 

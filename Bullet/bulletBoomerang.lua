@@ -6,9 +6,9 @@
 require "Bullet/bullet"
 
 BulletBoomerang = class_extends(Bullet,"boomerang")
-BulletBoomerang.speed = 400
-BulletBoomerang.distance = 300
-BulletBoomerang.amp = 240
+BulletBoomerang.speed = 1200--700
+BulletBoomerang.distance = 300--300
+BulletBoomerang.amp = 290--280
 BulletBoomerang.velA = -math.pi*1.2
 BulletBoomerang.img = love.graphics.newImage("Assets/Bullet/tiro_boomerang.png")
 
