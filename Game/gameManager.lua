@@ -142,4 +142,5 @@ function gameManager.numberOfDeadPlayers()
   end
   return n_dead
 end
+
 return gameManager
