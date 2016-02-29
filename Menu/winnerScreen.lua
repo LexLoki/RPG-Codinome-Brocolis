@@ -36,7 +36,7 @@ function winnerScreen.keypressed(key)
     if buttonsWinner.pressed == 1 then
       winnerScreen.menuManager.goToPlayerSelection()
     elseif buttonsWinner.pressed == 2 then
-      winnerScreen.menuManager.goToMenu()
+      winnerScreen.menuManager.goToMenuManager()
     else
       winnerScreen.game.goToGameManager(playersInfo)
     end

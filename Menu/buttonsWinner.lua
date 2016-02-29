@@ -12,7 +12,7 @@ end
 
 function buttonsWinner.start()
   buttonsWinner.remove()
-  buttonsWinner.create(3, direction.vertical, 400, 400, 200, 25)
+  buttonsWinner.create(3, direction.vertical, 550, 550, 200, 25)
   buttonsWinner.color = {{255, 255, 255}}
   for i=1, #buttonsWinner do
     buttonsWinner[i].imageNormal = love.graphics.newImage("Assets/Menu/winner_normal_"..i..".png")

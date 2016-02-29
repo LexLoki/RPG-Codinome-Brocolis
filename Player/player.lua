@@ -23,7 +23,7 @@ function Player:tookHit()
  self.curr_state:tookHit()
 end
 
-function Player.new(index,bulletClass,assetInfo,keys,icon, iconPosition, joy, score)  
+function Player.new(index,bulletClass,assetInfo,keys,icon, iconPosition, joy)  
   local self = Player.newObject(0,0,Player.width,Player.height,assetInfo)
   self.joy = joy
   --Init properties
@@ -32,7 +32,7 @@ function Player.new(index,bulletClass,assetInfo,keys,icon, iconPosition, joy, sc
   --self.aComp = animationManager_new(4,0.5,true)
   self.keys = keys--Player.data[index].keys
   self.hp = Player.maxHP
-  self.score = score
+  self.score = 0
   self.iconPos = iconPosition
   self.index = index
   self.weapon = Weapon.new(self,bulletClass)

@@ -1,5 +1,6 @@
 local menuManager = require "Menu/menuManager"
 local gameManager = require "Game/gameManager"
+local winnerScreen = require "Menu/winnerScreen"
 local playerSelection = require "Menu/playerSelection"
 
 local game = {}
@@ -11,6 +12,7 @@ end
 function game.load()
   menuManager.load(game)
   gameManager.load(game)
+  winnerScreen.load(game, menuManager)
 end
 
 function game.update(dt)
@@ -34,13 +36,9 @@ function game.goToGameManager(playersInfo)
   game.setState(gameManager,playersInfo)
 end
 function game.goToWinnerScreen(playersInfo, winner)
-  game.setState(menuManager)
-  menuManager.setWinnerScreen(playersInfo,winner)
+  game.setState(winnerScreen, playersInfo, winner)
 end
-function game.goToPlayerSelection()
-  game.setState(playerSelection)
-end
-function game.setState(state,...)
+function game.setState(state, ...)
   game.curr_state = state
   state.start(...)
 end

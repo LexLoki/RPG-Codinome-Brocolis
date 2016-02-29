@@ -144,7 +144,12 @@ function gameManager.resetPlayersNoScore()
   for i, v in ipairs(playerManager.list) do
     if v.curr_state:is_a(PlayerDeadState) then
       v:setState(v.states.alive)
+      v.hp = 4
+      gameManager.lastPlayerId = v.id
     end
+    local p = arenaPos[i]
+    v.x = p.x
+    v.y = p.y
   end
 end
 

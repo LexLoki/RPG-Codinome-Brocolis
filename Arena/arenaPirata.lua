@@ -42,7 +42,7 @@ function arenaPirata.destroy(block)
 end
 
 function readTxt()
-  local file = love.filesystem.read("/Assets/Stages/Pirata_Stage1.txt")
+  local file = love.filesystem.read("/Assets/Stages/Pirata_Stage_3.txt")
   local data = {}
   for line in file:gmatch('([^\n]+)') do
     local words = {}
