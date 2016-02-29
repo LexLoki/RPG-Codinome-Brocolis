@@ -7,8 +7,8 @@ require "Bullet/bullet"
 
 BulletExpo = class_extends(Bullet,"expo")
 BulletExpo.speed = 500
-BulletExpo.damping = 35 --50
-BulletExpo.curveFactor = 250 --4
+BulletExpo.damping = 25 --50
+BulletExpo.curveFactor = 300 --4
 BulletExpo.img = love.graphics.newImage("Assets/Bullet/tiro_expo.png")
 
 local horizontal = {}
