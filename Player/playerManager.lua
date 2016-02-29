@@ -36,6 +36,7 @@ function playerManager.start(players)
     {x=ax,y=ah-ay-Player.height},
     {x=aw-ax-Player.width,y=ah-ay-Player.height}
   }
+  playerManager.list = {}
   for i,v in ipairs(players) do
     local p = Player.new(i,bulletManager.randomBullet(),playerAssets[v.id],v.keys,playerIcon[v.id], iconPosition[i], v.joy)
     p.id = v.id

@@ -8,21 +8,21 @@ function playerSelection.load(menuManager)
   grid.data = {}
   playerSelection.n_players = 0
   box_color = {}
+  playerSelection.loadData("Magnolio")
+  playerSelection.loadData("VR-704")
+  playerSelection.loadData("Godo")
+  playerSelection.loadData("Cpt. Rubi")
+  background_img = love.graphics.newImage("Assets/Menu/background_character_select.png")
+  unselected_img = love.graphics.newImage("Assets/Menu/box_unselected.png")
+  for i=1, 4 do
+    box_color[i] = love.graphics.newImage("Assets/Menu/box_"..i..".png")
 end
 function playerSelection.start()
   playerSelection.keys = playerManager.keys
   audioManager.play(audioManager.characterScreenMusic)
   playerSelection.nPlayers = 0
   playerSelection.create(1, 4)
-  background_img = love.graphics.newImage("Assets/Menu/background_character_select.png")
-  unselected_img = love.graphics.newImage("Assets/Menu/box_unselected.png")
-  for i=1, 4 do
-    box_color[i] = love.graphics.newImage("Assets/Menu/box_"..i..".png")
   end
-  playerSelection.loadData("Magnolio")
-  playerSelection.loadData("VR-704")
-  playerSelection.loadData("Godo")
-  playerSelection.loadData("Cpt. Rubi")
 end
 
 function playerSelection.update(dt)
