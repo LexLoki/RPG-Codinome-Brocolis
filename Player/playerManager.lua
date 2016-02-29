@@ -12,7 +12,7 @@ playerManager.list = {}
 
 local orderByHeight, sortDraw
 local HpArt = love.graphics.newImage("/Assets/HUD/Heart_HUD_2.png")
-local iconPosition = {{x=20, y=60}, {x=1160, y=60}, {x=20, y=450}, {x=1160, y=450}}
+local iconPosition = {{x=20, y=60}, {x=1160, y=60}, {x=20, y=410}, {x=1160, y=410}}
 
 playerManager.keys = {
   keyboard = {
@@ -86,6 +86,14 @@ function playerManager.draw(of)
       end
     end
   end
+  for i,v in ipairs(playerManager.list) do
+      if i%2 == 0 then
+        love.graphics.print("Player"..i..": ".. v.score, v.iconPos.x-55, v.iconPos.y+260, 0, 0.75, 0.75)
+      else
+        love.graphics.print("Player"..i..": ".. v.score, v.iconPos.x, v.iconPos.y+260, 0, 0.75, 0.75)
+      end
+    end
+     
   
   for i,v in ipairs(playerManager.list) do
     if v.weapon.bulletClass:is_a(BulletBoomerang) then
