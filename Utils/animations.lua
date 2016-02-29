@@ -12,7 +12,7 @@ color = {
   }
 
 function animations.load()
-  animations.image = love.graphics.newImage("Assets/acidgun_die.png")
+  animations.image = love.graphics.newImage("Assets/Bullet/explosao.png")
   local aw = animations.image:getWidth()
   local ah = animations.image:getHeight()
   local w = aw/5
