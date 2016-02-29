@@ -53,7 +53,7 @@ function audioManager.load()
 end
 
 function audioManager.playBulletSound(id)
-  audioManager.playSfx(soundAssets[id].bullet)
+  audioManager.playSfx(soundAssets[id+1].bullet)
 end
 
 function audioManager.playExplodeSound()

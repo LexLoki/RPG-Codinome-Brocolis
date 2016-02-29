@@ -8,8 +8,8 @@ local freeTile = require "Arena/freeTile"
 local arenaBrocolis = require "Arena/arenaBrocolis"
 local arenaDefault = require "Arena/arenaDefault"
 local arenaAssets = require "Arena/arenaAssets"
-
-
+local arenaAlien = require "Arena/arenaAlien"
+local arenaPirata = require "Arena/arenaPirata"
 arena = {}
 
 local loadDimensions, loadTiles
@@ -18,16 +18,15 @@ local tiles = {}
 tiles[0] = FreeTile
 tiles[1] = SolidTile
 
+arena[0] = arenaDefault
+arena[1] = arenaBrocolis
+arena[2] = arenaRobo
+arena[3] = arenaAlien
+arena[4] = arenaPirata
 function arena.load(row,col)
   arenaAssets.load()
   arena.nRow = row
   arena.nCol = col
-  arena.curr = arenaBrocolis
-  arena.mapInfo = arenaAssets.maps[arena.curr.index]
-  arena.sheet = arenaAssets.sheet
-  loadDimensions()
-  loadTiles()
-  arenaBrocolis.start(arena)
 end
 
 function loadDimensions()
@@ -74,22 +73,31 @@ function arena.testObstacles()
   local ind=3
   local endRow = arena.nRow-ind-2
   local endCol = arena.nCol-ind-2
+  local wa = arena.mapInfo.defaultWall
+  local fa = arena.mapInfo.defaultFloor
+  local img = arena.sheet
   for i=0, 1 do
     for j=0, 1 do
       --table.remove(arena.obstacles[i+ind][j+ind])
-      arena.obstacles[i+ind][j+ind] = SolidTile.new((j+ind)*w,(i+ind)*h,w,h)
+      arena.obstacles[i+ind][j+ind] = SolidTile.new((j+ind)*w,(i+ind)*h,img,wa)
       --table.remove(arena.obstacles[i+ind][endCol+j])
-      arena.obstacles[i+ind][endCol+j] = SolidTile.new((endCol+j)*w,(i+ind)*h,w,h)
+      arena.obstacles[i+ind][endCol+j] = SolidTile.new((endCol+j)*w,(i+ind)*h,img,wa)
       --table.remove(arena.obstacles[endRow+i][j+ind])
-      arena.obstacles[endRow+i][j+ind] = SolidTile.new((j+ind)*w,(endRow+i)*h,w,h)
+      arena.obstacles[endRow+i][j+ind] = SolidTile.new((j+ind)*w,(endRow+i)*h,img,wa)
       --table.remove(arena.obstacles[endRow+i][endCol+j])
-      arena.obstacles[endRow+i][endCol+j] = SolidTile.new((endCol+j)*w,(endRow+i)*h,w,h)
+      arena.obstacles[endRow+i][endCol+j] = SolidTile.new((endCol+j)*w,(endRow+i)*h,img,wa)
     end
   end
 end
 
-function arena.start()
-  
+function arena.start(id)
+  audioManager.play(soundAssets[id+1].stage)
+  arena.curr = arena[id]
+  arena.mapInfo = arenaAssets.maps[arena.curr.index]
+  arena.sheet = arenaAssets.sheet
+  loadDimensions()
+  loadTiles()
+  arena.curr.start(arena)
 end
 
 function arena.update(dt,players)

@@ -12,6 +12,7 @@ playerManager.list = {}
 
 local orderByHeight, sortDraw
 local HpArt = love.graphics.newImage("/Assets/HUD/Heart_HUD_2.png")
+
 local iconPosition = {{x=20, y=60}, {x=1150, y=60}, {x=20, y=600}, {x=1150, y=600}}
 
 playerManager.keys = {

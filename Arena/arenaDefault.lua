@@ -1,15 +1,15 @@
 require "Arena/destructTile"
-arenaComum = {index=1}
+local arenaDefault = {index=0}
 
 local preparePositions, round, evaluate, readTxt
 
-function arenaComum.start(arena)
+function arenaDefault.start(arena)
   arena.testObstacles()
 end
-function arenaComum.update(dt)
+function arenaDefault.update(dt)
   
 end
-function arenaComum.destroy(block)
+function arenaDefault.destroy(block)
  
 end
 function readTxt()
@@ -25,3 +25,5 @@ function round(n)
   local f = math.floor(n)
   return n-f < 0.5 and f or f+1
 end
+
+return arenaDefault

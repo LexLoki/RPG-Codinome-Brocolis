@@ -1,5 +1,6 @@
 soundAssets = {
-  
+  --default
+  {stage = "/Assets/Music/Fase Default.mp3"},
   --brocolis
     {
       damaged =  "/Assets/Sfx/Brocolis/Brocolis_Dano_1.wav",
