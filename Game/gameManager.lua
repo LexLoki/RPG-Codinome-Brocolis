@@ -55,7 +55,7 @@ function gameManager.update(dt)
     --arena.update(dt,gameManager.players)
   else
     battleback:pause()
- 
+  end
     if gameManager.n_dead >= (n_players - 1) or gameManager.timer <= 0 then
       gameManager.changeRound()
     end
@@ -63,7 +63,7 @@ function gameManager.update(dt)
     if (winner ~= nil) then
       gameManager.game.goToWinnerScreen(playersInf, winner)
     end
-  end
+  
   bseconds = battleback:tell( )
   if bseconds > 89 then 
     battleback:rewind()
