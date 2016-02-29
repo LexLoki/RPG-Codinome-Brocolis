@@ -52,9 +52,9 @@ function audioManager.load()
   end
 end
 
---[[function audioManager.playBulletSound()
-  audioManager.playSfx(audioManager.bulletSound)
-end]]--
+function audioManager.playBulletSound(id)
+  audioManager.playSfx(soundAssets[id].bullet)
+end
 
 function audioManager.playExplodeSound()
   audioManager.playSfx(audioManager.explodeSound)

@@ -37,7 +37,10 @@ function playerManager.start(players)
     {x=aw-ax-Player.width,y=ah-ay-Player.height}
   }
   for i,v in ipairs(players) do
-    table.insert(playerManager.list,Player.new(i,bulletManager.randomBullet(),playerAssets[v.id],v.keys,playerIcon[v.id], iconPosition[i], v.joy))  end
+    local p = Player.new(i,bulletManager.randomBullet(),playerAssets[v.id],v.keys,playerIcon[v.id], iconPosition[i], v.joy)
+    p.id = v.id
+    table.insert(playerManager.list,p)
+  end
   playerManager.resetPlayers()
 end
 

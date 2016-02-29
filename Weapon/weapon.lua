@@ -44,7 +44,7 @@ function Weapon:shoot()
   if self.timer <= 0 then
     self.player:setShootAnimation()
     self.timer = self.cooldown
-    audioManager.playBulletSound()
+    audioManager.playBulletSound(self.player.id)
     bulletManager.newBullet(self.player,self.bulletClass)
   end
 end
