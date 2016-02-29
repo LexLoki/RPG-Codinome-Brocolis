@@ -20,6 +20,10 @@ function gameManager.load(game)
   arena.load(12,15)
   Player.load()
   bulletManager.load()
+  
+  battleback = love.graphics.newVideo("/Assets/Videos/Battle1.ogv",false)
+  
+  
 end
 function gameManager.start(playersInfo)
   gameManager.lastPlayerId = 0
@@ -40,6 +44,7 @@ end
 
 function gameManager.update(dt)
   if not gameManager.paused then 
+    battleback:play()
     --love.graphics.print(math.ceil(dt), 640, 20)
     gameManager.timer = gameManager.timer - dt
     playerManager.update(dt)
@@ -48,6 +53,9 @@ function gameManager.update(dt)
     gameManager.numberOfDeadPlayers()
     gameManager.n_dead = gameManager.numberOfDeadPlayers()
     --arena.update(dt,gameManager.players)
+  else
+    battleback:pause()
+ 
     if gameManager.n_dead >= (n_players - 1) or gameManager.timer <= 0 then
       gameManager.changeRound()
     end
@@ -56,9 +64,16 @@ function gameManager.update(dt)
       gameManager.game.goToWinnerScreen(playersInf, winner)
     end
   end
-end
+  bseconds = battleback:tell( )
+  if bseconds > 89 then 
+    battleback:rewind()
+  end
+  
+end  
+
 
 function gameManager.draw()
+  love.graphics.draw(battleback, 0, 0)
   arena.draw()
   local of = {x=arena.x,y=arena.y}
   playerManager.draw(of)
