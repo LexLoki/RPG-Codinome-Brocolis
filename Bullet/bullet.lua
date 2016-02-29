@@ -12,7 +12,7 @@ Bullet.height = 25
 Bullet.color = {0,255,0}
 
 function Bullet.load()
-  Bullet.img = love.graphics.newImage('Assets/bullet.png')
+  --Bullet.img = love.graphics.newImage('Assets/bullet.png')
   --[[
   local img = love.graphics.newImage("Assets/particle.png")
   Bullet.particleScale = 12/img:getWidth()

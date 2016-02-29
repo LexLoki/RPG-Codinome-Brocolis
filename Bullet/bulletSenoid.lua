@@ -11,7 +11,7 @@ BulletSenoid.time = 0.9
 --Bullet.sign = 1
 BulletSenoid.speed = 700
 BulletSenoid.color = {0,0,255}
-BulletSenoid.img = love.graphics.newImage("Assets/Bullet/tiro_boomerang.png")
+BulletSenoid.img = love.graphics.newImage("Assets/Bullet/tiro_seno.png")
 
 local horizontal = {}
 local vertical = {}
