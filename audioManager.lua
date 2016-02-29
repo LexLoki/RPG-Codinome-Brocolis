@@ -1,3 +1,5 @@
+require "soundAssets"
+
 audioManager={}
 
 function audioManager.load()
@@ -43,6 +45,11 @@ function audioManager.load()
   audioManager.robotVictorySound:setVolume(0.5)]]--
 
   audioManager.musicPlaying = nil
+  for i,v in ipairs(soundAssets) do
+    for j,w in pairs(v) do
+      v[j] = love.audio.newSource(w)
+    end
+  end
 end
 
 --[[function audioManager.playBulletSound()

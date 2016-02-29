@@ -1,4 +1,4 @@
-local soundAssets = {
+soundAssets = {
   
   --brocolis
     {
@@ -41,5 +41,3 @@ local soundAssets = {
     },
   
 }
-
-return soundAssets

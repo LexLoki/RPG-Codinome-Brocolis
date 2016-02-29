@@ -26,7 +26,7 @@ function gameManager.start(playersInfo)
   math.randomseed(os.time())
   playerManager.start(playersInfo)
   n_players = #(playerManager.list)
-  audioManager.play(audioManager.brocolisMusic)
+  audioManager.play(soundAssets[1].stage)
   local ax,ay = arena.tileSize.width+10, arena.tileSize.height+10
   local aw,ah = arena.width, arena.height
   arenaPos = {
