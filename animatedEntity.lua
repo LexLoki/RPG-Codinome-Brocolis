@@ -60,7 +60,7 @@ function AnimatedEntity:prepareAssets(assetsInfo)
     local all_h = img:getHeight()
     local quads = animations.loadMatrixQuads(value.nRow,value.nCol,all_w,all_h)
     local animComp = animationManager_new(value.nCol, value.animationTime, value.shouldLoop)
-    self.assets[key] = {sheet=imgs, quads=quads, animComp=animComp, size={width=58,height=108}}--{width=all_w/value.nCol,height=all_h/value.nRow}}
+    self.assets[key] = {sheet=imgs, quads=quads, animComp=animComp, size={width=58,height=68}}--width=58,height=108}}--{width=all_w/value.nCol,height=all_h/value.nRow}}
   end
 end
 --0.46774193548387
@@ -78,7 +78,7 @@ function AnimatedEntity:drawAsset(of,index,asset)
   if index == nil then index = 1 end
   local s = asset
   --for i,v in ipairs(s.sheet) do
-    love.graphics.draw(s.sheet[index],s.quads[self.dir][s.animComp.curr_frame],of.x+self.x,of.y+self.y,0,self.width/s.size.width,self.height/s.size.height,33,20)
+    love.graphics.draw(s.sheet[index],s.quads[self.dir][s.animComp.curr_frame],of.x+self.x,of.y+self.y,0,self.width/s.size.width,self.height/s.size.height,33,60)--20)
   --end
 end
 

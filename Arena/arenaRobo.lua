@@ -29,7 +29,6 @@ function arenaRobo.update(dt)
       end
     end
   end
-  print(#inContact)
   for i=#arenaRobo.inContact,1,-1 do
     local v = arenaRobo.inContact[i]
     local exists = false

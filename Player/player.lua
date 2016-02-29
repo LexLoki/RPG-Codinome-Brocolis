@@ -10,8 +10,8 @@ Player = class_extends(ArmedAnimatedEntity, "alive")
 
 function Player.load()
   --Player.score = 0 
-  Player.width = 48
-  Player.height = 96
+  Player.width = 48--48  58,90
+  Player.height = Player.width*68/58--96
   Player.speed = 280
   Player.maxHP = 4 
   Player.score = 0
