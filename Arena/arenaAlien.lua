@@ -80,6 +80,7 @@ function preparePositions(inputs)
     local col = round(v.x*a.nCol)
     local row = round(v.y*a.nRow)
     local o = FreeTile.new(col*tw,row*th,a.sheet,a.mapInfo.destruct)
+    o.floor = a.obstacles[row][col]
     table.insert(arenaAlien.ovnis,o)
     a.obstacles[row][col] = o
   end

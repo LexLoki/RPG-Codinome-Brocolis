@@ -38,6 +38,9 @@ end
 function game.goToWinnerScreen(playersInfo, winner)
   game.setState(winnerScreen, playersInfo, winner)
 end
+function game.goToPlayerSelection()
+  game.setState(playerSelection)
+end
 function game.setState(state, ...)
   game.curr_state = state
   state.start(...)

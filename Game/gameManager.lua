@@ -15,7 +15,6 @@ function gameManager.load(game)
   gameManager.n_dead = 0
   gameManager.game = game
   gameManager.paused = false
-  gameManager.round = 1
   gameManager.timer = 90
   arena.load(12,15)
   Player.load()
@@ -26,6 +25,12 @@ function gameManager.load(game)
   
 end
 function gameManager.start(playersInfo)
+  gameManager.round = 1
+  
+  
+  
+  
+  
   gameManager.lastPlayerId = 0
   arena.start(gameManager.lastPlayerId)
   playersInf = playersInfo

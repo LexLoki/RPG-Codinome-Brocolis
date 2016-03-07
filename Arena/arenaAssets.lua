@@ -23,9 +23,9 @@ function arenaAssets.load()
     },
     --alien
     {
-      defaultFloor = quads[2][4],
-      defaultWall = quads[2][3],
-      destruct = quads[2][2]
+      defaultFloor = quads[2][3],
+      defaultWall = quads[2][4],
+      destruct = quads[2][5]
     },
     --pirata
     {
