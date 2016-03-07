@@ -26,11 +26,6 @@ function gameManager.load(game)
 end
 function gameManager.start(playersInfo)
   gameManager.round = 1
-  
-  
-  
-  
-  
   gameManager.lastPlayerId = 0
   arena.start(gameManager.lastPlayerId)
   playersInf = playersInfo
@@ -142,6 +137,7 @@ function gameManager.resetPlayers()
     local p = arenaPos[i]
     v.x = p.x
     v.y = p.y
+    v.weapon = Weapon.new(v,bulletManager.randomBullet())
   end
 end
 
@@ -149,12 +145,13 @@ function gameManager.resetPlayersNoScore()
   for i, v in ipairs(playerManager.list) do
     if v.curr_state:is_a(PlayerDeadState) then
       v:setState(v.states.alive)
-      v.hp = 4
       gameManager.lastPlayerId = v.id
     end
     local p = arenaPos[i]
     v.x = p.x
     v.y = p.y
+    v.hp = 4
+    v.weapon = Weapon.new(v,bulletManager.randomBullet())
   end
 end
 

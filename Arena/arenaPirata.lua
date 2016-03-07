@@ -9,6 +9,7 @@ arenaPirata.spawnTime = 6
 function arenaPirata.start(arena)
   --Read txt with inputs
   arenaPirata.arena = arena
+  arena.loadTransitions()
   local txtData = readTxt()
   preparePositions(txtData)
 end

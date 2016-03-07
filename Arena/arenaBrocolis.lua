@@ -9,6 +9,7 @@ arenaBrocolis.spawnTime = 6
 function arenaBrocolis.start(arena)
   --Read txt with inputs
   arenaBrocolis.arena = arena
+  --arena.loadTransitions()
   local txtData = readTxt()
   preparePositions(txtData)
 end
