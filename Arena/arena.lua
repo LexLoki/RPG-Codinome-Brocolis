@@ -102,17 +102,17 @@ function arena.loadTransitions()
   local t7 = arena.mapInfo.transitionTopLeft
   local t8 = arena.mapInfo.transitionTopRight
   local img = arena.sheet
-  arena.obstacles[1][1] = SolidTile.new(1*w,1*h,img,t7)
-  arena.obstacles[1][13] = SolidTile.new(1*w,13*h,img,t8)
-  arena.obstacles[10][1] = SolidTile.new(10*w,1*h,img,t5)
-  arena.obstacles[10][13] = SolidTile.new(10*w,13*h,img,t6)
-  for j=2,arena.nRow-3 do
-    arena.obstacles[1][j] = SolidTile.new(1*w,j*h,img,t3)
-    arena.obstacles[10][j] = SolidTile.new(10*w,j*h,img,t4)
+  arena.obstacles[1][1] = FreeTile.new(1*w,1*h,img,t7)
+  arena.obstacles[1][13] = FreeTile.new(13*w,1*h,img,t8)
+  arena.obstacles[10][1] = FreeTile.new(1*w,10*h,img,t5)
+  arena.obstacles[10][13] = FreeTile.new(13*w,10*h,img,t6)
+  for j=2,arena.nRow do
+    arena.obstacles[1][j] = FreeTile.new(j*w,1*h,img,t3)
+    arena.obstacles[10][j] = FreeTile.new(j*w,10*h,img,t4)
   end
-  for i=2,arena.nCol-3 do
-    arena.obstacles[i][1] = SolidTile.new(i*w,1*h,img,t1)
-    arena.obstacles[i][13] = SolidTile.new(i*w,13*h,img,t2)
+  for i=2,arena.nCol do
+    --arena.obstacles[i][1] = FreeTile.new(1*w,i*h,img,t1)
+    --arena.obstacles[i][13] = FreeTile.new(13*w,i*h,img,t2)
   end
   
 end
