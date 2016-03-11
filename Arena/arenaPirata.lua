@@ -4,7 +4,8 @@ local arenaPirata = {index = 4}
 
 local preparePositions, round, evaluate, readTxt
 
-arenaPirata.spawnTime = 6
+arenaPirata.spawnTime = 10
+arenaPirata.explosionTime = 1.5
 
 function arenaPirata.start(arena)
   --Read txt with inputs
@@ -15,6 +16,8 @@ function arenaPirata.start(arena)
 end
 
 function arenaPirata.update(dt)
+  local exp = arenaPirata.spawnTime-arenaPirata.explosionTime
+  local ps = playerManager.getAlivePlayers()
   for i,v in ipairs(arenaPirata.destroyed) do
     v.timer = v.timer - dt
     if v.timer<0 then
@@ -26,6 +29,22 @@ function arenaPirata.update(dt)
       v.floor = floor
       arenaPirata.arenaReplacement[v.index] = floor
       obs[pos.row][pos.col] = v
+    elseif v:is_a(DestructTile) and v.timer>exp then
+      arenaPirata.explosionCheck(v,ps)
+    end
+  end
+end
+
+function arenaPirata.explosionCheck(tile,players)
+  local t = {
+    x = tile.x - tile.width,
+    y = tile.y - tile.height,
+    width = tile.width*3,
+    height = tile.height*3
+  }
+  for i,v in ipairs(players) do
+    if contact.isInContact(v,t) then
+      v:tookHit()
     end
   end
 end
