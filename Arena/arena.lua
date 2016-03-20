@@ -110,9 +110,9 @@ function arena.loadTransitions()
     arena.obstacles[1][j] = FreeTile.new(j*w,1*h,img,t3)
     arena.obstacles[10][j] = FreeTile.new(j*w,10*h,img,t4)
   end
-  for i=2,arena.nCol do
-    --arena.obstacles[i][1] = FreeTile.new(1*w,i*h,img,t1)
-    --arena.obstacles[i][13] = FreeTile.new(13*w,i*h,img,t2)
+  for i=2,arena.nCol-6 do
+    arena.obstacles[i][1] = FreeTile.new(1*w,i*h,img,t2)
+    arena.obstacles[i][13] = FreeTile.new(13*w,i*h,img,t1)
   end
   
 end

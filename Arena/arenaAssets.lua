@@ -24,8 +24,8 @@ function arenaAssets.load()
       defaultFloor = quads[3][2],
       defaultWall = quads[3][1],
       destruct = quads[i][arenaAssets.random*arenaAssets.random+num],
-      transitionMiddleLeft = quads[3][7],
-      transitionMiddleRight = quads[4][1],
+      transitionMiddleLeft = quads[4][1],
+      transitionMiddleRight = quads[3][7],
       transitionMiddleTop = quads[4][2],
       transitionMiddleBottom = quads[4][3],
       transitionBottomLeft = quads[3][5],
@@ -43,7 +43,8 @@ function arenaAssets.load()
     {
       defaultFloor = quads[2][3],
       defaultWall = quads[2][4],
-      destruct = quads[2][5]
+      destruct = quads[2][5],
+      obstacle = quads[2][5]
     },
     --pirata
     {
