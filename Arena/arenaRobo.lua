@@ -56,11 +56,12 @@ function arenaRobo.switchPanel()
   local th = arenaRobo.arena.tileSize.height
   local obs = arena.obstacles
   for i,v in ipairs(arenaRobo.blocks) do
-    local pos = arenaRobo.pos[v.index]
-    local p = pos[oldMode]
-    obs[p.row][p.col] = arenaRobo.arenaReplacement[v.index]
-    p = pos[mode]
-    arenaRobo.arenaReplacement[v.index] = obs[p.row][p.col]
+    local p = arenaRobo.pos[v.index][oldMode]
+    obs[p.row][p.col] = v.floor
+  end
+  for i,v in ipairs(arenaRobo.blocks) do
+    local p = arenaRobo.pos[v.index][mode]
+    v.floor = obs[p.row][p.col]
     obs[p.row][p.col] = v
     v.x = tw*p.col
     v.y = th*p.row
@@ -112,6 +113,7 @@ function evaluate(input)
   local a = arenaRobo.arena
   local col,row = round(input.x1*arenaRobo.arena.nCol), round(input.y1*arenaRobo.arena.nRow)
   local col2,row2 = round(input.x2*arenaRobo.arena.nCol), round(input.y2*arenaRobo.arena.nRow)
+  print(col, row, col2, row2)
   table.insert(arenaRobo.pos,{{col=col,row=row},{col=col2,row=row2}})
   local v = SolidTile.new(col*arenaRobo.arena.tileSize.width,row*arenaRobo.arena.tileSize.height,a.sheet,a.mapInfo.defaultWall)
   v.index = #arenaRobo.pos
@@ -120,7 +122,7 @@ function evaluate(input)
   local pos = arenaRobo.pos[v.index][1]
   local floor = obs[pos.row][pos.col]
   v.floor = floor
-  arenaRobo.arenaReplacement[v.index] = floor
+  --arenaRobo.arenaReplacement[v.index] = floor
   obs[pos.row][pos.col] = v
 end
 
