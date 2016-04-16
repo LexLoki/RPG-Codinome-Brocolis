@@ -27,9 +27,7 @@ function Player.new(index,bulletClass,assetInfo,keys,icon, iconPosition, joy)
   local self = Player.newObject(0,0,Player.width,Player.height,assetInfo)
   self.joy = joy
   --Init properties
-  --self.dir = Direction.Left
   self.speed = {x=0,y=0}
-  --self.aComp = animationManager_new(4,0.5,true)
   self.keys = keys--Player.data[index].keys
   self.hp = Player.maxHP
   self.score = 0

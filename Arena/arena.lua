@@ -136,11 +136,7 @@ function arena.draw()
   for i=0, arena.nRow-1 do
     for j=0, arena.nCol-1 do
       local w = arena.obstacles[i][j]
-      --love.graphics.print(w:name(),j*100+10,i*20+10)
-      --love.graphics.print(w:superClass():name(),j*100+10,i*20+10)
-      --if w:is_a(Tile) then
-        w:draw(offset)
-      --end
+      w:draw(offset)
     end
   end
 end
@@ -233,4 +229,26 @@ function prepareDrawOrder(players)
     table.insert(grid[math.floor(v.y/arena.tileSize.height)],v)
   end
   return grid
+end
+
+function isColliding(player)
+  local firstRow = math.floor(player.y/arena.tileSize.height)
+  local lastRow = math.floor((player.y+player.height)/arena.tileSize.height)
+  local firstCol = math.floor(player.x/arena.tileSize.width)
+  local lastCol = math.floor((player.x+player.width)/arena.tileSize.width)
+  for i=firstRow,lastRow do
+    for j=firstCol,lastCol do
+      local row = arena.obstacles[i]
+      if row == nil then
+        return true
+      else
+        tile = row[j]
+        if tile == nil then
+          return true
+        else
+          return not tile:canMove(player)
+        end
+      end
+    end
+  end
 end
